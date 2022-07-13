@@ -1,13 +1,36 @@
+import React from "react";
+import { HashRouter as Router, Route, Routes } from "react-router-dom";
+import { Homepage } from "./views/Homepage";
+import Navbar from "./components/Navbar";
+
+const App = () => {
+  return (
+    <>
+      <Router>
+      < Navbar />
+        <Routes>
+           
+          <Route path = "/Homepage" exact element= {<Homepage 
+          
+          />
+
+        }
+          />
+
+        </Routes>
+      </Router>
+    </>
+  );
+};
+
 // import React, { useEffect, useState } from "react";
 // import Register from "./views/Register";
 // import Login from "./views/Login";
 // import Albums from "./views/Albums";
 // import "./App.css";
 
-
-
 // const App = () => {
-    
+
 //     const [ isLoggedIn, setIsLoggedIn ] = useState(false);
 //     const [ currentUserId, setCurrentUserId ] = useState("");
 //     const [ showLogin, setShowLogin ] = useState(true);
@@ -26,14 +49,12 @@
 //                 logout()
 //             }
 
-
 //             login(data.token, data.id)
 //         }else{
 //             logout();
 //         }
 
 //     }, [])
-
 
 //     const login =(token, id)=>{
 //         setToken(token);
@@ -47,23 +68,21 @@
 //         setCurrentUserId("");
 //         setIsLoggedIn(false);
 //         setShowLogin(true);
-        
+
 //     }
 
 //     const deregister = async ()=>{
 //         //event.preventDefault();
-    
-    
+
 //         const settings = {
 //             method: "DELETE",
 //             headers: {
 //                 "Authorization": "Bearer " + token
 //               },
 //             }
-    
+
 //             const response = await fetch(process.env.REACT_APP_SERVER_URL +`/users/${currentUserId}`, settings);
 //             const parsedRes = await response.json();
-
 
 //             try{
 //                 if(response.ok){
@@ -71,7 +90,7 @@
 //                     setIsLoggedIn(false);
 //                     setShowLogin(true);
 //                     setCurrentUserId("");
-    
+
 //                 }else{
 //                     throw new Error(parsedRes.message)
 //                 }
@@ -79,38 +98,22 @@
 //             } catch (err){
 //                 alert(err.message)
 //             }
-            
-    
+
 //         }
-    
 
-
-
-    
 //     if (!isLoggedIn) {
-      
+
 //         if (showLogin) {
 //             return <Login setShowLogin={setShowLogin} login={login} />
-        
+
 //         } else {
-//             return <Register setShowLogin={setShowLogin} //setIsLoggedIn={setIsLoggedIn} setCurrentUserId={setCurrentUserId} setToken={setToken} 
+//             return <Register setShowLogin={setShowLogin} //setIsLoggedIn={setIsLoggedIn} setCurrentUserId={setCurrentUserId} setToken={setToken}
 //             login={login}/>
 //         }
-    
+
 //     } else {
 //         return <Albums currentUserId={currentUserId} token={token} logout={logout} deregister={deregister}/>
 //     }
 // }
 
-
-
-
-
-
-
-
-
-
-// export default App;
-
-
+export default App;
