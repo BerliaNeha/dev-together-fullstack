@@ -20,3 +20,16 @@ to pull things to main
 
 ## git branch -g branchName
 to delete branch after merging
+
+## on github create pull merge request and other collaborator does it
+
+## then on your terminal do:
+git checkout main
+git branch -d branchName
+
+## git pull origin main
+to see changes as updated in github and not in main
+
+## if in main to see changes thats been added
+git pull
+
