@@ -4,44 +4,38 @@ import { Homepage } from "./views/Homepage";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import { ThemeProvider } from "@emotion/react";
-import {createTheme, CssBaseline } from "@mui/material";
+import { createTheme, CssBaseline } from "@mui/material";
 
 const theme = createTheme({
-    palette: {
-      primary: {
-        main: "#547980",
-      },
-      secondary: {
-        main: "#D9CEBF",
-      },
+  palette: {
+    primary: {
+      main: "#547980",
     },
-  });
-
+    secondary: {
+      main: "#D9CEBF",
+    },
+  },
+  typography: {
+    fontFamily: ["monospace"].join(","),
+  },
+});
 
 const App = () => {
   return (
-    <> 
-    <CssBaseline />
-    <ThemeProvider theme={theme}>
-      <Router>
-      < Navbar />
-      < Footer/>
-        <Routes>
-           
-          <Route path = "/Homepage" exact element= {<Homepage 
-          
-          />
-
-        }
-          />
-
-        </Routes>
-      </Router>
+    <>
+      <CssBaseline />
+      <ThemeProvider theme={theme}>
+        <Router>
+          <Navbar />
+          <Footer />
+          <Routes>
+            <Route path="/Homepage" exact element={<Homepage />} />
+          </Routes>
+        </Router>
       </ThemeProvider>
     </>
   );
 };
-
 
 // import React, { useEffect, useState } from "react";
 // import Register from "./views/Register";
