@@ -31,5 +31,19 @@ git branch -d branchName
 to see changes as updated in github and not in main
 
 ## if in main to see changes thats been added
-git pull
+git pull  
+
+## git checkout -b teammatebranchname, then git pull origin teamamtebranchname, 
+To help one another with their branch without merging to main
+
+
+## Installation
+
+npm install, React, react router dom, material UIs, 
+
+
+## classic project, Kanban template
+
+
+
 
