@@ -56,6 +56,8 @@ export const registerDeveloperPost = async (req, res, next) =>{
             password,
             process.env.PASS_SEC
           ).toString(),
+          policyAndTermsCheckbox:req.body.policyAndTermsCheckbox,
+          subscribeCheckbox:req.body.subscribeCheckbox
       });
 
       try {

@@ -1,7 +1,6 @@
 import createError from "http-errors";
 import jwt from "jsonwebtoken";
 import CryptoJS from "crypto-js";
-import User from "../models/user.js";
 import UserDeveloper from "../models/userDeveloper.js";
 import UserEmployer from "../models/userEmployer.js";
 
