@@ -9,7 +9,9 @@ import CssBaseline from "@mui/material/CssBaseline";
 import { Login } from "./views/Login.js";
 import { Box } from "@mui/material";
 import { RegisterEmployer } from "./views/RegisterEmployer.js";
+
 import { RegisterDeveloper } from "./views/RegisterDeveloper.js";
+
 
 const theme = createTheme({
   palette: {
@@ -35,6 +37,7 @@ const App = () => {
 
             <Routes>
               <Route path="/" exact element={<Homepage />} />
+
               <Route
                 path="/login"
                 element={
@@ -50,6 +53,10 @@ const App = () => {
                 path="/register-developer"
                 element={<RegisterDeveloper isLoggedIn={isLoggedIn}/>}
               />
+
+              <Route path="/Login" element={<Login />} />
+              <Route path="/register-employer" element={<RegisterEmployer />} />
+
             </Routes>
             <Footer />
           </Box>

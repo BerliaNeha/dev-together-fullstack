@@ -13,7 +13,9 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { FormControl, FormLabel, Radio, RadioGroup } from "@mui/material";
+
 import { Navigate, useNavigate } from "react-router-dom";
+
 
 function Copyright(props) {
   return (
@@ -33,6 +35,7 @@ function Copyright(props) {
   );
 }
 
+
 export const EmployerRegister = ({ isLoggedIn }) => {
   let navigate = useNavigate();
   const handleSubmit = (event) => {
@@ -47,6 +50,18 @@ export const EmployerRegister = ({ isLoggedIn }) => {
       companyWebsite: data.get("companyWebsite"),
     };
     console.log(data.get("jobTitle"), "data developer");
+
+const theme = createTheme();
+
+export const EmployerRegister = () => {
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const data = new FormData(event.currentTarget);
+    console.log({
+      email: data.get("email"),
+      password: data.get("password"),
+    });
+
   };
 
   const [hiringNumber, setHiringNumber] = React.useState("1-5");
@@ -60,6 +75,7 @@ export const EmployerRegister = ({ isLoggedIn }) => {
   const handleRemoteWork = (event) => {
     setRemoteWork(event.target.value);
   };
+
 
   return isLoggedIn ? (
     <Navigate to="/" />
@@ -241,5 +257,5 @@ export const EmployerRegister = ({ isLoggedIn }) => {
       </Box>
       <Copyright sx={{ mt: 5 }} />
     </Container>
-  );
-};
+
+  
