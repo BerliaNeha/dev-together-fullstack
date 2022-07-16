@@ -20,8 +20,6 @@ const page = ['Developers', 'Employers', 'Dev Community', "Login", "About Us"];
 
 const Navbar = ({isLoggedIn, setIsLoggedIn, setCurrentUserId}) => {
 
-const Navbar = () => {
-
 let navigate = useNavigate()
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);

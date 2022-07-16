@@ -50,8 +50,10 @@ export const EmployerRegister = ({ isLoggedIn }) => {
       companyName: data.get("companyName"),
       companyWebsite: data.get("companyWebsite"),
     };
-    console.log(data.get("jobTitle"), "data developer")
-  }
+    console.log(data.get("jobTitle"), "data developer");
+
+  };
+
   const [hiringNumber, setHiringNumber] = React.useState("1-5");
 
   const handleHiringNumber = (event) => {
@@ -122,7 +124,7 @@ export const EmployerRegister = ({ isLoggedIn }) => {
               <TextField
                 required
                 fullWidth
-                id="pnoneNumber"
+                id="phoneNumber"
                 label="Phone number"
                 name="phoneNumber"
                 autoComplete="phoneNumber"
@@ -245,6 +247,6 @@ export const EmployerRegister = ({ isLoggedIn }) => {
       </Box>
       <Copyright sx={{ mt: 5 }} />
     </Container>
-
   );
-              }
+};
+              
