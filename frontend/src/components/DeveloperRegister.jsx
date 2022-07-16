@@ -11,11 +11,8 @@ import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { FormControl, FormLabel, Radio, RadioGroup } from "@mui/material";
-
+import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import { Navigate, useNavigate } from "react-router-dom";
-
 
 function Copyright(props) {
   return (
@@ -35,47 +32,27 @@ function Copyright(props) {
   );
 }
 
-
-export const EmployerRegister = ({ isLoggedIn }) => {
+export const DeveloperRegister = ({ isLoggedIn }) => {
   let navigate = useNavigate();
+  const [jobTitle, setJobTitle] = React.useState("");
+  console.log(jobTitle, "jobTitle");
+  const handleJobTitle = (event) => {
+    setJobTitle(event.target.value);
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    const newUserEmployer = {
+    const newUserDeveloper = {
       username: data.get("username"),
+      firstName: data.get("firstName"),
+      lastName: data.get("lastName"),
       email: data.get("email"),
       password: data.get("password"),
-      phoneNumber: data.get("phoneNumber"),
-      companyName: data.get("companyName"),
-      companyWebsite: data.get("companyWebsite"),
+      jobTitle: data.get("jobTitle"),
     };
     console.log(data.get("jobTitle"), "data developer");
-
-const theme = createTheme();
-
-export const EmployerRegister = () => {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
-
   };
-
-  const [hiringNumber, setHiringNumber] = React.useState("1-5");
-
-  const handleHiringNumber = (event) => {
-    setHiringNumber(event.target.value);
-  };
-
-  const [remoteWork, setRemoteWork] = React.useState("yes");
-
-  const handleRemoteWork = (event) => {
-    setRemoteWork(event.target.value);
-  };
-
 
   return isLoggedIn ? (
     <Navigate to="/" />
@@ -94,11 +71,11 @@ export const EmployerRegister = () => {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Join as a Company
+          Join as a Developer
         </Typography>
         <Box component="form" validate onSubmit={handleSubmit} sx={{ mt: 3 }}>
           <Grid container spacing={2}>
-            <Grid item xs={6} sm={6}>
+            <Grid item xs={12} sm={6}>
               <TextField
                 autoComplete="given-name"
                 name="username"
@@ -110,34 +87,23 @@ export const EmployerRegister = () => {
                 variant="standard"
               />
             </Grid>
-            <Grid item xs={6} sm={6}>
+            <Grid item xs={12} sm={6}>
               <TextField
                 required
                 fullWidth
-                id="companyName"
-                label="Company Name"
-                name="companyName"
+                id="first name"
+                label="First Name"
+                name="First name"
                 variant="standard"
               />
             </Grid>
-            <Grid item xs={12} sm={12}>
+            <Grid item xs={12} sm={6}>
               <TextField
                 required
                 fullWidth
-                id="companyWebsite"
-                label="Company Website"
-                name="companyWebsite"
-                variant="standard"
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                required
-                fullWidth
-                id="pnoneNumber"
-                label="Phone number"
-                name="phoneNumber"
-                autoComplete="phoneNumber"
+                id="last name"
+                label="Last Name"
+                name="Last name"
                 variant="standard"
               />
             </Grid>
@@ -164,54 +130,27 @@ export const EmployerRegister = () => {
                 variant="standard"
               />
             </Grid>
-            <Grid item xs={6}>
-              <FormControl>
-                <FormLabel id="demo-controlled-radio-buttons-group">
-                  Hiring number
-                </FormLabel>
-                <RadioGroup
-                  aria-labelledby="demo-controlled-radio-buttons-group"
-                  name="controlled-radio-buttons-group"
-                  value={hiringNumber}
-                  onChange={handleHiringNumber}
-                >
-                  <FormControlLabel
-                    value="1-5"
-                    control={<Radio />}
-                    label="1-5"
-                  />
-                  <FormControlLabel
-                    value="5-10"
-                    control={<Radio />}
-                    label="5-10"
-                  />
-                  <FormControlLabel
-                    value="10+"
-                    control={<Radio />}
-                    label="10+"
-                  />
-                </RadioGroup>
-              </FormControl>
-            </Grid>
 
-            <Grid item xs={6}>
-              <FormControl>
-                <FormLabel id="demo-controlled-radio-buttons-group">
-                  Remote work
-                </FormLabel>
-                <RadioGroup
-                  aria-labelledby="demo-controlled-radio-buttons-group"
-                  name="controlled-radio-buttons-group"
-                  value={remoteWork}
-                  onChange={handleRemoteWork}
+            <Grid item xs={12}>
+              <FormControl sx={{ m: 1, width: "95%" }} required>
+                <InputLabel id="jobTitle">Job title</InputLabel>
+                <Select
+                  labelId="jobTitle"
+                  id={jobTitle}
+                  value={jobTitle}
+                  label="Job Title"
+                  onChange={handleJobTitle}
                 >
-                  <FormControlLabel
-                    value="yes"
-                    control={<Radio />}
-                    label="Yes"
-                  />
-                  <FormControlLabel value="no" control={<Radio />} label="No" />
-                </RadioGroup>
+                  <MenuItem value={"Frontend Developer"}>
+                    Frontend Developer
+                  </MenuItem>
+                  <MenuItem value={"Backend Developer"}>
+                    Backend Developer
+                  </MenuItem>
+                  <MenuItem value={"Full Stack Developer"}>
+                    Full Stack Developer
+                  </MenuItem>
+                </Select>
               </FormControl>
             </Grid>
 
@@ -257,5 +196,5 @@ export const EmployerRegister = () => {
       </Box>
       <Copyright sx={{ mt: 5 }} />
     </Container>
-
-  
+  );
+};

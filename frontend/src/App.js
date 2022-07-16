@@ -10,6 +10,9 @@ import { Login } from "./views/Login.js";
 import { Box } from "@mui/material";
 import { RegisterEmployer } from "./views/RegisterEmployer.js";
 
+import { RegisterDeveloper } from "./views/RegisterDeveloper.js";
+
+
 const theme = createTheme({
   palette: {
     primary: {
@@ -22,6 +25,8 @@ const theme = createTheme({
 });
 
 const App = () => {
+  const [isLoggedIn, setIsLoggedIn] = React.useState(false);
+  const [currentUserId, setCurrentUserId] = React.useState("");
   return (
     <React.StrictMode>
       <ThemeProvider theme={theme}>
@@ -32,8 +37,26 @@ const App = () => {
 
             <Routes>
               <Route path="/" exact element={<Homepage />} />
+
+              <Route
+                path="/login"
+                element={
+                  <Login
+                    setIsLoggedIn={setIsLoggedIn}
+                    isLoggedIn={isLoggedIn}
+                    setCurrentUserId={setCurrentUserId}
+                  />
+                }
+              />
+              <Route path="/register-employer" element={<RegisterEmployer isLoggedIn={isLoggedIn}/>} />
+              <Route
+                path="/register-developer"
+                element={<RegisterDeveloper isLoggedIn={isLoggedIn}/>}
+              />
+
               <Route path="/Login" element={<Login />} />
               <Route path="/register-employer" element={<RegisterEmployer />} />
+
             </Routes>
             <Footer />
           </Box>
