@@ -5,7 +5,6 @@ import Typography from "@mui/material/Typography";
 import Link from "@mui/material/Link";
 import {
   Button,
-  Grid,
   List,
   ListItem,
   ListItemButton,
@@ -117,14 +116,6 @@ function Footer(props) {
               </Link>
               <Link href="https://twitter.com/twitter" sx={{color:"inherit"}}>
 
-              <Link href="#">
-                <FacebookIcon />
-              </Link>
-              <Link href="#">
-                <InstagramIcon />
-              </Link>
-              <Link href="#">
-
                 <TwitterIcon />
               </Link>
             </Box>
@@ -137,13 +128,6 @@ function Footer(props) {
           <Link href="#" sx={{color:"inherit"}}>COVID information</Link>
           {" | "}
           <Link href="#" sx={{color:"inherit"}}>Terms of service</Link>
-=
-          <Link href="#">Privacy policy</Link>
-          {"|"}
-          <Link href="#">COVID information</Link>
-          {"|"}
-          <Link href="#">Terms of service</Link>
-
         </Box>
       </Box>
     </Box>

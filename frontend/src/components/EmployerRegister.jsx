@@ -37,6 +37,7 @@ function Copyright(props) {
 
 
 export const EmployerRegister = ({ isLoggedIn }) => {
+
   let navigate = useNavigate();
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -49,21 +50,8 @@ export const EmployerRegister = ({ isLoggedIn }) => {
       companyName: data.get("companyName"),
       companyWebsite: data.get("companyWebsite"),
     };
-    console.log(data.get("jobTitle"), "data developer");
-
-const theme = createTheme();
-
-export const EmployerRegister = () => {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
-
-  };
-
+    console.log(data.get("jobTitle"), "data developer")
+  }
   const [hiringNumber, setHiringNumber] = React.useState("1-5");
 
   const handleHiringNumber = (event) => {
@@ -258,4 +246,5 @@ export const EmployerRegister = () => {
       <Copyright sx={{ mt: 5 }} />
     </Container>
 
-  
+  );
+              }
