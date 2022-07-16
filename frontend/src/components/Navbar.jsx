@@ -14,10 +14,10 @@ import AdbIcon from '@mui/icons-material/Adb';
 import { useNavigate } from 'react-router-dom';
 import CodeIcon from '@mui/icons-material/Code';
 
-const pages = ['Developers', 'Employers', 'Dev Community', "Login", "About Us"];
+const page = ['Developers', 'Employers', 'Dev Community', "Login", "About Us"];
 //const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
-const Navbar = () => {
+const Navbar = ({isLoggedIn, setIsLoggedIn, setCurrentUserId}) => {
 let navigate = useNavigate()
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -36,6 +36,14 @@ let navigate = useNavigate()
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
+  };
+  const handleMenuItemPress = (page) => {
+    handleCloseNavMenu();
+    navigate(`/${page}`);
+  };
+  const handleLogout = () => {
+    setCurrentUserId("");
+    setIsLoggedIn(false);
   };
 
   return (
@@ -88,7 +96,7 @@ let navigate = useNavigate()
                 display: { xs: 'block', md: 'none' }
               }}
             >
-              {pages.map((page) => (
+              {page.map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
                   <Typography textAlign="center">{page}</Typography>
                 </MenuItem>
@@ -114,10 +122,10 @@ let navigate = useNavigate()
             DEV NET
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, justifyContent:"space-evenly"}}>
-            {pages.map((page) => (
+            {page.map((page) => (
               <Button
                 key={page}
-                
+                onClick={() => handleMenuItemPress(page)}
                 sx={{ my: 2, display: 'block', color: (theme) => theme.palette.secondary.main }}
                 
               >
@@ -125,6 +133,9 @@ let navigate = useNavigate()
               </Button>
             ))}
           </Box>
+            { isLoggedIn ? <Button color="inherit" onClick={handleLogout}>
+              LOG OUT
+            </Button> : null }
         </Toolbar>
       </Container>
     </AppBar>
