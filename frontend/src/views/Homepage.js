@@ -10,15 +10,6 @@ const images = [
   "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1172&q=80",
 ];
 
-<<<<<<< HEAD
-export const Homepage = ()=>{
-    return(
-        <>
-
-        </>
-    )
-}
-=======
 export const Homepage = () => {
   return (
     <>
@@ -38,4 +29,3 @@ export const Homepage = () => {
     </>
   );
 };
->>>>>>> 7b4df9dd1aa91006bae331d99429d7ee8bd1b832
