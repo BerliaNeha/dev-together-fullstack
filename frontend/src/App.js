@@ -1,10 +1,14 @@
 import React from "react";
 import { HashRouter as Router, Route, Routes } from "react-router-dom";
-import { Homepage } from "./views/Homepage";
-import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
-import { ThemeProvider } from "@emotion/react";
-import { createTheme, CssBaseline } from "@mui/material";
+import { Homepage } from "./views/Homepage.js";
+import Navbar from "./components/Navbar.jsx";
+import Footer from "./components/Footer.jsx";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
+
+import CssBaseline from "@mui/material/CssBaseline";
+import { Login } from "./views/Login.js";
+import { Box } from "@mui/material";
+import { RegisterEmployer } from "./views/RegisterEmployer.js";
 
 const theme = createTheme({
   palette: {
@@ -15,25 +19,27 @@ const theme = createTheme({
       main: "#D9CEBF",
     },
   },
-  typography: {
-    fontFamily: ["monospace"].join(","),
-  },
 });
 
 const App = () => {
   return (
-    <>
-      <CssBaseline />
+    <React.StrictMode>
       <ThemeProvider theme={theme}>
+        <CssBaseline />
         <Router>
-          <Navbar />
-          <Footer />
-          <Routes>
-            <Route path="/Homepage" exact element={<Homepage />} />
-          </Routes>
+          <Box height="100vh">
+            <Navbar />
+
+            <Routes>
+              <Route path="/" exact element={<Homepage />} />
+              <Route path="/Login" element={<Login />} />
+              <Route path="/register-employer" element={<RegisterEmployer />} />
+            </Routes>
+            <Footer />
+          </Box>
         </Router>
       </ThemeProvider>
-    </>
+    </React.StrictMode>
   );
 };
 
