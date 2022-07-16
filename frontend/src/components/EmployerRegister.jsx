@@ -51,17 +51,6 @@ export const EmployerRegister = ({ isLoggedIn }) => {
     };
     console.log(data.get("jobTitle"), "data developer");
 
-const theme = createTheme();
-
-export const EmployerRegister = () => {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
-
   };
 
   const [hiringNumber, setHiringNumber] = React.useState("1-5");
@@ -134,7 +123,7 @@ export const EmployerRegister = () => {
               <TextField
                 required
                 fullWidth
-                id="pnoneNumber"
+                id="phoneNumber"
                 label="Phone number"
                 name="phoneNumber"
                 autoComplete="phoneNumber"
@@ -257,5 +246,6 @@ export const EmployerRegister = () => {
       </Box>
       <Copyright sx={{ mt: 5 }} />
     </Container>
-
+  );
+};
               

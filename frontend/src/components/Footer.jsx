@@ -115,18 +115,8 @@ function Footer(props) {
               <Link href="https://www.instagram.com/explore/tags/developer/?hl=el" sx={{color:"inherit"}}>
                 <InstagramIcon />
               </Link>
-              <Link href="https://twitter.com/twitter" sx={{color:"inherit"}}>
-
-              <Link href="#">
-                <FacebookIcon />
-              </Link>
-              <Link href="#">
-                <InstagramIcon />
-              </Link>
-              <Link href="#">
-
-                <TwitterIcon />
-              </Link>
+              <Link href="https://twitter.com/twitter" sx={{color:"inherit"}}> 
+                <TwitterIcon/></Link>
             </Box>
           </List>
         </Box>
@@ -137,12 +127,7 @@ function Footer(props) {
           <Link href="#" sx={{color:"inherit"}}>COVID information</Link>
           {" | "}
           <Link href="#" sx={{color:"inherit"}}>Terms of service</Link>
-=
-          <Link href="#">Privacy policy</Link>
-          {"|"}
-          <Link href="#">COVID information</Link>
-          {"|"}
-          <Link href="#">Terms of service</Link>
+
 
         </Box>
       </Box>
