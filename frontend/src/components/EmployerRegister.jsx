@@ -118,7 +118,7 @@ export const EmployerRegister = ({ isLoggedIn }) => {
               <TextField
                 required
                 fullWidth
-                id="pnoneNumber"
+                id="phoneNumber"
                 label="Phone number"
                 name="phoneNumber"
                 autoComplete="phoneNumber"
