@@ -56,6 +56,7 @@ export const DeveloperRegister = ({ isLoggedIn }) => {
       subscribeCheckbox: shouldSubscribe,
       policyAndTermsCheckbox: true
     };
+    
     const settings = {
       method: 'POST',
       body: JSON.stringify(newUserDeveloper),
@@ -119,9 +120,9 @@ export const DeveloperRegister = ({ isLoggedIn }) => {
               <TextField
                 required
                 fullWidth
-                id="first name"
+                id="firstName"
                 label="First Name"
-                name="First name"
+                name="firstName"
                 variant="standard"
               />
             </Grid>
@@ -129,9 +130,9 @@ export const DeveloperRegister = ({ isLoggedIn }) => {
               <TextField
                 required
                 fullWidth
-                id="last name"
+                id="lastName"
                 label="Last Name"
-                name="Last name"
+                name="lastName"
                 variant="standard"
               />
             </Grid>
@@ -199,7 +200,7 @@ export const DeveloperRegister = ({ isLoggedIn }) => {
                     value={true}
                   />
                 }
-                label="By signing up you agree to the Terms of Service and the Privacy Policy"
+                label="I agree to and understand the Privacy Notice and Terms of Use"
               />
             </Grid>
           </Grid>

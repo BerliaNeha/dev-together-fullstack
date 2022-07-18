@@ -18,6 +18,9 @@ add changes then push branch
 ## git pull origin main
 to pull things to main
 
+## git pull origin main
+pull those to your local branch too
+
 ## git branch -g branchName
 to delete branch after merging
 
