@@ -26,8 +26,7 @@ app.use(express.json());
 
 
 app.use("api/login", loginRouter);
-app.use("api/registerDeveloper", registerDeveloperRouter);
-
+app.use("/register-developer", registerDeveloperRouter);
 app.use("api/registerEmployer", registerEmployerRouter);
 
 
