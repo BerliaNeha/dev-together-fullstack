@@ -20,15 +20,16 @@ mongoose.connect(
 );
 mongoose.connection.on("error", () => console.error);
 
-app.use(cors({origin:"http://localhost:3000", credentials:true}));
+app.use(cors ());
+
 app.use(express.json());
 
 
 
-app.use("api/login", loginRouter);
-app.use("api/registerDeveloper", registerDeveloperRouter);
+app.use("/login", loginRouter);
+app.use("/register-developer", registerDeveloperRouter);
 
-app.use("api/registerEmployer", registerEmployerRouter);
+app.use("/register-employer", registerEmployerRouter);
 
 
 
