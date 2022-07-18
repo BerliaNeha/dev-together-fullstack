@@ -49,6 +49,7 @@ const App = () => {
                 element={<RegisterDeveloper isLoggedIn={isLoggedIn} />}
               />
               <Route path="/Login" element={<Login />} />
+              <Route path="/AboutUs" element={<AboutUs />} />
               <Route path="/register-employer" element={<RegisterEmployer />} />
 
             </Routes>
