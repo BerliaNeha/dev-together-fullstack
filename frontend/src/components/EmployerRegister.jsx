@@ -35,6 +35,7 @@ function Copyright(props) {
 }
 
 export const EmployerRegister = ({ isLoggedIn }) => {
+
   let navigate = useNavigate();
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -243,4 +244,3 @@ export const EmployerRegister = ({ isLoggedIn }) => {
     </Container>
   );
 };
-
