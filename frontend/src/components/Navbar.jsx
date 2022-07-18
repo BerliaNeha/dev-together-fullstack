@@ -14,11 +14,11 @@ import AdbIcon from '@mui/icons-material/Adb';
 import { useNavigate } from 'react-router-dom';
 import CodeIcon from '@mui/icons-material/Code';
 
-const page = ['Developers', 'Employers', 'Dev Community', "Login", "About Us"];
+const page = ['Developers', 'Employers', 'Dev Community', "Login", "About Us", "Contact"];
 //const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 
-const Navbar = ({isLoggedIn, setIsLoggedIn, setCurrentUserId}) => {
+export const Navbar = ({isLoggedIn, setIsLoggedIn, setCurrentUserId}) => {
 
 let navigate = useNavigate()
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -147,4 +147,3 @@ let navigate = useNavigate()
     </AppBar>
   );
 };
-export default Navbar;
