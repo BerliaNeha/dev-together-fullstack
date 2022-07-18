@@ -56,9 +56,6 @@ export const DeveloperRegister = ({ isLoggedIn }) => {
       subscribeCheckbox: shouldSubscribe,
       policyAndTermsCheckbox: true
     };
-    console.log(jobTitle)
-    console.log(shouldSubscribe)
-
     const settings = {
       method: 'POST',
       body: JSON.stringify(newUserDeveloper),
@@ -68,7 +65,7 @@ export const DeveloperRegister = ({ isLoggedIn }) => {
     }
 
     const response = await fetch(
-      process.env.REACT_APP_SERVER_URL + "/register-developer",
+      process.env.REACT_APP_SERVER_URL + `/register-developer`,
       settings
     );
     const parsedRes = await response.json();

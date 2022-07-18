@@ -1,7 +1,7 @@
 import React from "react";
 import { HashRouter as Router, Route, Routes } from "react-router-dom";
 import { Homepage } from "./views/Homepage.js";
-import Navbar from "./components/Navbar.jsx";
+import { Navbar} from "./components/Navbar.jsx";
 import Footer from "./components/Footer.jsx";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 
@@ -49,7 +49,7 @@ const App = () => {
                 element={<RegisterDeveloper isLoggedIn={isLoggedIn} />}
               />
               <Route path="/Login" element={<Login />} />
-              <Route path="/AboutUs" element={<AboutUs />} />
+              {/* <Route path="/AboutUs" element={<AboutUs />} /> */}
               <Route path="/register-employer" element={<RegisterEmployer />} />
 
             </Routes>
