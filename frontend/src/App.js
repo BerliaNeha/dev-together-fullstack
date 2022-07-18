@@ -11,6 +11,8 @@ import { Box } from "@mui/material";
 import { RegisterEmployer } from "./views/RegisterEmployer.js";
 
 import { RegisterDeveloper } from "./views/RegisterDeveloper.js";
+import ContactForm from "./components/Contact.jsx";
+import Contact from "./components/Contact.jsx";
 
 
 const theme = createTheme({
@@ -37,24 +39,17 @@ const App = () => {
 
             <Routes>
               <Route path="/" exact element={<Homepage />} />
-
+              <Route path="/contact" element={<Contact />} />
               <Route
-                path="/login"
-                element={
-                  <Login
-                    setIsLoggedIn={setIsLoggedIn}
-                    isLoggedIn={isLoggedIn}
-                    setCurrentUserId={setCurrentUserId}
-                  />
-                }
+                path="/register-employer"
+                element={<RegisterEmployer isLoggedIn={isLoggedIn} />}
               />
-              <Route path="/register-employer" element={<RegisterEmployer isLoggedIn={isLoggedIn}/>} />
               <Route
                 path="/register-developer"
-                element={<RegisterDeveloper isLoggedIn={isLoggedIn}/>}
+                element={<RegisterDeveloper isLoggedIn={isLoggedIn} />}
               />
-
               <Route path="/Login" element={<Login />} />
+              <Route path="/AboutUs" element={<AboutUs />} />
               <Route path="/register-employer" element={<RegisterEmployer />} />
 
             </Routes>

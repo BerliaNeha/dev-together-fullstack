@@ -16,7 +16,6 @@ import { FormControl, FormLabel, Radio, RadioGroup } from "@mui/material";
 
 import { Navigate, useNavigate } from "react-router-dom";
 
-
 function Copyright(props) {
   return (
     <Typography
@@ -35,7 +34,6 @@ function Copyright(props) {
   );
 }
 
-
 export const EmployerRegister = ({ isLoggedIn }) => {
 
   let navigate = useNavigate();
@@ -51,9 +49,7 @@ export const EmployerRegister = ({ isLoggedIn }) => {
       companyWebsite: data.get("companyWebsite"),
     };
     console.log(data.get("jobTitle"), "data developer");
-
   };
-
   const [hiringNumber, setHiringNumber] = React.useState("1-5");
 
   const handleHiringNumber = (event) => {
@@ -65,7 +61,6 @@ export const EmployerRegister = ({ isLoggedIn }) => {
   const handleRemoteWork = (event) => {
     setRemoteWork(event.target.value);
   };
-
 
   return isLoggedIn ? (
     <Navigate to="/" />
@@ -249,4 +244,3 @@ export const EmployerRegister = ({ isLoggedIn }) => {
     </Container>
   );
 };
-              

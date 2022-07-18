@@ -35,12 +35,15 @@ function Copyright(props) {
 export const DeveloperRegister = ({ isLoggedIn }) => {
   let navigate = useNavigate();
   const [jobTitle, setJobTitle] = React.useState("");
-  console.log(jobTitle, "jobTitle");
+  const [shouldSubscribe, setShouldSubscribe] = React.useState(false);
+
+
+
   const handleJobTitle = (event) => {
     setJobTitle(event.target.value);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     const newUserDeveloper = {
@@ -49,9 +52,37 @@ export const DeveloperRegister = ({ isLoggedIn }) => {
       lastName: data.get("lastName"),
       email: data.get("email"),
       password: data.get("password"),
-      jobTitle: data.get("jobTitle"),
+      jobTitle: jobTitle,
+      subscribeCheckbox: shouldSubscribe,
+      policyAndTermsCheckbox: true
     };
-    console.log(data.get("jobTitle"), "data developer");
+    console.log(jobTitle)
+    console.log(shouldSubscribe)
+
+    const settings = {
+      method: 'POST',
+      body: JSON.stringify(newUserDeveloper),
+      headers: {
+        "Content-Type" : "application/json"
+      }
+    }
+
+    const response = await fetch(
+      process.env.REACT_APP_SERVER_URL + "/register-developer",
+      settings
+    );
+    const parsedRes = await response.json();
+
+    try {
+      if (response.ok) {
+        navigate(`/sign-in`);
+      } else {
+        throw new Error(parsedRes.message);
+      }
+    } catch (err) {
+      alert(err.message);
+    }
+
   };
 
   return isLoggedIn ? (
@@ -136,18 +167,19 @@ export const DeveloperRegister = ({ isLoggedIn }) => {
                 <InputLabel id="jobTitle">Job title</InputLabel>
                 <Select
                   labelId="jobTitle"
-                  id={jobTitle}
+                  id="jobTitle"
                   value={jobTitle}
                   label="Job Title"
                   onChange={handleJobTitle}
+                  
                 >
-                  <MenuItem value={"Frontend Developer"}>
+                  <MenuItem value="Frontend Developer">
                     Frontend Developer
                   </MenuItem>
-                  <MenuItem value={"Backend Developer"}>
+                  <MenuItem value="Backend Developer">
                     Backend Developer
                   </MenuItem>
-                  <MenuItem value={"Full Stack Developer"}>
+                  <MenuItem value="Full Stack Developer">
                     Full Stack Developer
                   </MenuItem>
                 </Select>
@@ -156,7 +188,7 @@ export const DeveloperRegister = ({ isLoggedIn }) => {
 
             <Grid item xs={12}>
               <FormControlLabel
-                control={<Checkbox value="newsletter" color="primary" />}
+                control={<Checkbox color="primary" value={shouldSubscribe} onChange={()=>setShouldSubscribe(!shouldSubscribe)}/>}
                 label="Subscribe for our newsletter"
               />
             </Grid>
@@ -164,9 +196,10 @@ export const DeveloperRegister = ({ isLoggedIn }) => {
               <FormControlLabel
                 control={
                   <Checkbox
-                    value="acceptPrivacyPolicyAndTermsOfService"
                     color="primary"
                     required
+                    name="termsAndPolicy"
+                    value={true}
                   />
                 }
                 label="By signing up you agree to the Terms of Service and the Privacy Policy"
