@@ -26,6 +26,9 @@ export const Homepage = () => {
           />
         ))}
       </AutoPlaySwipeableViews> */}
+      <Box sx={{height: "70vh"}}>
+        hello
+      </Box>
     </>
   );
 };
