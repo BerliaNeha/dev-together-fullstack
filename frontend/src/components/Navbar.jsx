@@ -17,7 +17,11 @@ import CodeIcon from '@mui/icons-material/Code';
 const page = ['Developers', 'Employers', 'Dev Community', "Login", "About Us", "Contact"];
 //const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
-const Navbar = ({isLoggedIn, setIsLoggedIn, setCurrentUserId}) => {
+
+export const Navbar = ({isLoggedIn, setIsLoggedIn, setCurrentUserId}) => {
+
+
+
 let navigate = useNavigate()
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -125,7 +129,11 @@ let navigate = useNavigate()
             {page.map((page) => (
               <Button
                 key={page}
+
                 onClick={() => handleMenuItemPress(page)}
+
+                
+
                 sx={{ my: 2, display: 'block', color: (theme) => theme.palette.secondary.main }}
                 
               >
@@ -141,4 +149,3 @@ let navigate = useNavigate()
     </AppBar>
   );
 };
-export default Navbar;

@@ -13,6 +13,7 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { FormControl, FormLabel, Radio, RadioGroup } from "@mui/material";
+
 import { Navigate, useNavigate } from "react-router-dom";
 
 function Copyright(props) {
@@ -48,7 +49,6 @@ export const EmployerRegister = ({ isLoggedIn }) => {
     };
     console.log(data.get("jobTitle"), "data developer");
   };
-
   const [hiringNumber, setHiringNumber] = React.useState("1-5");
 
   const handleHiringNumber = (event) => {

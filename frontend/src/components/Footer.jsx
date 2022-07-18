@@ -61,7 +61,11 @@ function Footer(props) {
         <Typography variant="h6">Example str XX</Typography>
         <Typography variant="h6">0000 Berlin</Typography>
         <Typography variant="h6">030 1234567</Typography>
+
         <Button sx={{color:"inherit"}}>Contact with us!</Button>
+
+        <Button>Contact with us!</Button>
+
         <Copyright />
       </Box>
       <Box
@@ -103,6 +107,7 @@ function Footer(props) {
               Follow us
             </Typography>
             <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+
               <Link href="https://www.facebook.com/groups/fbdevelopers/about/" sx={{color:"inherit"}}>
                 <FacebookIcon />
               </Link>
@@ -110,17 +115,34 @@ function Footer(props) {
                 <InstagramIcon />
               </Link>
               <Link href="https://twitter.com/twitter" sx={{color:"inherit"}}>
+
+              <Link href="#">
+                <FacebookIcon />
+              </Link>
+              <Link href="#">
+                <InstagramIcon />
+              </Link>
+              <Link href="#">
+
                 <TwitterIcon />
               </Link>
             </Box>
           </List>
         </Box>
         <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+
           <Link href="#" sx={{color:"inherit"}}>Privacy policy</Link>
           {" | "}
           <Link href="#" sx={{color:"inherit"}}>COVID information</Link>
           {" | "}
           <Link href="#" sx={{color:"inherit"}}>Terms of service</Link>
+=
+          <Link href="#">Privacy policy</Link>
+          {"|"}
+          <Link href="#">COVID information</Link>
+          {"|"}
+          <Link href="#">Terms of service</Link>
+
         </Box>
       </Box>
     </Box>
