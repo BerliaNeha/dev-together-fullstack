@@ -1,7 +1,7 @@
 import createError from "http-errors";
 import jwt from "jsonwebtoken";
 import CryptoJS from "crypto-js";
-import UserEmployer from "../models/userEmployer";
+import UserEmployer from "../models/userEmployer.js";
 
 export const registerEmployerPost = async (req, res, next) => {
   const {
@@ -12,6 +12,8 @@ export const registerEmployerPost = async (req, res, next) => {
     companyName,
     companyWebsite,
   } = req.body;
+
+  console.log(req.body);
 
   // Check if username, email and password already exists
 
