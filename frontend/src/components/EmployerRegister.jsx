@@ -35,7 +35,6 @@ function Copyright(props) {
 }
 
 export const EmployerRegister = ({ isLoggedIn }) => {
-
   let navigate = useNavigate();
 
   const [shouldSubscribe, setShouldSubscribe] = React.useState(false);
@@ -50,33 +49,30 @@ export const EmployerRegister = ({ isLoggedIn }) => {
       phoneNumber: data.get("phoneNumber"),
       companyName: data.get("companyName"),
       companyWebsite: data.get("companyWebsite"),
-      hiringNumberRadioButton:hiringNumber,
-      hiringRemoteDeveloperCheckbox:remoteWork,
+      hiringNumberRadioButton: hiringNumber,
+      hiringRemoteDeveloperCheckbox: remoteWork,
       subscribeCheckbox: shouldSubscribe,
-      policyAndTermsCheckbox: true
+      policyAndTermsCheckbox: true,
     };
-    console.log(data.get("jobTitle"), "data developer");
-
-   
 
     const settings = {
       method: "POST",
-      body:JSON.stringify(newUserEmployer),
+      body: JSON.stringify(newUserEmployer),
       headers: {
-        "Content-Type" : "application/json"
-      }
-    }
-  
-    const response = await fetch (
+        "Content-Type": "application/json",
+      },
+    };
+
+    const response = await fetch(
       process.env.REACT_APP_SERVER_URL + "/register-employer",
       settings
     );
-  
+
     const parsedRes = await response.json();
-  
+
     try {
       if (response.ok) {
-        navigate(`/sign-in`);
+        navigate(`/login`);
       } else {
         throw new Error(parsedRes.message);
       }
@@ -96,16 +92,9 @@ export const EmployerRegister = ({ isLoggedIn }) => {
   const handleRemoteWork = (event) => {
     setRemoteWork(event.target.value);
   };
- 
-
-  
-
-
-
-
 
   return isLoggedIn ? (
-    <Navigate to="/" />
+    <Navigate to="/login" />
   ) : (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -244,7 +233,13 @@ export const EmployerRegister = ({ isLoggedIn }) => {
 
             <Grid item xs={12}>
               <FormControlLabel
-                control={<Checkbox color="primary" value={shouldSubscribe} onChange={()=>setShouldSubscribe(!shouldSubscribe)}/>}
+                control={
+                  <Checkbox
+                    color="primary"
+                    value={shouldSubscribe}
+                    onChange={() => setShouldSubscribe(!shouldSubscribe)}
+                  />
+                }
                 label="Subscribe for our newsletter"
               />
             </Grid>
@@ -287,4 +282,3 @@ export const EmployerRegister = ({ isLoggedIn }) => {
     </Container>
   );
 };
-

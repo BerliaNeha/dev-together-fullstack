@@ -36,7 +36,7 @@ const App = () => {
         <CssBaseline />
         <Router>
           <Box height="100vh">
-            <Navbar />
+            <Navbar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
 
             <Routes>
               <Route path="/" exact element={<Homepage />} />
@@ -49,7 +49,7 @@ const App = () => {
                 path="/register-developer"
                 element={<RegisterDeveloper isLoggedIn={isLoggedIn} />}
               />
-              <Route path="/Login" element={<Login />} />
+              <Route path="/login" element={<Login  setIsLoggedIn={setIsLoggedIn} isLoggedIn={isLoggedIn}/>} />
               {/* <Route path="/AboutUs" element={<AboutUs />} /> */}
               <Route path="/register-employer" element={<RegisterEmployer />} />
 

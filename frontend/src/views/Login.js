@@ -1,9 +1,9 @@
 import React from "react";
 
-import { SignIn } from "../components/SignIn";
+import { SignIn } from "../components/SignIn.jsx";
 
-export const Login = () => {
-  return <SignIn />;
+export const Login = ({isLoggedIn, setIsLoggedIn}) => {
+  return <SignIn isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />;
 };
 
 
