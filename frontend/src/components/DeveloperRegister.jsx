@@ -73,7 +73,7 @@ export const DeveloperRegister = ({ isLoggedIn }) => {
 
     try {
       if (response.ok) {
-        navigate(`/sign-in`);
+        navigate(`/login`);
       } else {
         throw new Error(parsedRes.message);
       }
@@ -84,7 +84,7 @@ export const DeveloperRegister = ({ isLoggedIn }) => {
   };
 
   return isLoggedIn ? (
-    <Navigate to="/" />
+    <Navigate to="/login" />
   ) : (
     <Container component="main" maxWidth="xs">
       <CssBaseline />

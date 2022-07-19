@@ -11,7 +11,7 @@ import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 
 function Copyright(props) {
   return (
@@ -31,18 +31,60 @@ function Copyright(props) {
   );
 }
 
-export const SignIn = () => {
+export const SignIn = ({ setIsLoggedIn, isLoggedIn }) => {
   let navigate = useNavigate();
-  const handleSubmit = (event) => {
+  const [email, setEmail] = React.useState("");
+  const [password, setPassword] = React.useState("");
+
+  const updateData = (event) => {
+    switch (event.target.name) {
+      case "email":
+        setEmail(event.target.value);
+        break;
+      case "password":
+        setPassword(event.target.value);
+        break;
+      default:
+        break;
+    }
+  };
+  const attemptLogin = async (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
+    const loginData = {
+      email: email,
+      password: password,
+    };
+
+    const settings = {
+      method: "POST",
+      body: JSON.stringify(loginData),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    const response = await fetch(
+      process.env.REACT_APP_SERVER_URL + "/login",
+      settings
+    );
+    const parsedRes = await response.json();
+console.log(parsedRes)
+    try {
+      // If the request was successful
+      if (response.ok) {
+        setIsLoggedIn(true);
+        navigate("/");
+      } else {
+        throw new Error(parsedRes.message);
+      }
+    } catch (err) {
+      alert(err.message);
+      setEmail("");
+      setPassword("");
+    }
   };
 
-  return (
+  return isLoggedIn ? (<Navigate to="/" />) : (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       <Box
@@ -59,7 +101,7 @@ export const SignIn = () => {
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
-        <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+        <Box component="form" onSubmit={attemptLogin} noValidate sx={{ mt: 1 }}>
           <TextField
             margin="normal"
             required
@@ -69,6 +111,8 @@ export const SignIn = () => {
             name="email"
             autoComplete="email"
             autoFocus
+            onChange={updateData}
+            value={email}
           />
           <TextField
             margin="normal"
@@ -79,6 +123,8 @@ export const SignIn = () => {
             type="password"
             id="password"
             autoComplete="current-password"
+            onChange={updateData}
+            value={password}
           />
           <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}

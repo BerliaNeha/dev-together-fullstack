@@ -1,36 +1,38 @@
-import * as React from 'react';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import Menu from '@mui/material/Menu';
-import MenuIcon from '@mui/icons-material/Menu';
-import Container from '@mui/material/Container';
-import Button from '@mui/material/Button';
+import * as React from "react";
+import AppBar from "@mui/material/AppBar";
+import Box from "@mui/material/Box";
+import Toolbar from "@mui/material/Toolbar";
+import IconButton from "@mui/material/IconButton";
+import Typography from "@mui/material/Typography";
+import Menu from "@mui/material/Menu";
+import MenuIcon from "@mui/icons-material/Menu";
+import Container from "@mui/material/Container";
+import Button from "@mui/material/Button";
 
-import MenuItem from '@mui/material/MenuItem';
-import AdbIcon from '@mui/icons-material/Adb';
-import { useNavigate } from 'react-router-dom';
-import CodeIcon from '@mui/icons-material/Code';
+import MenuItem from "@mui/material/MenuItem";
+import AdbIcon from "@mui/icons-material/Adb";
+import { useNavigate } from "react-router-dom";
+import CodeIcon from "@mui/icons-material/Code";
+import { AccountCircle } from "@mui/icons-material";
 
-const page = ['Developers', 'Employers', 'Dev Community', "Login", "About Us", "Contact"];
+const page = [
+  "developers",
+  "employers",
+  "dev-community",
+  "about-us",
+  "contact",
+  "login",
+];
 //const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
-
-export const Navbar = ({isLoggedIn, setIsLoggedIn, setCurrentUserId}) => {
-
-let navigate = useNavigate()
+export const Navbar = ({ isLoggedIn, setIsLoggedIn, setCurrentUserId }) => {
+  let navigate = useNavigate();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
-  // const handleMenuItemPress = (pages) => {
-  //   //handleCloseNavMenu();
-  //   //navigate(`${pages}`)
-  // };
 
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
@@ -44,15 +46,19 @@ let navigate = useNavigate()
     navigate(`/${page}`);
   };
   const handleLogout = () => {
-    setCurrentUserId("");
+    //setCurrentUserId("");
     setIsLoggedIn(false);
+  };
+
+  const handleMenu = (event) => {
+    navigate(`/login`);
   };
 
   return (
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <CodeIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+          <CodeIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
           <Typography
             variant="h6"
             noWrap
@@ -60,17 +66,17 @@ let navigate = useNavigate()
             href="/"
             sx={{
               mr: 2,
-              display: { xs: 'none', md: 'flex' },
+              display: { xs: "none", md: "flex" },
               fontWeight: 700,
-              letterSpacing: '.3rem',
-              textDecoration: 'none',
-              color:"white"
+              letterSpacing: ".3rem",
+              textDecoration: "none",
+              color: "white",
             }}
           >
             devnet
           </Typography>
 
-          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+          <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
               size="large"
               aria-label="account of current user"
@@ -84,18 +90,18 @@ let navigate = useNavigate()
               id="menu-appbar"
               anchorEl={anchorElNav}
               anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'left',
+                vertical: "bottom",
+                horizontal: "left",
               }}
               keepMounted
               transformOrigin={{
-                vertical: 'top',
-                horizontal: 'left',
+                vertical: "top",
+                horizontal: "left",
               }}
               open={Boolean(anchorElNav)}
               onClose={handleCloseNavMenu}
               sx={{
-                display: { xs: 'block', md: 'none' }
+                display: { xs: "block", md: "none" },
               }}
             >
               {page.map((page) => (
@@ -105,7 +111,7 @@ let navigate = useNavigate()
               ))}
             </Menu>
           </Box>
-          <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
+          <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
           <Typography
             variant="h5"
             noWrap
@@ -113,35 +119,51 @@ let navigate = useNavigate()
             href=""
             sx={{
               mr: 2,
-              display: { xs: 'flex', md: 'none' },
+              display: { xs: "flex", md: "none" },
               flexGrow: 1,
-              fontFamily: 'inherit',
+              fontFamily: "inherit",
               fontWeight: 700,
-              letterSpacing: '.3rem',
-              textDecoration: 'none',
+              letterSpacing: ".3rem",
+              textDecoration: "none",
             }}
           >
             DEV NET
           </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, justifyContent:"space-evenly"}}>
-            {page.map((page) => (
-              <Button
+          <Box
+            sx={{
+              flexGrow: 1,
+              display: { xs: "none", md: "flex" },
+              justifyContent: "space-evenly",
+            }}
+          >
+            {page.map((page,key) => (
+              <>
+               <Button
+               size="medium"
                 key={page}
-
                 onClick={() => handleMenuItemPress(page)}
-
-                
-
-                sx={{ my: 2, display: 'block', color: (theme) => theme.palette.secondary.main }}
-                
+                sx={{ 
+                  display: "block",
+                  color: (theme) => theme.palette.secondary.main,
+                }}
               >
+                {key===5? <AccountCircle  sx={{marginRight:1, fontSize:15}}/> : null}
                 {page}
+                
               </Button>
+              
+              </>
+             
             ))}
           </Box>
-            { isLoggedIn ? <Button color="inherit" onClick={handleLogout}>
-              LOG OUT
-            </Button> : null }
+          {isLoggedIn ? (
+            <>
+              
+              <Button sx={{color:(theme) => theme.palette.secondary.main}} onClick={handleLogout}>
+                LOG OUT
+              </Button>
+            </>
+          ) : null}
         </Toolbar>
       </Container>
     </AppBar>
