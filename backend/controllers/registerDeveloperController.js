@@ -6,15 +6,15 @@ import UserDeveloper from "../models/userDeveloper.js";
 export const registerDeveloperPost = async (req, res, next) => {
   const {
     username,
-    email,
-    password,
     firstName,
     lastName,
+    email,
+    password,
     jobTitle,
     subscribeCheckbox,
   } = req.body;
 
-  // Check if username, email and password already exists
+  // Check if username or email  already exists
 
   let foundDeveloperName;
   try {
@@ -57,14 +57,16 @@ export const registerDeveloperPost = async (req, res, next) => {
 
   const newUserDeveloper = new UserDeveloper({
     username: req.body.username,
-    email: req.body.email,
     firstName: req.body.firstName,
     lastName: req.body.lastName,
+    email: req.body.email,
     jobTitle: req.body.jobTitle,
     password: CryptoJS.AES.encrypt(password, process.env.PASS_SEC).toString(),
     policyAndTermsCheckbox: req.body.policyAndTermsCheckbox,
     subscribeCheckbox: req.body.subscribeCheckbox,
   });
+
+  console.log(req.body);
 
   try {
     const savedUserDeveloper = await newUserDeveloper.save();

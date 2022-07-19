@@ -37,7 +37,10 @@ function Copyright(props) {
 export const EmployerRegister = ({ isLoggedIn }) => {
 
   let navigate = useNavigate();
-  const handleSubmit = (event) => {
+
+  const [shouldSubscribe, setShouldSubscribe] = React.useState(false);
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     const newUserEmployer = {
@@ -47,9 +50,41 @@ export const EmployerRegister = ({ isLoggedIn }) => {
       phoneNumber: data.get("phoneNumber"),
       companyName: data.get("companyName"),
       companyWebsite: data.get("companyWebsite"),
+      hiringNumberRadioButton:hiringNumber,
+      hiringRemoteDeveloperCheckbox:remoteWork,
+      subscribeCheckbox: shouldSubscribe,
+      policyAndTermsCheckbox: true
     };
     console.log(data.get("jobTitle"), "data developer");
+
+   
+
+    const settings = {
+      method: "POST",
+      body:JSON.stringify(newUserEmployer),
+      headers: {
+        "Content-Type" : "application/json"
+      }
+    }
+  
+    const response = await fetch (
+      process.env.REACT_APP_SERVER_URL + "/register-employer",
+      settings
+    );
+  
+    const parsedRes = await response.json();
+  
+    try {
+      if (response.ok) {
+        navigate(`/sign-in`);
+      } else {
+        throw new Error(parsedRes.message);
+      }
+    } catch (err) {
+      alert(err.message);
+    }
   };
+
   const [hiringNumber, setHiringNumber] = React.useState("1-5");
 
   const handleHiringNumber = (event) => {
@@ -61,6 +96,13 @@ export const EmployerRegister = ({ isLoggedIn }) => {
   const handleRemoteWork = (event) => {
     setRemoteWork(event.target.value);
   };
+ 
+
+  
+
+
+
+
 
   return isLoggedIn ? (
     <Navigate to="/" />
@@ -202,7 +244,7 @@ export const EmployerRegister = ({ isLoggedIn }) => {
 
             <Grid item xs={12}>
               <FormControlLabel
-                control={<Checkbox value="newsletter" color="primary" />}
+                control={<Checkbox color="primary" value={shouldSubscribe} onChange={()=>setShouldSubscribe(!shouldSubscribe)}/>}
                 label="Subscribe for our newsletter"
               />
             </Grid>
@@ -210,12 +252,13 @@ export const EmployerRegister = ({ isLoggedIn }) => {
               <FormControlLabel
                 control={
                   <Checkbox
-                    value="acceptPrivacyPolicyAndTermsOfService"
                     color="primary"
                     required
+                    name="termsAndPolicy"
+                    value={true}
                   />
                 }
-                label="By signing up you agree to the Terms of Service and the Privacy Policy"
+                label="I agree to and understand the Privacy Notice and Terms of Use"
               />
             </Grid>
           </Grid>
@@ -244,3 +287,4 @@ export const EmployerRegister = ({ isLoggedIn }) => {
     </Container>
   );
 };
+

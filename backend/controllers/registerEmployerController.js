@@ -13,6 +13,8 @@ export const registerEmployerPost = async (req, res, next) => {
     companyWebsite,
   } = req.body;
 
+  console.log(req.body);
+
   // Check if username, email and password already exists
 
   let foundEmployerName;
