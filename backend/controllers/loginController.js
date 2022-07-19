@@ -9,7 +9,7 @@ export const loginPost = async (req, res, next) => {
   let foundUser;
 
   try {
-    foundUser = await UserEmployer.findOne({ email: email });
+    foundUser = await UserEmployer.findOne({ email : email });
   } catch {
     return next(
       createError(500, "Database couldn't be queried. Please try again")
@@ -20,7 +20,7 @@ export const loginPost = async (req, res, next) => {
     !foundUser
   ) {
     try{
-        foundUser = await UserDeveloper.findOne(({email:email}))
+        foundUser = await UserDeveloper.findOne(({ email : email}))
 
     }catch {
        return next(createError(500, "Database couldn't be queried. Please try again")) 
