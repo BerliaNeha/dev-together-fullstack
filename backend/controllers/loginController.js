@@ -20,7 +20,7 @@ export const loginPost = async (req, res, next) => {
     !foundUser
   ) {
     try{
-        foundUser = await UserDeveloper.findOne(({email:email}))
+        foundUser = await UserDeveloper.findOne({email:email})
 
     }catch {
        return next(createError(500, "Database couldn't be queried. Please try again")) 
@@ -35,7 +35,7 @@ export const loginPost = async (req, res, next) => {
 
     try {
       decryptedPassword = CryptoJS.AES.decrypt(
-        found.password,
+        foundUser.password,
         process.env.PASS_SEC
       );
 
@@ -60,7 +60,7 @@ export const loginPost = async (req, res, next) => {
 
     try {
       newToken = jwt.sign(
-        { id: found.id, isAdmin: found.isAdmin },
+        { id: foundUser.id, isAdmin: foundUser.isAdmin },
         process.env.SECRET_KEY,
         { expiresIn: "1h" }
       );
@@ -70,7 +70,7 @@ export const loginPost = async (req, res, next) => {
       );
     }
 
-    res.json({ id: found._id, token: newToken });
+    res.json({ id: foundUser._id, token: newToken });
   } else {
     next(createError(404, "No user exists with this email. Please try again"));
   }
