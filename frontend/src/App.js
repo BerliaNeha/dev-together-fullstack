@@ -13,7 +13,8 @@ import { RegisterEmployer } from "./views/RegisterEmployer.js";
 
 import { RegisterDeveloper } from "./views/RegisterDeveloper.js";
 import ContactForm from "./components/Contact.jsx";
-import Contact from "./components/Contact.jsx";
+import Contact from "./components/Contact.jsx"; 
+import { AboutUs } from "./views/AboutUs.js";
 
 
 const theme = createTheme({
@@ -50,7 +51,7 @@ const App = () => {
                 element={<RegisterDeveloper isLoggedIn={isLoggedIn} />}
               />
               <Route path="/login" element={<Login  setIsLoggedIn={setIsLoggedIn} isLoggedIn={isLoggedIn}/>} />
-              {/* <Route path="/AboutUs" element={<AboutUs />} /> */}
+              <Route path="/AboutUs" element={<AboutUs />} />
               <Route path="/register-employer" element={<RegisterEmployer />} />
 
             </Routes>
