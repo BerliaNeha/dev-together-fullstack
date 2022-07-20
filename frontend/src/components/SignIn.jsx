@@ -68,12 +68,22 @@ export const SignIn = ({ setIsLoggedIn, isLoggedIn }) => {
       settings
     );
     const parsedRes = await response.json();
-console.log(parsedRes)
+// console.log(parsedRes.companyName.length)
     try {
-      // If the request was successful
+      // If the request was successful and has a company name in response go to employer page or else to developer page
+
+
       if (response.ok) {
-        setIsLoggedIn(true);
-        navigate("/");
+        if(parsedRes.companyName){
+          setIsLoggedIn(true);
+          navigate("/contact");
+
+        }else {
+          setIsLoggedIn(true);
+          navigate("/");
+
+        }
+       
       } else {
         throw new Error(parsedRes.message);
       }
@@ -84,7 +94,9 @@ console.log(parsedRes)
     }
   };
 
-  return isLoggedIn ? (<Navigate to="/" />) : (
+
+ 
+  return  (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       <Box

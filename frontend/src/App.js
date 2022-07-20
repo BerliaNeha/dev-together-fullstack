@@ -20,10 +20,12 @@ import { AboutUs } from "./views/AboutUs.js";
 const theme = createTheme({
   palette: {
     primary: {
-      main: "#547980",
+      main: "#234E70",
     },
+
+    // 294B61
     secondary: {
-      main: "#D9CEBF",
+      main: "#EEA47FFF",
     },
   },
 });

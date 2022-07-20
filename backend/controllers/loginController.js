@@ -70,7 +70,7 @@ console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
       );
     }
 
-    res.json({ id: foundUser._id, token: newToken });
+    res.json({ id: foundUser._id, token: newToken, companyName: foundUser.companyName  });
   } else {
     next(createError(404, "No user exists with this email. Please try again"));
   }
