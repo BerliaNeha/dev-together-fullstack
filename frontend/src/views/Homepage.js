@@ -6,26 +6,26 @@ import Homepagevideo from "../assets/Homepagevideo.mp4";
 import Container from "@mui/material/Container";
 import HomepageGif from "../assets/Homepage.gif";
 
-
 export const Homepage = () => {
   return (
     <>
-{/* <Card sx={{ maxWidth: "100%" }}>
-      <CardActionArea>
-        <CardMedia 
-          component="iframe"
-          height="250"
-          src={Homepagecenter}
-          allow= "autoPlay"
-        />
-      </CardActionArea>
-    </Card> */}
-      <Box sx={{height:"60%" , width: "100%", backgroundImage:`url(${HomepageGif})`}}>
-      {/* <video sx={{height: "3vh", width: "20%"}}autoPlay loop muted >
-            <source src={Homepagevideo} type='video/mp4' />
-            
-    </video> */}
-      </Box>
+    <Box sx={{height: "90%", width:"100%"}}>
+      <div
+        style={{
+          height: "100%",
+          width: "100%",
+          background: `url(${HomepageGif}) no-repeat center center`,
+          //backgroundRepeat: "no-repeat",
+          backgroundSize: "cover",
+          overflow: "hidden",
+         // backgroundPosition: "center",
+        }}
+      ></div>
+      <div>
+        
+      </div>
+    </Box>
+      
     </>
   );
 };

@@ -14,7 +14,8 @@ import Dev from "../assets/dev.jpg";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import PortraitIcon from "@mui/icons-material/Portrait";
 import { Button } from "@mui/material";
-
+import Video from "../assets/video.mp4"
+import Arrow from "../assets/arrows.gif"
 function About(props) {
   const About = {
     title: "Our Mission",
@@ -62,9 +63,10 @@ function About(props) {
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
           backgroundPosition: "center",
-          backgroundImage: `url(${Galaxy})`,
+          backgroundImage: `url(${Arrow})`,
         }}
       >
+             
         {/* Increase the priority of the hero background image */}
         {
           <img
