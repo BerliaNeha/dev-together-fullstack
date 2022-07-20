@@ -14,8 +14,8 @@ import Dev from "../assets/dev.jpg";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import PortraitIcon from "@mui/icons-material/Portrait";
 import { Button } from "@mui/material";
-import Video from "../assets/video.mp4"
-import Arrow from "../assets/arrows.gif"
+import Video from "../assets/video.mp4";
+import Arrow from "../assets/arrows2.gif";
 function About(props) {
   const About = {
     title: "Our Mission",
@@ -23,7 +23,7 @@ function About(props) {
     image: { Galaxy },
     imageText: "main image description",
     description2:
-      "DevNet provides developers and employers a platform to grow, explore and invest.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+      "DevNet provides developers and employers a platform to grow, explore and invest.Nullam imperdiet sapien lectus, ut maximus urna bibendum at. Morbi a metus nisi. Ut accumsan tortor a lectus pulvinar, at maximus massa elementum. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nulla facilisi. Pellentesque non felis ut dui aliquet commodo. Curabitur posuere nisl urna, sit amet efficitur dui luctus sit amet. Quisque cursus malesuada nisi. Aliquam convallis, tortor id suscipit blandit, purus sapien commodo mauris, eget malesuada tellus odio a diam. Sed dictum urna ut ipsum dapibus, eget consequat lacus sagittis.",
     linkText: "Dev Community…",
   };
 
@@ -50,31 +50,116 @@ function About(props) {
 
   const onClick = () => {
     window.location.href = "#team";
-   };
+  };
 
   return (
     <>
       <Paper
         sx={{
+          width: "100%",
+          display: { xs: "none", sm: "none", md: "block" },
           position: "relative",
-          backgroundColor: "grey.800",
+          backgroundColor: (theme) => theme.palette.primary.main,
           color: "#fff",
-
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
-          backgroundPosition: "center",
+          backgroundPosition: "top",
           backgroundImage: `url(${Arrow})`,
         }}
       >
-             
         {/* Increase the priority of the hero background image */}
-        {
+        {/* {
           <img
             style={{ display: "none" }}
             src={About.image}
             alt={About.imageText}
           />
-        }
+        } */}
+        <Box
+          sx={{
+            position: "absolute",
+            top: 0,
+            bottom: 0,
+            right: 0,
+            left: 0,
+            backgroundColor: "rgba(0,0,0,.3)",
+          }}
+        />
+        <Grid container>
+          <Grid item>
+            <Box
+              sx={{
+                color: "white",
+                display: "flex",
+                flexDirection: "row-reverse",
+                marginRight: 2,
+                fontSize: 20,
+              }}
+            >
+              <Button
+                onClick={onClick}
+                sx={{ color: "white", textDecoration: "none" }}
+              >
+                MEET THE TEAM
+              </Button>
+            </Box>
+
+            <Box
+              sx={{
+                position: "relative",
+                p: { xs: 3, md: 6 },
+                pr: { md: 0 },
+                width: "30%",
+                height: "auto",
+              }}
+            >
+              <Typography
+                sx={{
+                  marginLeft: 2,
+                }}
+                variant="h5"
+                color="inherit"
+              >
+                {About.title}
+              </Typography>
+
+              <Typography variant="h1" color="inherit">
+                {About.description}
+              </Typography>
+            </Box>
+            <Box sx={{ width: "92%", margin: "auto" }}>
+              <Typography variant="h5" color="inherit" paragraph>
+                {About.description2}
+              </Typography>
+
+              <Link variant="subtitle1" href="#">
+                {About.linkText}
+              </Link>
+            </Box>
+          </Grid>
+        </Grid>
+      </Paper>
+      {/* ########################## Responsive to smaller screens not to appear the arrow instead just bgcolor################################### */}
+      <Paper
+        sx={{
+          width: "100%",
+          display: { xs: "block", sm: "block", md: "none" },
+          position: "relative",
+          color: "#fff",
+          backgroundSize: "cover",
+          backgroundRepeat: "no-repeat",
+          backgroundPosition: "bottom",
+          backgroundColor: (theme) => theme.palette.primary.main,
+        }}
+      >
+        {/* Increase the priority of the hero background image */}
+        {/* {
+          <img
+            style={{ display: "none" }}
+            src={About.image}
+            alt={About.imageText}
+          />
+        } */}
         <Box
           sx={{
             position: "absolute",
@@ -142,43 +227,67 @@ function About(props) {
 
       {/* //########################ABOUT TEAM################################### */}
 
-      <Grid container sx={{ backgroundColor: "black" }} spacing={4}>
-        {AboutTeam.map((AboutTeam) => (
-          <Grid item xs={12} md={6}>
-            <CardActionArea component="a" href="#">
-              <Card sx={{ display: "flex", backgroundColor: "gray" }}>
-                <CardContent sx={{ flex: 1 }}>
-                  <Typography id="team" component="h2" variant="h5">
-                    {AboutTeam.title}{" "}
-                    <Link href="#team" aria-hidden="true"></Link>
-                  </Typography>
-                  <Typography variant="subtitle1" color="text.secondary">
-                    {AboutTeam.date}
-                  </Typography>
-                  <Typography variant="subtitle1" paragraph>
-                    {AboutTeam.description}
-                  </Typography>
-                  {/* <Typography variant="subtitle1" color="primary">
+      <Box
+        sx={{
+          backgroundColor: "white",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+          mb: 5,
+        }}
+      >
+        <Typography variant="h4" sx={{ mt: "90px", mb: 15 }}>
+          {" "}
+          MEET THE TEAM
+        </Typography>
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "space-evenly",
+            width: "100%",
+          }}
+        >
+          {AboutTeam.map((AboutTeam) => (
+            <Card
+              sx={{
+                display: "flex",
+                backgroundColor: "rgba(35, 78, 112, 0.31)",
+
+                color: (theme) => theme.palette.secondary.main,
+              }}
+            >
+              <CardContent sx={{ flex: 1 }}>
+                <Typography id="team" component="h2" variant="h5">
+                  {AboutTeam.title}{" "}
+                  <Link href="#team" aria-hidden="true"></Link>
+                </Typography>
+                <Typography variant="subtitle1" color="text.secondary">
+                  {AboutTeam.date}
+                </Typography>
+                <Typography variant="subtitle1" paragraph>
+                  {AboutTeam.description}
+                </Typography>
+                {/* <Typography variant="subtitle1" color="primary">
                     Continue reading...
                   </Typography> */}
-                  <Link variant="subtitle1" href={`${AboutTeam.linkText}`}>
-                    <LinkedInIcon />
-                  </Link>
-                  <Link variant="subtitle1" href={`${AboutTeam.linkText2}`}>
-                    <PortraitIcon />
-                  </Link>
-                </CardContent>
-                <CardMedia
-                  component="img"
-                  sx={{ width: 160, display: { xs: "none", sm: "block" } }}
-                  image={Dev}
-                  alt={AboutTeam.imageLabel}
-                />
-              </Card>
-            </CardActionArea>
-          </Grid>
-        ))}
-      </Grid>
+                <Link variant="subtitle1" href={`${AboutTeam.linkText}`}>
+                  <LinkedInIcon />
+                </Link>
+                <Link variant="subtitle1" href={`${AboutTeam.linkText2}`}>
+                  <PortraitIcon />
+                </Link>
+              </CardContent>
+              <CardMedia
+                component="img"
+                sx={{ width: 160, display: { xs: "none", sm: "block" } }}
+                image={Dev}
+                alt={AboutTeam.imageLabel}
+              />
+            </Card>
+          ))}
+        </Box>
+      </Box>
     </>
   );
 }

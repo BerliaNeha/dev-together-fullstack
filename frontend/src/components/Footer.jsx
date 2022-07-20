@@ -62,9 +62,7 @@ function Footer(props) {
         <Typography variant="h6">0000 Berlin</Typography>
         <Typography variant="h6">030 1234567</Typography>
 
-        <Button sx={{color:"inherit"}}>Contact with us!</Button>
-
-        <Button>Contact with us!</Button>
+        <Button variant="contained"  sx={{color:"inherit"}}>Contact with us!</Button>
 
         <Copyright />
       </Box>

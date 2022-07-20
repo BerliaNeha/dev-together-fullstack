@@ -33,7 +33,7 @@ export default function BasicTextFields() {
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
-        height: "65%",
+        minHeight: "65%",
         backgroundImage: `url(${ContactUs})`,
         opacity: "0.7",
       }}
@@ -52,7 +52,7 @@ export default function BasicTextFields() {
           fontWeight: "bold",
           width: "30%",
           margin: "auto",
-          height: "75%",
+          minHeight: "50vh",
           //backgroundColor:"rgba(239,242,240,0.86)"
           // backgroundColor: "rgba(84, 120, 128, 0.31)",
           backgroundColor: "rgba(35, 78, 112, 0.31)",
