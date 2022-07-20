@@ -14,7 +14,7 @@ import AdbIcon from "@mui/icons-material/Adb";
 import { useNavigate } from "react-router-dom";
 import CodeIcon from "@mui/icons-material/Code";
 import { AccountCircle } from "@mui/icons-material";
-
+import Logo from "../assets/logoNobg.png"
 const page = [
   "developers",
   "employers",
@@ -58,8 +58,9 @@ export const Navbar = ({ isLoggedIn, setIsLoggedIn, setCurrentUserId }) => {
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <CodeIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
-          <Typography
+          {/* <CodeIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} /> */}
+          <img src={Logo} alt="logo" height="100px" width="200px" style={{objectFit: 'contain'}}></img>
+          {/* <Typography
             variant="h6"
             noWrap
             component="a"
@@ -74,7 +75,7 @@ export const Navbar = ({ isLoggedIn, setIsLoggedIn, setCurrentUserId }) => {
             }}
           >
             devnet
-          </Typography>
+          </Typography> */}
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
@@ -111,7 +112,7 @@ export const Navbar = ({ isLoggedIn, setIsLoggedIn, setCurrentUserId }) => {
               ))}
             </Menu>
           </Box>
-          <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
+          <CodeIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
           <Typography
             variant="h5"
             noWrap
@@ -125,9 +126,10 @@ export const Navbar = ({ isLoggedIn, setIsLoggedIn, setCurrentUserId }) => {
               fontWeight: 700,
               letterSpacing: ".3rem",
               textDecoration: "none",
+              color:"white"
             }}
           >
-            DEV NET
+            devnet
           </Typography>
           <Box
             sx={{
