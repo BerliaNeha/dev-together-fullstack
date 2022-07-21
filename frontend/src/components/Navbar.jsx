@@ -11,10 +11,10 @@ import Button from "@mui/material/Button";
 
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import CodeIcon from "@mui/icons-material/Code";
 import { AccountCircle } from "@mui/icons-material";
-import Logo from "../assets/logoNobg.png"
+import Logo from "../assets/logoNobg.png";
 const page = [
   "developers",
   "employers",
@@ -58,25 +58,6 @@ export const Navbar = ({ isLoggedIn, setIsLoggedIn, setCurrentUserId }) => {
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          {/* <CodeIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} /> */}
-          <img src={Logo} alt="logo" height="100px" width="200px" style={{objectFit: 'contain'}}></img>
-          {/* <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            href="/"
-            sx={{
-              mr: 2,
-              display: { xs: "none", md: "flex" },
-              fontWeight: 700,
-              letterSpacing: ".3rem",
-              textDecoration: "none",
-              color: "white",
-            }}
-          >
-            devnet
-          </Typography> */}
-
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
               size="large"
@@ -105,32 +86,39 @@ export const Navbar = ({ isLoggedIn, setIsLoggedIn, setCurrentUserId }) => {
                 display: { xs: "block", md: "none" },
               }}
             >
-              {page.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
-                </MenuItem>
+              {page.map((page, key) => (
+                // <MenuItem key={page} onClick={handleCloseNavMenu}>
+                //   <Typography textAlign="center">{page}</Typography>
+                // </MenuItem>
+                <Button
+                  size="medium"
+                  key={page}
+                  onClick={() => handleMenuItemPress(page)}
+                  sx={{
+                    display: "block",
+                    color: (theme) => theme.palette.secondary.main,
+                  }}
+                >
+                  {key === 5 ? (
+                    <AccountCircle sx={{ marginRight: 1, fontSize: 15 }} />
+                  ) : null}
+                  {page}
+                </Button>
               ))}
             </Menu>
+            <Link to={"/"}>
+              <img
+                src={Logo}
+                alt="logo"
+                height="100px"
+                width="200px"
+                style={{ objectFit: "contain" }}
+              ></img>
+            </Link>
           </Box>
-          <CodeIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
-          <Typography
-            variant="h5"
-            noWrap
-            component="a"
-            href=""
-            sx={{
-              mr: 2,
-              display: { xs: "flex", md: "none" },
-              flexGrow: 1,
-              fontFamily: "inherit",
-              fontWeight: 700,
-              letterSpacing: ".3rem",
-              textDecoration: "none",
-              color:"white"
-            }}
-          >
-            devnet
-          </Typography>
+
+          {/* ########## bigger screen ################## */}
+
           <Box
             sx={{
               flexGrow: 1,
@@ -138,30 +126,41 @@ export const Navbar = ({ isLoggedIn, setIsLoggedIn, setCurrentUserId }) => {
               justifyContent: "space-evenly",
             }}
           >
-            {page.map((page,key) => (
+            <Link to={"/"}>
+              <img
+                src={Logo}
+                alt="logo"
+                height="100px"
+                width="200px"
+                style={{ objectFit: "contain" }}
+              ></img>
+            </Link>
+
+            {page.map((page, key) => (
               <>
-               <Button
-               size="medium"
-                key={page}
-                onClick={() => handleMenuItemPress(page)}
-                sx={{ 
-                  display: "block",
-                  color: (theme) => theme.palette.secondary.main,
-                }}
-              >
-                {key===5? <AccountCircle  sx={{marginRight:1, fontSize:15}}/> : null}
-                {page}
-                
-              </Button>
-              
+                <Button
+                  size="medium"
+                  key={page}
+                  onClick={() => handleMenuItemPress(page)}
+                  sx={{
+                    display: "block",
+                    color: (theme) => theme.palette.secondary.main,
+                  }}
+                >
+                  {key === 5 ? (
+                    <AccountCircle sx={{ marginRight: 1, fontSize: 15 }} />
+                  ) : null}
+                  {page}
+                </Button>
               </>
-             
             ))}
           </Box>
           {isLoggedIn ? (
             <>
-              
-              <Button sx={{color:(theme) => theme.palette.secondary.main}} onClick={handleLogout}>
+              <Button
+                sx={{ color: (theme) => theme.palette.secondary.main }}
+                onClick={handleLogout}
+              >
                 LOG OUT
               </Button>
             </>

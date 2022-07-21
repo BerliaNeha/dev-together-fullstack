@@ -1,34 +1,31 @@
+import { Card, CardActionArea, CardMedia } from "@mui/material";
 import { Box } from "@mui/system";
 import React from "react";
-// import SwipeableViews from "react-swipeable-views";
-// import { autoPlay } from "react-swipeable-views-utils";
-
-// const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
-
-const images = [
-  "https://images.unsplash.com/flagged/1/apple-gear-looking-pretty.jpg?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
-  "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1172&q=80",
-];
+import Homepagecenter from "../assets/Homepagecenter.mp4";
+import Homepagevideo from "../assets/Homepagevideo.mp4";
+import Container from "@mui/material/Container";
+import HomepageGif from "../assets/Homepage.gif";
 
 export const Homepage = () => {
   return (
     <>
-      {/* <AutoPlaySwipeableViews>
-        {images.map((url, index) => (
-          <Box
-            key={index}
-            component="img"
-            sx={{
-              width: "100%",
-              height: "500px",
-            }}
-            src={url}
-          />
-        ))}
-      </AutoPlaySwipeableViews> */}
-      <Box sx={{height: "70vh"}}>
-        hello
-      </Box>
+    <Box sx={{height: "90%", width:"100%"}}>
+      <div
+        style={{
+          height: "100%",
+          width: "100%",
+          background: `url(${HomepageGif}) no-repeat center center`,
+          //backgroundRepeat: "no-repeat",
+          backgroundSize: "cover",
+          overflow: "hidden",
+         // backgroundPosition: "center",
+        }}
+      ></div>
+      <div>
+        
+      </div>
+    </Box>
+      
     </>
   );
 };
