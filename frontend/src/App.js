@@ -35,36 +35,8 @@ const App = () => {
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
   const [currentUserId, setCurrentUserId] = React.useState("");
 
-  //###############################  DEVELOPERS DATA #####################
-  const developers = async () => {
-    const settings = {
-      method: "GET",
-      body: JSON.stringify(),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    };
-
-    const response = await fetch(
-      process.env.REACT_APP_SERVER_URL + `/developers/${currentUserId}`,
-      settings
-    );
-    const parsedRes = await response.json();
-
-    try {
-      if (response.ok) {
-        console.log(parsedRes);
-      } else {
-        throw new Error(parsedRes.message);
-      }
-    } catch (err) {
-      alert(err.message);
-    }
-
-    
-  };
-
-  developers();
+  // //###############################  DEVELOPERS DATA #####################
+  
 
   return (
     <React.StrictMode>
@@ -78,7 +50,7 @@ const App = () => {
               <Route path="/" exact element={<Homepage />} />
               <Route
                 path="/developers"
-                element={<Developers isLoggedIn={isLoggedIn} />}
+                element={<Developers isLoggedIn={isLoggedIn} setCurrentUserId={setCurrentUserId} currentUserId={currentUserId} setIsLoggedIn={setIsLoggedIn} />}
               />
               <Route
                 path="/employers"
