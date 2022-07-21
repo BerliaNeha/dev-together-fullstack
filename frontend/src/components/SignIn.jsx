@@ -103,7 +103,7 @@ export const SignIn = ({ setIsLoggedIn, isLoggedIn, setCurrentUserId }) => {
 
 
  
-  return  (
+  return isLoggedIn ? <Navigate to="/" /> : (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       <Box
