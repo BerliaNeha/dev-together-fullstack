@@ -31,10 +31,11 @@ function Copyright(props) {
   );
 }
 
-export const SignIn = ({ setIsLoggedIn, isLoggedIn }) => {
+export const SignIn = ({ setIsLoggedIn, isLoggedIn, setCurrentUserId }) => {
   let navigate = useNavigate();
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
+
 
   const updateData = (event) => {
     switch (event.target.name) {
@@ -74,6 +75,7 @@ export const SignIn = ({ setIsLoggedIn, isLoggedIn }) => {
 
 
       if (response.ok) {
+        setCurrentUserId (parsedRes.id)
         if(parsedRes.companyName){
           setIsLoggedIn(true);
           navigate("/contact");
@@ -88,6 +90,7 @@ export const SignIn = ({ setIsLoggedIn, isLoggedIn }) => {
         throw new Error(parsedRes.message);
       }
     } catch (err) {
+      console.log(err)
       alert(err.message);
       setEmail("");
       setPassword("");

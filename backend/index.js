@@ -4,6 +4,9 @@ import dotenv from "dotenv";
 import cors from "cors";
 import loginRouter from "./routes/login.js";
 import registerEmployerRouter from "./routes/registerEmployer.js";
+import userEmployerDataRouter from "./routes/userEmployerData.js";
+import userDeveloperDataRouter from "./routes/userDeveloperData.js";
+
 
 import registerDeveloperRouter from "./routes/registerDeveloper.js";
 
@@ -31,6 +34,9 @@ app.use("/register-developer", registerDeveloperRouter);
 
 app.use("/register-employer", registerEmployerRouter);
 
+
+app.use("/developers", userDeveloperDataRouter);
+app.use("/employers", userEmployerDataRouter);
 
 
 app.listen(process.env.PORT || 3001, () => {

@@ -31,7 +31,7 @@ function Copyright() {
     <Typography variant="body2" color="inherit" sx={{ marginTop: "20px" }}>
       {"Copyright © "}
       <Link color="inherit" href="https://mui.com/">
-        Developer Networking
+        Dev Together
       </Link>{" "}
       {new Date().getFullYear()}
       {"."}
@@ -57,12 +57,12 @@ function Footer(props) {
           display: { xs: "none", md: "block" },
         }}
       >
-        <Typography variant="h5">Developer Networking</Typography>
+        <Typography variant="h5">Dev Together</Typography>
         <Typography variant="h6">Example str XX</Typography>
         <Typography variant="h6">0000 Berlin</Typography>
         <Typography variant="h6">030 1234567</Typography>
 
-        <Button variant="contained"  sx={{color:"inherit"}}>Contact with us!</Button>
+        <Button variant="contained"  sx={{color:"inherit"}}>Contact Us</Button>
 
         <Copyright />
       </Box>
@@ -95,7 +95,12 @@ function Footer(props) {
             </ListItem>
             <ListItem disablePadding>
               <ListItemButton>
-                <ListItemText primary="Meetups" />
+                <ListItemText primary="Meetup" />
+              </ListItemButton>
+            </ListItem>
+            <ListItem disablePadding>
+              <ListItemButton>
+                <ListItemText primary="Blog" />
               </ListItemButton>
             </ListItem>
           </List>
@@ -119,11 +124,11 @@ function Footer(props) {
         </Box>
         <Box sx={{ display: "flex", justifyContent: "space-between" }}>
 
-          <Link href="#" sx={{color:"inherit"}}>Privacy policy</Link>
+          <Link href="#" sx={{color:"inherit"}}>Privacy policy </Link>
           {" | "}
-          <Link href="#" sx={{color:"inherit"}}>COVID information</Link>
+          <Link href="#" sx={{color:"inherit"}}>COVID information </Link>
           {" | "}
-          <Link href="#" sx={{color:"inherit"}}>Terms of service</Link>
+          <Link href="#" sx={{color:"inherit"}}>Terms of service </Link>
 
 
         </Box>

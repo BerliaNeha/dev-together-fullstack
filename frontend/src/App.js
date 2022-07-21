@@ -1,7 +1,7 @@
 import React from "react";
 import { HashRouter as Router, Route, Routes } from "react-router-dom";
 import { Homepage } from "./views/Homepage.js";
-import { Navbar} from "./components/Navbar.jsx";
+import { Navbar } from "./components/Navbar.jsx";
 
 import Footer from "./components/Footer.jsx";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
@@ -13,9 +13,8 @@ import { RegisterEmployer } from "./views/RegisterEmployer.js";
 
 import { RegisterDeveloper } from "./views/RegisterDeveloper.js";
 import ContactForm from "./components/Contact.jsx";
-import Contact from "./components/Contact.jsx"; 
+import Contact from "./components/Contact.jsx";
 import { AboutUs } from "./views/AboutUs.js";
-
 
 const theme = createTheme({
   palette: {
@@ -33,6 +32,38 @@ const theme = createTheme({
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
   const [currentUserId, setCurrentUserId] = React.useState("");
+
+  //###############################  DEVELOPERS DATA #####################
+  const developers = async () => {
+    const settings = {
+      method: "GET",
+      body: JSON.stringify(),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    const response = await fetch(
+      process.env.REACT_APP_SERVER_URL + `/developers/${currentUserId}`,
+      settings
+    );
+    const parsedRes = await response.json();
+
+    try {
+      if (response.ok) {
+        console.log(parsedRes);
+      } else {
+        throw new Error(parsedRes.message);
+      }
+    } catch (err) {
+      alert(err.message);
+    }
+
+    
+  };
+
+  developers();
+
   return (
     <React.StrictMode>
       <ThemeProvider theme={theme}>
@@ -52,10 +83,20 @@ const App = () => {
                 path="/register-developer"
                 element={<RegisterDeveloper isLoggedIn={isLoggedIn} />}
               />
-              <Route path="/login" element={<Login  setIsLoggedIn={setIsLoggedIn} isLoggedIn={isLoggedIn}/>} />
-              <Route path="/about-us" element={<AboutUs  />} />
-              <Route path="/register-employer" element={<RegisterEmployer />} />
+              <Route
+                path="/login"
+                element={
+                  <Login
+                    setIsLoggedIn={setIsLoggedIn}
+                    isLoggedIn={isLoggedIn}
+                    setCurrentUserId={setCurrentUserId}
+                  />
+                }
+              />
 
+              <Route path="/about-us" element={<AboutUs />} />
+
+              <Route path="/register-employer" element={<RegisterEmployer />} />
             </Routes>
             <Footer />
           </Box>
@@ -64,7 +105,5 @@ const App = () => {
     </React.StrictMode>
   );
 };
-
-
 
 export default App;
