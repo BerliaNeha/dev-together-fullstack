@@ -17,8 +17,8 @@ export const Homepage = () => {
           background: `url(${HomepageGif}) no-repeat center center`,
           //backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
-          overflow: "hidden",
-         // backgroundPosition: "center",
+          //overflow: "hidden",
+         //backgroundPosition: "center",
         }}
       ></div>
       <div>

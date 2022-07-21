@@ -12,6 +12,7 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { Navigate, useNavigate } from "react-router-dom";
+import { DevelopersComponent } from "./DevelopersComponent";
 
 function Copyright(props) {
   return (
@@ -35,6 +36,7 @@ export const SignIn = ({ setIsLoggedIn, isLoggedIn }) => {
   let navigate = useNavigate();
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
+
 
   const updateData = (event) => {
     switch (event.target.name) {
@@ -72,15 +74,18 @@ export const SignIn = ({ setIsLoggedIn, isLoggedIn }) => {
     try {
       // If the request was successful and has a company name in response go to employer page or else to developer page
 
+      
 
       if (response.ok) {
         if(parsedRes.companyName){
           setIsLoggedIn(true);
-          navigate("/contact");
-
-        }else {
+          navigate("/employers");
+          
+        }
+        
+        if(!parsedRes.companyName) {
           setIsLoggedIn(true);
-          navigate("/");
+          navigate("/developers");
 
         }
        
