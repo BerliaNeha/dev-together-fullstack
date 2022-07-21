@@ -15,6 +15,8 @@ import { RegisterDeveloper } from "./views/RegisterDeveloper.js";
 import ContactForm from "./components/Contact.jsx";
 import Contact from "./components/Contact.jsx";
 import { AboutUs } from "./views/AboutUs.js";
+import { Developers } from "./views/Developers.js";
+import { Employers } from "./views/Employers.js";
 
 const theme = createTheme({
   palette: {
@@ -74,7 +76,15 @@ const App = () => {
 
             <Routes>
               <Route path="/" exact element={<Homepage />} />
-              <Route path="/contact" element={<Contact />} />
+              <Route
+                path="/developers"
+                element={<Developers isLoggedIn={isLoggedIn} />}
+              />
+              <Route
+                path="/employers"
+                element={<Employers isLoggedIn={isLoggedIn} />}
+              />
+
               <Route
                 path="/register-employer"
                 element={<RegisterEmployer isLoggedIn={isLoggedIn} />}
