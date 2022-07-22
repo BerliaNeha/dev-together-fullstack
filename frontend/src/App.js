@@ -1,7 +1,7 @@
 import React from "react";
 import { HashRouter as Router, Route, Routes } from "react-router-dom";
 import { Homepage } from "./views/Homepage.js";
-import { Navbar} from "./components/Navbar.jsx";
+import { Navbar } from "./components/Navbar.jsx";
 
 import Footer from "./components/Footer.jsx";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
@@ -13,9 +13,11 @@ import { RegisterEmployer } from "./views/RegisterEmployer.js";
 
 import { RegisterDeveloper } from "./views/RegisterDeveloper.js";
 import ContactForm from "./components/Contact.jsx";
-import Contact from "./components/Contact.jsx"; 
+import Contact from "./components/Contact.jsx";
 import { AboutUs } from "./views/AboutUs.js";
-
+import { Developers } from "./views/Developers.js";
+import { Employers } from "./views/Employers.js";
+import Container from "./components/Context/Container.jsx";
 
 const theme = createTheme({
   palette: {
@@ -31,40 +33,53 @@ const theme = createTheme({
 });
 
 const App = () => {
-  const [isLoggedIn, setIsLoggedIn] = React.useState(false);
-  const [currentUserId, setCurrentUserId] = React.useState("");
+  // const [isLoggedIn, setIsLoggedIn] = React.useState(false);
+  // const [currentUserId, setCurrentUserId] = React.useState("");
+  // const [isDev, setIsDev] = React.useState(true);
+
   return (
     <React.StrictMode>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <Router>
-          <Box height="100vh">
-            <Navbar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
+      <Container>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <Router>
+            <Box height="100vh">
+              <Navbar />
 
-            <Routes>
-              <Route path="/" exact element={<Homepage />} />
-              <Route path="/contact" element={<Contact />} />
-              <Route
-                path="/register-employer"
-                element={<RegisterEmployer isLoggedIn={isLoggedIn} />}
-              />
-              <Route
-                path="/register-developer"
-                element={<RegisterDeveloper isLoggedIn={isLoggedIn} />}
-              />
-              <Route path="/login" element={<Login  setIsLoggedIn={setIsLoggedIn} isLoggedIn={isLoggedIn}/>} />
-              <Route path="/about-us" element={<AboutUs  />} />
-              <Route path="/register-employer" element={<RegisterEmployer />} />
+              <Routes>
+                <Route path="/" exact element={<Homepage />} />
+                <Route path="/developers" element={<Developers />} />
+                <Route path="/employers" element={<Employers />} />
 
-            </Routes>
-            <Footer />
-          </Box>
-        </Router>
-      </ThemeProvider>
+                <Route
+                  path="/register-employer"
+                  element={<RegisterEmployer />}
+                />
+                <Route
+                  path="/register-developer"
+                  element={<RegisterDeveloper />}
+                />
+                <Route path="/login" element={<Login />} />
+
+                <Route path="/about-us" element={<AboutUs />} />
+
+                <Route
+                  path="/register-employer"
+                  element={<RegisterEmployer />}
+                />
+
+              <Route
+              path="/contact"
+              element={<Contact/>} 
+              />
+              </Routes>
+              <Footer />
+            </Box>
+          </Router>
+        </ThemeProvider>
+      </Container>
     </React.StrictMode>
   );
 };
-
-
 
 export default App;

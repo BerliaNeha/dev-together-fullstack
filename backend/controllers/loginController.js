@@ -7,7 +7,7 @@ import UserEmployer from "../models/userEmployer.js";
 export const loginPost = async (req, res, next) => {
   const { email, password } = req.body;
   let foundUser;
-console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
+
   try {
     foundUser = await UserEmployer.findOne({ email : email });
   } catch {

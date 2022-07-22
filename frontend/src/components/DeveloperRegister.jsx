@@ -13,6 +13,7 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import { Navigate, useNavigate } from "react-router-dom";
+import { MyContext } from "./Context/context";
 
 function Copyright(props) {
   return (
@@ -32,7 +33,9 @@ function Copyright(props) {
   );
 }
 
-export const DeveloperRegister = ({ isLoggedIn }) => {
+export const DeveloperRegister = () => {
+  const { isLoggedIn } = React.useContext(MyContext);
+  
   let navigate = useNavigate();
   const [jobTitle, setJobTitle] = React.useState("");
   const [shouldSubscribe, setShouldSubscribe] = React.useState(false);

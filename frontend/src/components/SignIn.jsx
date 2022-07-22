@@ -6,12 +6,14 @@ import TextField from "@mui/material/TextField";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import Link from "@mui/material/Link";
-import Grid from "@mui/material/Grid";
+
 import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { Navigate, useNavigate } from "react-router-dom";
+
+import { MyContext } from "./Context/context";
 
 function Copyright(props) {
   return (
@@ -31,7 +33,10 @@ function Copyright(props) {
   );
 }
 
-export const SignIn = ({ setIsLoggedIn, isLoggedIn }) => {
+export const SignIn = () => {
+  const { setIsLoggedIn, isLoggedIn, setCurrentUserId, setIsDev } =
+    React.useContext(MyContext);
+
   let navigate = useNavigate();
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
@@ -68,35 +73,40 @@ export const SignIn = ({ setIsLoggedIn, isLoggedIn }) => {
       settings
     );
     const parsedRes = await response.json();
-// console.log(parsedRes.companyName.length)
+    // console.log(parsedRes.companyName.length)
     try {
       // If the request was successful and has a company name in response go to employer page or else to developer page
 
-
       if (response.ok) {
-        if(parsedRes.companyName){
+        setCurrentUserId(parsedRes.id);
+        if (parsedRes.companyName) {
           setIsLoggedIn(true);
-          navigate("/contact");
-
-        }else {
-          setIsLoggedIn(true);
-          navigate("/");
-
+          setIsDev(false);
+          navigate("/employers");
         }
-       
+
+        if (!parsedRes.companyName) {
+          setIsLoggedIn(true);
+          setIsDev(true);
+          navigate("/developers");
+        }
       } else {
         throw new Error(parsedRes.message);
       }
     } catch (err) {
+      console.log(err);
       alert(err.message);
       setEmail("");
       setPassword("");
     }
   };
 
-
  
-  return  (
+
+  return isLoggedIn ? 
+    <Navigate to="/" />
+  
+   : (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       <Box

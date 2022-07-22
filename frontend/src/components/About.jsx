@@ -6,21 +6,19 @@ import Grid from "@mui/material/Grid";
 import Link from "@mui/material/Link";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
-import CardActionArea from "@mui/material/CardActionArea";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
-import Galaxy from "../assets/galaxy.jpg";
+
 import Dev from "../assets/dev.jpg";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import PortraitIcon from "@mui/icons-material/Portrait";
 import { Button } from "@mui/material";
-import Video from "../assets/video.mp4";
+
 import Arrow from "../assets/arrows2.gif";
 function About(props) {
   const About = {
     title: "Our Mission",
     description: "CONNECT EXPLORE & EXPAND",
-    image: { Galaxy },
     imageText: "main image description",
     description2:
       "DevNet provides developers and employers a platform to grow, explore and invest.Nullam imperdiet sapien lectus, ut maximus urna bibendum at. Morbi a metus nisi. Ut accumsan tortor a lectus pulvinar, at maximus massa elementum. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nulla facilisi. Pellentesque non felis ut dui aliquet commodo. Curabitur posuere nisl urna, sit amet efficitur dui luctus sit amet. Quisque cursus malesuada nisi. Aliquam convallis, tortor id suscipit blandit, purus sapien commodo mauris, eget malesuada tellus odio a diam. Sed dictum urna ut ipsum dapibus, eget consequat lacus sagittis.",
@@ -48,9 +46,9 @@ function About(props) {
     },
   ];
 
-  const onClick = () => {
-    window.location.href = "#team";
-  };
+  // const onClick = () => {
+  //   window.location.href = "#team";
+  // };
 
   return (
     <>
@@ -67,14 +65,7 @@ function About(props) {
           backgroundImage: `url(${Arrow})`,
         }}
       >
-        {/* Increase the priority of the hero background image */}
-        {/* {
-          <img
-            style={{ display: "none" }}
-            src={About.image}
-            alt={About.imageText}
-          />
-        } */}
+        
         <Box
           sx={{
             position: "absolute",
@@ -97,7 +88,8 @@ function About(props) {
               }}
             >
               <Button
-                onClick={onClick}
+                // onClick={onClick} 
+                href = "/#/about-us/#team"
                 sx={{ color: "white", textDecoration: "none" }}
               >
                 MEET THE TEAM
@@ -152,14 +144,7 @@ function About(props) {
           backgroundColor: (theme) => theme.palette.primary.main,
         }}
       >
-        {/* Increase the priority of the hero background image */}
-        {/* {
-          <img
-            style={{ display: "none" }}
-            src={About.image}
-            alt={About.imageText}
-          />
-        } */}
+      
         <Box
           sx={{
             position: "absolute",
@@ -182,7 +167,7 @@ function About(props) {
               }}
             >
               <Button
-                onClick={onClick}
+                // onClick={onClick}
                 sx={{ color: "white", textDecoration: "none" }}
               >
                 MEET THE TEAM
@@ -258,9 +243,9 @@ function About(props) {
               }}
             >
               <CardContent sx={{ flex: 1 }}>
-                <Typography id="team" component="h2" variant="h5">
+                <Typography id="/#/about-us/#team" component="h2" variant="h5">
                   {AboutTeam.title}{" "}
-                  <Link href="#team" aria-hidden="true"></Link>
+                  <Link href="/#/about-us/#team" aria-hidden="true"></Link>
                 </Typography>
                 <Typography variant="subtitle1" color="text.secondary">
                   {AboutTeam.date}

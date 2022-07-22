@@ -3,18 +3,18 @@ import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
+
 import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 
-import MenuItem from "@mui/material/MenuItem";
-import AdbIcon from "@mui/icons-material/Adb";
 import { Link, useNavigate } from "react-router-dom";
 import CodeIcon from "@mui/icons-material/Code";
 import { AccountCircle } from "@mui/icons-material";
 import Logo from "../assets/logoNobg.png";
+import { MyContext } from "./Context/context";
+
 const page = [
   "developers",
   "employers",
@@ -25,7 +25,10 @@ const page = [
 ];
 //const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
-export const Navbar = ({ isLoggedIn, setIsLoggedIn, setCurrentUserId }) => {
+export const Navbar = () => {
+
+  const { isLoggedIn, setIsLoggedIn } = React.useContext(MyContext);
+
   let navigate = useNavigate();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -48,6 +51,7 @@ export const Navbar = ({ isLoggedIn, setIsLoggedIn, setCurrentUserId }) => {
   const handleLogout = () => {
     //setCurrentUserId("");
     setIsLoggedIn(false);
+    navigate ("/login")
   };
 
   const handleMenu = (event) => {
@@ -90,7 +94,11 @@ export const Navbar = ({ isLoggedIn, setIsLoggedIn, setCurrentUserId }) => {
                 // <MenuItem key={page} onClick={handleCloseNavMenu}>
                 //   <Typography textAlign="center">{page}</Typography>
                 // </MenuItem>
-                <Button
+                <>
+               
+                
+                  
+                  <Button
                   size="medium"
                   key={page}
                   onClick={() => handleMenuItemPress(page)}
@@ -104,6 +112,9 @@ export const Navbar = ({ isLoggedIn, setIsLoggedIn, setCurrentUserId }) => {
                   ) : null}
                   {page}
                 </Button>
+                
+                 </>
+                
               ))}
             </Menu>
             <Link to={"/"}>
@@ -138,26 +149,37 @@ export const Navbar = ({ isLoggedIn, setIsLoggedIn, setCurrentUserId }) => {
 
             {page.map((page, key) => (
               <>
-                <Button
-                  size="medium"
-                  key={page}
-                  onClick={() => handleMenuItemPress(page)}
-                  sx={{
-                    display: "block",
-                    color: (theme) => theme.palette.secondary.main,
-                  }}
-                >
-                  {key === 5 ? (
-                    <AccountCircle sx={{ marginRight: 1, fontSize: 15 }} />
-                  ) : null}
-                  {page}
-                </Button>
+
+
+
+              
+               <Button
+                size="medium"
+                key={page}
+                onClick={() => handleMenuItemPress(page)}
+                sx={{
+                  display: !isLoggedIn ? "block" : (page==="login") ? "none": "block",
+                  color: (theme) => theme.palette.secondary.main,
+                }}
+              >
+                {key === 5 ? (
+                  <AccountCircle sx={{ marginRight: 1, fontSize: 15 }} />
+                ) : null}
+                {page}
+              </Button>
+              
+
+
+                
               </>
             ))}
           </Box>
           {isLoggedIn ? (
             <>
+            
+
               <Button
+
                 sx={{ color: (theme) => theme.palette.secondary.main }}
                 onClick={handleLogout}
               >
@@ -165,6 +187,7 @@ export const Navbar = ({ isLoggedIn, setIsLoggedIn, setCurrentUserId }) => {
               </Button>
             </>
           ) : null}
+          
         </Toolbar>
       </Container>
     </AppBar>
