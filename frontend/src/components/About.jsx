@@ -220,7 +220,7 @@ function About(props) {
           mb: 5,
         }}
       >
-        <Typography variant="h4" sx={{ mt: "90px", mb: 15 }}>
+        <Typography id="team" variant="h4" sx={{ mt: "90px", mb: 15 }}>
           {" "}
           MEET THE TEAM
         </Typography>
@@ -231,8 +231,9 @@ function About(props) {
             width: "100%",
           }}
         >
-          {AboutTeam.map((AboutTeam) => (
+          {AboutTeam.map((AboutTeam,index) => (
             <Card
+            key={index}
               sx={{
                 display: "flex",
                 backgroundColor: "rgba(35, 78, 112, 0.31)",
@@ -241,9 +242,9 @@ function About(props) {
               }}
             >
               <CardContent sx={{ flex: 1 }}>
-                <Typography id="/#/about-us/#team" component="h2" variant="h5">
+                <Typography  component="h2" variant="h5">
                   {AboutTeam.title}{" "}
-                  <Link href="/#/about-us/#team" aria-hidden="true"></Link>
+                 
                 </Typography>
                 <Typography variant="subtitle1" color="text.secondary">
                   {AboutTeam.date}
@@ -275,15 +276,15 @@ function About(props) {
   );
 }
 
-About.propTypes = {
-  post: PropTypes.shape({
-    description: PropTypes.string.isRequired,
-    image: PropTypes.string.isRequired,
-    imageText: PropTypes.string.isRequired,
-    linkText: PropTypes.string.isRequired,
-    description2: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-  }).isRequired,
-};
+// About.propTypes = {
+//   post: PropTypes.shape({
+//     description: PropTypes.string.isRequired,
+//     image: PropTypes.string.isRequired,
+//     imageText: PropTypes.string.isRequired,
+//     linkText: PropTypes.string.isRequired,
+//     description2: PropTypes.string.isRequired,
+//     title: PropTypes.string.isRequired,
+//   }).isRequired,
+// };
 
 export default About;
