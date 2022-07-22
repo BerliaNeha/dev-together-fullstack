@@ -149,11 +149,29 @@ export const Navbar = () => {
 
             {page.map((page, key) => (
               <>
+                {isLoggedIn && key === 5 ? (
+                  null
+                ) : (
+                  <Button
+                    size="medium"
+                    key={page}
+                    onClick={() => handleMenuItemPress(page)}
+                    sx={{
+                      display: "block",
+                      color: (theme) => theme.palette.secondary.main,
+                    }}
+                  >
+                    {key === 5 ? (
+                      <AccountCircle sx={{ marginRight: 1, fontSize: 15 }} />
+                    ) : null}
+                    {page}
+                  </Button>
+                )}
 
 
 
               
-               <Button
+               {/* <Button
                 size="medium"
                 key={page}
                 onClick={() => handleMenuItemPress(page)}
@@ -168,7 +186,7 @@ export const Navbar = () => {
                 {page}
               </Button>
               
-
+ */}
 
                 
               </>

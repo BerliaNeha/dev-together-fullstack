@@ -13,8 +13,8 @@ import Dev from "../assets/dev.jpg";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import PortraitIcon from "@mui/icons-material/Portrait";
 import { Button } from "@mui/material";
-
 import Arrow from "../assets/arrows2.gif";
+import { HashLink } from 'react-router-hash-link';
 function About(props) {
   const About = {
     title: "Our Mission",
@@ -88,11 +88,9 @@ function About(props) {
               }}
             >
               <Button
-                // onClick={onClick} 
-                href = "/#/about-us/#team"
-                sx={{ color: "white", textDecoration: "none" }}
+                sx={{ color: "white", textDecoration: "none" }}              
               >
-                MEET THE TEAM
+                <HashLink smooth to='/about-us/#team' >MEET THE TEAM</HashLink>
               </Button>
             </Box>
 
@@ -166,11 +164,11 @@ function About(props) {
                 fontSize: 20,
               }}
             >
-              <Button
-                // onClick={onClick}
+             <Button
                 sx={{ color: "white", textDecoration: "none" }}
+                
               >
-                MEET THE TEAM
+                <HashLink smooth to='/about-us/#team' >MEET THE TEAM</HashLink>
               </Button>
             </Box>
 

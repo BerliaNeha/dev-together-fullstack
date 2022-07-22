@@ -74,7 +74,7 @@ export const EmployerRegister = () => {
 
     try {
       if (response.ok) {
-        navigate(`/login`);
+        navigate(`/employer`);
       } else {
         throw new Error(parsedRes.message);
       }
