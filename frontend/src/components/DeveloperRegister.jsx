@@ -73,7 +73,7 @@ export const DeveloperRegister = ({ isLoggedIn }) => {
 
     try {
       if (response.ok) {
-        navigate(`/login`);
+        navigate(`/developer`);
       } else {
         throw new Error(parsedRes.message);
       }

@@ -6,7 +6,6 @@ import Grid from "@mui/material/Grid";
 import Link from "@mui/material/Link";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
-import CardActionArea from "@mui/material/CardActionArea";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Galaxy from "../assets/galaxy.jpg";
@@ -14,8 +13,8 @@ import Dev from "../assets/dev.jpg";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import PortraitIcon from "@mui/icons-material/Portrait";
 import { Button } from "@mui/material";
-import Video from "../assets/video.mp4";
 import Arrow from "../assets/arrows2.gif";
+import { HashLink } from 'react-router-hash-link';
 function About(props) {
   const About = {
     title: "Our Mission",
@@ -47,10 +46,6 @@ function About(props) {
       linkText2: "https://portfolio-neha-berlia.vercel.app/",
     },
   ];
-
-  const onClick = () => {
-    window.location.href = "#team";
-  };
 
   return (
     <>
@@ -97,10 +92,9 @@ function About(props) {
               }}
             >
               <Button
-                onClick={onClick}
-                sx={{ color: "white", textDecoration: "none" }}
+                sx={{ color: "white", textDecoration: "none" }}              
               >
-                MEET THE TEAM
+                <HashLink smooth to='/about-us/#team' >MEET THE TEAM</HashLink>
               </Button>
             </Box>
 
@@ -181,11 +175,11 @@ function About(props) {
                 fontSize: 20,
               }}
             >
-              <Button
-                onClick={onClick}
+             <Button
                 sx={{ color: "white", textDecoration: "none" }}
+                
               >
-                MEET THE TEAM
+                <HashLink smooth to='/about-us/#team' >MEET THE TEAM</HashLink>
               </Button>
             </Box>
 
