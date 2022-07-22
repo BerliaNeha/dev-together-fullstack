@@ -17,6 +17,7 @@ import Contact from "./components/Contact.jsx";
 import { AboutUs } from "./views/AboutUs.js";
 import { Developers } from "./views/Developers.js";
 import { Employers } from "./views/Employers.js";
+import Container from "./components/Context/Container.jsx";
 
 
 
@@ -34,75 +35,51 @@ const theme = createTheme({
 });
 
 const App = () => {
-  const [isLoggedIn, setIsLoggedIn] = React.useState(false);
-  const [currentUserId, setCurrentUserId] = React.useState("");
-
-  // const settings = {
-  //   method: "GET",
-  //   body: JSON.stringify(),
-  //   headers: {
-  //     "Content-Type": "application/json",
-  //   },
-  // };
-
-  // const response = await fetch(
-  //   process.env.REACT_APP_SERVER_URL + "/developers",
-  //   settings
-  // );
-  // const parsedRes = await response.json();
-  // console.log(parsedRes.companyName.length)
-  // try {
-  //   if (response.ok) {
-  //   } else {
-  //     throw new Error(parsedRes.message);
-  //   }
-  // } catch (err) {
-  //   alert(err.message);
-  // }
+  // const [isLoggedIn, setIsLoggedIn] = React.useState(false);
+  // const [currentUserId, setCurrentUserId] = React.useState("");
+  // const [isDev, setIsDev] = React.useState(true);
 
   return (
     <React.StrictMode>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <Router>
-          <Box height="100vh">
-            <Navbar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
+      <Container>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <Router>
+            <Box height="100vh">
+              <Navbar />
 
-            <Routes>
-              <Route path="/" exact element={<Homepage />} />
-              <Route
-                path="/developers"
-                element={<Developers isLoggedIn={isLoggedIn} />}
-              />
-              <Route
-                path="/employers"
-                element={<Employers isLoggedIn={isLoggedIn} />}
-              />
+              <Routes>
+                <Route path="/" exact element={<Homepage />} />
+                <Route path="/developers" element={<Developers />} />
+                <Route path="/employers" element={<Employers />} />
+
+                <Route
+                  path="/register-employer"
+                  element={<RegisterEmployer />}
+                />
+                <Route
+                  path="/register-developer"
+                  element={<RegisterDeveloper />}
+                />
+                <Route path="/login" element={<Login />} />
+
+                <Route path="/about-us" element={<AboutUs />} />
+
+                <Route
+                  path="/register-employer"
+                  element={<RegisterEmployer />}
+                />
 
               <Route
-                path="/register-employer"
-                element={<RegisterEmployer isLoggedIn={isLoggedIn} />}
+              path="/contact"
+              element={<Contact/>} 
               />
-              <Route
-                path="/register-developer"
-                element={<RegisterDeveloper isLoggedIn={isLoggedIn} />}
-              />
-              <Route
-                path="/login"
-                element={
-                  <Login
-                    setIsLoggedIn={setIsLoggedIn}
-                    isLoggedIn={isLoggedIn}
-                  />
-                }
-              />
-              <Route path="/about-us" element={<AboutUs />} />
-              <Route path="/contact" element={<Contact />} />
-            </Routes>
-            <Footer />
-          </Box>
-        </Router>
-      </ThemeProvider>
+              </Routes>
+              <Footer />
+            </Box>
+          </Router>
+        </ThemeProvider>
+      </Container>
     </React.StrictMode>
   );
 };
