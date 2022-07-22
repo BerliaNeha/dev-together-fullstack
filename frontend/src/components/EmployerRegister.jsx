@@ -11,7 +11,8 @@ import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { MyContext } from "./Context/context";
+
 import { FormControl, FormLabel, Radio, RadioGroup } from "@mui/material";
 
 import { Navigate, useNavigate } from "react-router-dom";
@@ -34,7 +35,8 @@ function Copyright(props) {
   );
 }
 
-export const EmployerRegister = ({ isLoggedIn }) => {
+export const EmployerRegister = () => {
+ const { isLoggedIn} = React.useContext(MyContext);
   let navigate = useNavigate();
 
   const [shouldSubscribe, setShouldSubscribe] = React.useState(false);

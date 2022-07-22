@@ -1,6 +1,6 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
-import Container from "@mui/material/Container";
+
 import Typography from "@mui/material/Typography";
 import Link from "@mui/material/Link";
 import {
@@ -13,19 +13,9 @@ import {
 import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import TwitterIcon from "@mui/icons-material/Twitter";
-import styled from "@emotion/styled";
 
-const Responsive = styled("div")(({ theme }) => ({
-  [theme.breakpoints.up("mobile")]: {
-    //color: green[500]
-  },
-  [theme.breakpoints.up("tablet")]: {
-    //color: purple[500]
-  },
-  [theme.breakpoints.up("desktop")]: {
-    //color: red[500]
-  },
-}));
+
+
 function Copyright() {
   return (
     <Typography variant="body2" color="inherit" sx={{ marginTop: "20px" }}>

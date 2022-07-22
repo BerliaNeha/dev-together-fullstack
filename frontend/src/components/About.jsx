@@ -6,7 +6,6 @@ import Grid from "@mui/material/Grid";
 import Link from "@mui/material/Link";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
-import CardActionArea from "@mui/material/CardActionArea";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 
@@ -47,9 +46,9 @@ function About(props) {
     },
   ];
 
-  const onClick = () => {
-    window.location.href = "#team";
-  };
+  // const onClick = () => {
+  //   window.location.href = "#team";
+  // };
 
   return (
     <>
@@ -66,14 +65,7 @@ function About(props) {
           backgroundImage: `url(${Arrow})`,
         }}
       >
-        {/* Increase the priority of the hero background image */}
-        {/* {
-          <img
-            style={{ display: "none" }}
-            src={About.image}
-            alt={About.imageText}
-          />
-        } */}
+        
         <Box
           sx={{
             position: "absolute",
@@ -96,7 +88,8 @@ function About(props) {
               }}
             >
               <Button
-                onClick={onClick}
+                // onClick={onClick} 
+                href = "/#/about-us/#team"
                 sx={{ color: "white", textDecoration: "none" }}
               >
                 MEET THE TEAM
@@ -151,14 +144,7 @@ function About(props) {
           backgroundColor: (theme) => theme.palette.primary.main,
         }}
       >
-        {/* Increase the priority of the hero background image */}
-        {/* {
-          <img
-            style={{ display: "none" }}
-            src={About.image}
-            alt={About.imageText}
-          />
-        } */}
+      
         <Box
           sx={{
             position: "absolute",
@@ -181,7 +167,7 @@ function About(props) {
               }}
             >
               <Button
-                onClick={onClick}
+                // onClick={onClick}
                 sx={{ color: "white", textDecoration: "none" }}
               >
                 MEET THE TEAM
@@ -257,9 +243,9 @@ function About(props) {
               }}
             >
               <CardContent sx={{ flex: 1 }}>
-                <Typography id="team" component="h2" variant="h5">
+                <Typography id="/#/about-us/#team" component="h2" variant="h5">
                   {AboutTeam.title}{" "}
-                  <Link href="#team" aria-hidden="true"></Link>
+                  <Link href="/#/about-us/#team" aria-hidden="true"></Link>
                 </Typography>
                 <Typography variant="subtitle1" color="text.secondary">
                   {AboutTeam.date}

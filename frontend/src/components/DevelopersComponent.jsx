@@ -1,7 +1,7 @@
-import React, { useEffect } from "react";
+import React from "react";
 
 export const DevelopersComponent = () => {
-    //useEffect if a success response if found then render or alert/redirect
+   
 
     return <>
     <div>Hello developer</div>
