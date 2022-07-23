@@ -14,7 +14,10 @@ import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import PortraitIcon from "@mui/icons-material/Portrait";
 import { Button } from "@mui/material";
 import Arrow from "../assets/arrows2.gif";
-import { HashLink } from 'react-router-hash-link';
+import { HashLink } from "react-router-hash-link";
+import Logo from "../assets/logoNobg.png";
+import { Navigate } from "react-router-dom";
+
 function About(props) {
   const About = {
     title: "Our Mission",
@@ -65,7 +68,6 @@ function About(props) {
           backgroundImage: `url(${Arrow})`,
         }}
       >
-        
         <Box
           sx={{
             position: "absolute",
@@ -80,17 +82,31 @@ function About(props) {
           <Grid item>
             <Box
               sx={{
-                color: "white",
+                color: "error",
                 display: "flex",
-                flexDirection: "row-reverse",
+                flexDirection: "row",
+                justifyContent: "space-between",
                 marginRight: 2,
                 fontSize: 20,
               }}
             >
-              <Button
-                sx={{ color: "white", textDecoration: "none" }}              
-              >
-                <HashLink smooth to='/about-us/#team' >MEET THE TEAM</HashLink>
+            
+               <Button>
+              <HashLink smooth to="/">
+              <img
+                  src={Logo}
+                  alt="logo"
+                  height="100px"
+                  width="200px"
+                  style={{ objectFit: "contain" }}
+                ></img>
+                </HashLink>
+              </Button>
+
+              <Button>
+                <HashLink smooth to="/about-us/#team" style={{ color: "error", textDecoration: "none" }}>
+                  MEET THE TEAM
+                </HashLink>
               </Button>
             </Box>
 
@@ -142,7 +158,6 @@ function About(props) {
           backgroundColor: (theme) => theme.palette.primary.main,
         }}
       >
-      
         <Box
           sx={{
             position: "absolute",
@@ -164,11 +179,10 @@ function About(props) {
                 fontSize: 20,
               }}
             >
-             <Button
-                sx={{ color: "white", textDecoration: "none" }}
-                
-              >
-                <HashLink smooth to='/about-us/#team' >MEET THE TEAM</HashLink>
+              <Button sx={{ color: "white", textDecoration: "none" }}>
+                <HashLink smooth to="/about-us/#team">
+                  MEET THE TEAM
+                </HashLink>
               </Button>
             </Box>
 
@@ -231,9 +245,9 @@ function About(props) {
             width: "100%",
           }}
         >
-          {AboutTeam.map((AboutTeam,index) => (
+          {AboutTeam.map((AboutTeam, index) => (
             <Card
-            key={index}
+              key={index}
               sx={{
                 display: "flex",
                 backgroundColor: "rgba(35, 78, 112, 0.31)",
@@ -242,9 +256,8 @@ function About(props) {
               }}
             >
               <CardContent sx={{ flex: 1 }}>
-                <Typography  component="h2" variant="h5">
+                <Typography component="h2" variant="h5">
                   {AboutTeam.title}{" "}
-                 
                 </Typography>
                 <Typography variant="subtitle1" color="text.secondary">
                   {AboutTeam.date}
