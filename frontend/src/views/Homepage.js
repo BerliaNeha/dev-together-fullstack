@@ -3,10 +3,12 @@ import { Box } from "@mui/system";
 import React from "react";
 
 import HomepageGif from "../assets/Homepagegif.gif";
+import { Navbar } from "../components/Navbar";
 
 export const Homepage = () => {
   return (
     <>
+    <Navbar/>
     <Box sx={{height: "90%", width:"100%",}}>
       <div
         style={{

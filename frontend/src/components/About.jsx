@@ -14,7 +14,10 @@ import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import PortraitIcon from "@mui/icons-material/Portrait";
 import { Button } from "@mui/material";
 import Arrow from "../assets/arrows2.gif";
-import { HashLink } from 'react-router-hash-link';
+import { HashLink } from "react-router-hash-link";
+import Logo from "../assets/logoNobg.png";
+import { Navigate } from "react-router-dom";
+
 function About(props) {
   const About = {
     title: "Our Mission",
@@ -65,7 +68,15 @@ function About(props) {
           backgroundImage: `url(${Arrow})`,
         }}
       >
-        
+        <Link to={"/"}>
+          <img
+            src={Logo}
+            alt="logo"
+            height="100px"
+            width="200px"
+            style={{ objectFit: "contain" }}
+          ></img>
+        </Link>
         <Box
           sx={{
             position: "absolute",
@@ -87,10 +98,10 @@ function About(props) {
                 fontSize: 20,
               }}
             >
-              <Button
-                sx={{ color: "white", textDecoration: "none" }}              
-              >
-                <HashLink smooth to='/about-us/#team' >MEET THE TEAM</HashLink>
+              <Button sx={{ color: "white", textDecoration: "none" }}>
+                <HashLink smooth to="/about-us/#team">
+                  MEET THE TEAM
+                </HashLink>
               </Button>
             </Box>
 
@@ -142,7 +153,6 @@ function About(props) {
           backgroundColor: (theme) => theme.palette.primary.main,
         }}
       >
-      
         <Box
           sx={{
             position: "absolute",
@@ -164,11 +174,10 @@ function About(props) {
                 fontSize: 20,
               }}
             >
-             <Button
-                sx={{ color: "white", textDecoration: "none" }}
-                
-              >
-                <HashLink smooth to='/about-us/#team' >MEET THE TEAM</HashLink>
+              <Button sx={{ color: "white", textDecoration: "none" }}>
+                <HashLink smooth to="/about-us/#team">
+                  MEET THE TEAM
+                </HashLink>
               </Button>
             </Box>
 
@@ -241,9 +250,8 @@ function About(props) {
               }}
             >
               <CardContent sx={{ flex: 1 }}>
-                <Typography id="/#/about-us/#team" component="h2" variant="h5">
+                <Typography id="team" component="h2" variant="h5">
                   {AboutTeam.title}{" "}
-                  <Link href="/#/about-us/#team" aria-hidden="true"></Link>
                 </Typography>
                 <Typography variant="subtitle1" color="text.secondary">
                   {AboutTeam.date}
@@ -275,15 +283,15 @@ function About(props) {
   );
 }
 
-About.propTypes = {
-  post: PropTypes.shape({
-    description: PropTypes.string.isRequired,
-    image: PropTypes.string.isRequired,
-    imageText: PropTypes.string.isRequired,
-    linkText: PropTypes.string.isRequired,
-    description2: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-  }).isRequired,
-};
+// About.propTypes = {
+//   post: PropTypes.shape({
+//     description: PropTypes.string.isRequired,
+//     image: PropTypes.string.isRequired,
+//     imageText: PropTypes.string.isRequired,
+//     linkText: PropTypes.string.isRequired,
+//     description2: PropTypes.string.isRequired,
+//     title: PropTypes.string.isRequired,
+//   }).isRequired,
+// };
 
 export default About;

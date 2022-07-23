@@ -1,10 +1,8 @@
 import React, { useEffect } from "react";
 import { Navigate } from "react-router-dom";
-<<<<<<< HEAD
-=======
 import { MyContext } from "../components/Context/context.js";
->>>>>>> b301bf666133fb6d6c3b1ec322614b02de9bd192
 import { DevelopersComponent } from "../components/DevelopersComponent.jsx";
+import { Navbar } from "../components/Navbar.jsx";
 
 
 export const Developers = () => {

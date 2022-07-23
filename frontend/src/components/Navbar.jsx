@@ -26,7 +26,6 @@ const page = [
 //const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 export const Navbar = () => {
-
   const { isLoggedIn, setIsLoggedIn } = React.useContext(MyContext);
 
   let navigate = useNavigate();
@@ -51,7 +50,7 @@ export const Navbar = () => {
   const handleLogout = () => {
     //setCurrentUserId("");
     setIsLoggedIn(false);
-    navigate ("/login")
+    navigate("/login");
   };
 
   const handleMenu = (event) => {
@@ -94,27 +93,21 @@ export const Navbar = () => {
                 // <MenuItem key={page} onClick={handleCloseNavMenu}>
                 //   <Typography textAlign="center">{page}</Typography>
                 // </MenuItem>
-                <>
-               
-                
-                  
+              
                   <Button
-                  size="medium"
-                  key={page}
-                  onClick={() => handleMenuItemPress(page)}
-                  sx={{
-                    display: "block",
-                    color: (theme) => theme.palette.secondary.main,
-                  }}
-                >
-                  {key === 5 ? (
-                    <AccountCircle sx={{ marginRight: 1, fontSize: 15 }} />
-                  ) : null}
-                  {page}
-                </Button>
-                
-                 </>
-                
+                    size="medium"
+                    key={page}
+                    onClick={() => handleMenuItemPress(page)}
+                    sx={{
+                      display: "block",
+                      color: (theme) => theme.palette.secondary.main,
+                    }}
+                  >
+                    {key === 5 ? (
+                      <AccountCircle sx={{ marginRight: 1, fontSize: 15 }} />
+                    ) : null}
+                    {page}
+                  </Button>
               ))}
             </Menu>
             <Link to={"/"}>
@@ -149,9 +142,7 @@ export const Navbar = () => {
 
             {page.map((page, key) => (
               <>
-                {isLoggedIn && key === 5 ? (
-                  null
-                ) : (
+                {isLoggedIn && key === 5 ? null : (
                   <Button
                     size="medium"
                     key={page}
@@ -168,10 +159,7 @@ export const Navbar = () => {
                   </Button>
                 )}
 
-
-
-              
-               {/* <Button
+                {/* <Button
                 size="medium"
                 key={page}
                 onClick={() => handleMenuItemPress(page)}
@@ -187,17 +175,12 @@ export const Navbar = () => {
               </Button>
               
  */}
-
-                
               </>
             ))}
           </Box>
           {isLoggedIn ? (
             <>
-            
-
               <Button
-
                 sx={{ color: (theme) => theme.palette.secondary.main }}
                 onClick={handleLogout}
               >
@@ -205,7 +188,6 @@ export const Navbar = () => {
               </Button>
             </>
           ) : null}
-          
         </Toolbar>
       </Container>
     </AppBar>

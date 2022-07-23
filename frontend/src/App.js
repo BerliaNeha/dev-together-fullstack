@@ -1,7 +1,6 @@
 import React from "react";
 import { HashRouter as Router, Route, Routes } from "react-router-dom";
 import { Homepage } from "./views/Homepage.js";
-import { Navbar } from "./components/Navbar.jsx";
 
 import Footer from "./components/Footer.jsx";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
@@ -46,7 +45,6 @@ const App = () => {
           <CssBaseline />
           <Router>
             <Box height="100vh">
-              <Navbar />
 
               <Routes>
                 <Route path="/" exact element={<Homepage />} />
