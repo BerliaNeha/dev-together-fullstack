@@ -68,15 +68,6 @@ function About(props) {
           backgroundImage: `url(${Arrow})`,
         }}
       >
-        <Link to={"/"}>
-          <img
-            src={Logo}
-            alt="logo"
-            height="100px"
-            width="200px"
-            style={{ objectFit: "contain" }}
-          ></img>
-        </Link>
         <Box
           sx={{
             position: "absolute",
@@ -91,15 +82,29 @@ function About(props) {
           <Grid item>
             <Box
               sx={{
-                color: "white",
+                color: "error",
                 display: "flex",
-                flexDirection: "row-reverse",
+                flexDirection: "row",
+                justifyContent: "space-between",
                 marginRight: 2,
                 fontSize: 20,
               }}
             >
-              <Button sx={{ color: "white", textDecoration: "none" }}>
-                <HashLink smooth to="/about-us/#team">
+            
+               <Button>
+              <HashLink smooth to="/">
+              <img
+                  src={Logo}
+                  alt="logo"
+                  height="100px"
+                  width="200px"
+                  style={{ objectFit: "contain" }}
+                ></img>
+                </HashLink>
+              </Button>
+
+              <Button>
+                <HashLink smooth to="/about-us/#team" style={{ color: "error", textDecoration: "none" }}>
                   MEET THE TEAM
                 </HashLink>
               </Button>
@@ -229,7 +234,7 @@ function About(props) {
           mb: 5,
         }}
       >
-        <Typography variant="h4" sx={{ mt: "90px", mb: 15 }}>
+        <Typography id="team" variant="h4" sx={{ mt: "90px", mb: 15 }}>
           {" "}
           MEET THE TEAM
         </Typography>
@@ -240,8 +245,9 @@ function About(props) {
             width: "100%",
           }}
         >
-          {AboutTeam.map((AboutTeam) => (
+          {AboutTeam.map((AboutTeam, index) => (
             <Card
+              key={index}
               sx={{
                 display: "flex",
                 backgroundColor: "rgba(35, 78, 112, 0.31)",
@@ -250,7 +256,7 @@ function About(props) {
               }}
             >
               <CardContent sx={{ flex: 1 }}>
-                <Typography id="team" component="h2" variant="h5">
+                <Typography component="h2" variant="h5">
                   {AboutTeam.title}{" "}
                 </Typography>
                 <Typography variant="subtitle1" color="text.secondary">

@@ -18,8 +18,6 @@ import { Developers } from "./views/Developers.js";
 import { Employers } from "./views/Employers.js";
 import Container from "./components/Context/Container.jsx";
 
-
-
 const theme = createTheme({
   palette: {
     primary: {
@@ -45,7 +43,6 @@ const App = () => {
           <CssBaseline />
           <Router>
             <Box height="100vh">
-
               <Routes>
                 <Route path="/" exact element={<Homepage />} />
                 <Route path="/developers" element={<Developers />} />
@@ -68,10 +65,7 @@ const App = () => {
                   element={<RegisterEmployer />}
                 />
 
-              <Route
-              path="/contact"
-              element={<Contact/>} 
-              />
+                <Route path="/contact" element={<Contact />} />
               </Routes>
               <Footer />
             </Box>

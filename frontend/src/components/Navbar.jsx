@@ -93,7 +93,7 @@ export const Navbar = () => {
                 // <MenuItem key={page} onClick={handleCloseNavMenu}>
                 //   <Typography textAlign="center">{page}</Typography>
                 // </MenuItem>
-              
+                
                   <Button
                     size="medium"
                     key={page}
@@ -108,6 +108,7 @@ export const Navbar = () => {
                     ) : null}
                     {page}
                   </Button>
+                
               ))}
             </Menu>
             <Link to={"/"}>
