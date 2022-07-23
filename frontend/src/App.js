@@ -1,7 +1,6 @@
 import React from "react";
 import { HashRouter as Router, Route, Routes } from "react-router-dom";
 import { Homepage } from "./views/Homepage.js";
-import { Navbar } from "./components/Navbar.jsx";
 
 import Footer from "./components/Footer.jsx";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
@@ -18,8 +17,6 @@ import { AboutUs } from "./views/AboutUs.js";
 import { Developers } from "./views/Developers.js";
 import { Employers } from "./views/Employers.js";
 import Container from "./components/Context/Container.jsx";
-
-
 
 const theme = createTheme({
   palette: {
@@ -46,8 +43,6 @@ const App = () => {
           <CssBaseline />
           <Router>
             <Box height="100vh">
-              <Navbar />
-
               <Routes>
                 <Route path="/" exact element={<Homepage />} />
                 <Route path="/developers" element={<Developers />} />
@@ -70,10 +65,7 @@ const App = () => {
                   element={<RegisterEmployer />}
                 />
 
-              <Route
-              path="/contact"
-              element={<Contact/>} 
-              />
+                <Route path="/contact" element={<Contact />} />
               </Routes>
               <Footer />
             </Box>

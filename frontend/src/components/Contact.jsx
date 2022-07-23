@@ -5,6 +5,7 @@ import { useForm, ValidationError } from "@formspree/react";
 import { Button } from "@mui/material";
 
 import ContactUs from "../assets/contactUs.jpg";
+import { Navbar } from "./Navbar";
 
 
 export default function BasicTextFields() {
@@ -27,6 +28,8 @@ export default function BasicTextFields() {
     );
   }
   return (
+    <>
+    <Navbar/>
     <Box
       sx={{
         display: "flex",
@@ -50,7 +53,7 @@ export default function BasicTextFields() {
           alignItems: "center",
           opacity: 1,
           fontWeight: "bold",
-          width: "30%",
+          minWidth: "40%",
           margin: "auto",
           minHeight: "50vh",
           //backgroundColor:"rgba(239,242,240,0.86)"
@@ -144,5 +147,6 @@ export default function BasicTextFields() {
         </Button>
       </Box>
     </Box>
+    </>
   );
 }
