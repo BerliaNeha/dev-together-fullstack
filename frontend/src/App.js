@@ -17,6 +17,7 @@ import { AboutUs } from "./views/AboutUs.js";
 import { Developers } from "./views/Developers.js";
 import { Employers } from "./views/Employers.js";
 import Container from "./components/Context/Container.jsx";
+import { DevCommunity } from "./views/DevCommunity.js";
 
 const theme = createTheme({
   palette: {
@@ -47,6 +48,8 @@ const App = () => {
                 <Route path="/" exact element={<Homepage />} />
                 <Route path="/developers" element={<Developers />} />
                 <Route path="/employers" element={<Employers />} />
+                <Route path="/dev-community" element={<DevCommunity />} />
+
 
                 <Route
                   path="/register-employer"
