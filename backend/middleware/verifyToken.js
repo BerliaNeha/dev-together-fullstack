@@ -22,7 +22,7 @@ const verifyToken = async(req, res, next) =>{
 
         console.log("Decoded token", decodedToken);
 
-        const foundUser = await User.findById(decodedToken.id);
+        const foundUser = await UserEmployer.findById(decodedToken.id);
         req.user=foundUser;
         //console.log(req.user)
         next();

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+
 import { Navbar } from "./Navbar";
 import Box from "@mui/material/Box";
 import Backdrop from "@mui/material/Backdrop";
@@ -10,10 +11,11 @@ import Stack from "@mui/material/Stack";
 import { styled } from "@mui/material/styles";
 import { MyContext } from "../components/Context/context.js";
 
-export const EmployersComponent = () => {
-    const {  currentUserId, token} = React.useContext(MyContext);
 
-  const [userName, setUserName] = useState("");
+export const EmployersComponent = () => {
+    const {  currentUserId} = React.useContext(MyContext);
+
+  const [username, setUsername] = useState("");
   const [open, setOpen] = React.useState(false);
   const handleClose = () => {
     setOpen(false);
@@ -32,15 +34,16 @@ export const EmployersComponent = () => {
 
   useEffect(() => {
     const fetchUserData = async () => {
-        // Make a GET request to the "/users/:id" endpoint in our server...
-        // ... and then handle the response from the server
+        
         const settings = {
+            method: "GET",
+            body: JSON.stringify(),
             headers: {
-                "Authorization": "Bearer " + token
+                "Content-Type": "application/json"
             }
         }
         
-        const response = await fetch(process.env.REACT_APP_SERVER_URL + `/users/${currentUserId}`, settings);
+        const response = await fetch(process.env.REACT_APP_SERVER_URL + `/employers/${currentUserId}`, settings);
 
         const parsedRes = await response.json();
 
@@ -48,7 +51,7 @@ export const EmployersComponent = () => {
             // If the request was successful...
             if (response.ok) {
                 console.log("Server response", parsedRes);
-                setUserName(parsedRes.firstName);
+                setUsername(parsedRes.username);
                 
                 // If the request was unsuccessful...
             } else {
@@ -60,7 +63,7 @@ export const EmployersComponent = () => {
     }
 
     fetchUserData();
-}, [props.currentUserId])
+}, [currentUserId])
 
   return (
     <>

@@ -5,6 +5,7 @@ export default function Container({ children }) {
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
   const [currentUserId, setCurrentUserId] = React.useState("");
   const [isDev, setIsDev] = React.useState(true);
+  const [ token, setToken ] = useState(false);
 
   return (
     <MyContext.Provider
@@ -15,6 +16,7 @@ export default function Container({ children }) {
         setCurrentUserId,
         isDev,
         setIsDev,
+        token,
       }}
     >
       {children}
