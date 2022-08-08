@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Navbar } from "./Navbar";
 import Box from "@mui/material/Box";
 import Backdrop from "@mui/material/Backdrop";
@@ -36,7 +36,7 @@ export const EmployersComponent = () => {
         // ... and then handle the response from the server
         const settings = {
             headers: {
-                "Authorization": "Bearer " + props.token
+                "Authorization": "Bearer " + token
             }
         }
         
