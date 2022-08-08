@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Navigate } from "react-router-dom";
 import { MyContext } from "../components/Context/context.js";
 import { DevelopersComponent } from "../components/DevelopersComponent.jsx";
