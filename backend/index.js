@@ -9,6 +9,7 @@ import userDeveloperDataRouter from "./routes/userDeveloperData.js";
 
 
 import registerDeveloperRouter from "./routes/registerDeveloper.js";
+import morgan from "morgan";
 
 const app = express();
 dotenv.config();
@@ -27,7 +28,7 @@ app.use(cors ());
 
 app.use(express.json());
 
-
+app.use(morgan("tiny"))
 
 app.use("/login", loginRouter);
 app.use("/register-developer", registerDeveloperRouter);
