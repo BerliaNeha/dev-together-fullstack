@@ -16,6 +16,9 @@ import Grid from "@mui/material/Grid";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import TextField from "@mui/material/TextField";
+import BgEmployerPage from "../assets/bgEmployerPage.jpg";
+import { Typography } from "@mui/material";
+
 
 export const EmployersComponent = () => {
   const { currentUserId } = React.useContext(MyContext);
@@ -24,7 +27,6 @@ export const EmployersComponent = () => {
   const [open, setOpen] = React.useState(false);
 
   const [shouldSubscribe, setShouldSubscribe] = React.useState(false);
-
 
   const handleClose = () => {
     setOpen(false);
@@ -35,8 +37,7 @@ export const EmployersComponent = () => {
 
   // const handleSubmit = async (event) => {
   //   event.preventDefault();
-    
-   
+
   //   };
 
   const Item = styled(Paper)(({ theme }) => ({
@@ -87,22 +88,38 @@ export const EmployersComponent = () => {
       <Navbar />
       <Box sx={{ width: "100%" }}>
         <Stack spacing={2}>
-          <Item>
+          <Item
+            sx={{
+              width: "100vw",
+              backgroundImage: `url(${BgEmployerPage})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              backgroundRepeat: "no-repeat",
+              height: "200px",
+              color: "#fff",
+              fontSize: "40px",
+              opacity: "0.75"
+            }}
+          >
             <h2 id="greeting">Welcome {username}!</h2>
           </Item>
           <Item>
-            <Container component="main" maxWidth="60%">
+            <Container component="main" sx={{ width: "65%"}}>
               <CssBaseline />
-              <div>NEED TOP TALENT FOR YOUR TECH ROLE? GET STARTED NOW</div>
+              <Typography variant="h3">
+                NEED TOP TALENT FOR YOUR TECH ROLE?
+              </Typography>
+              <Typography sx={{ marginBottom: "-25px" }} variant="h5">
+                Start Hiring! 
+              </Typography>
               <Box
-                component="form" 
+                component="form"
                 // validate onSubmit={handleSubmit}
                 sx={{
                   boxShadow: "1px 1px 25px 4px #000000",
                   borderRadius: 5,
                   // "& > :not(style)": { m: 1, width: "150%" },
-                 
-                
+
                   display: "flex",
                   flexDirection: "column",
                   justifyContent: "center",
@@ -112,7 +129,7 @@ export const EmployersComponent = () => {
                   minWidth: "40%",
                   margin: "auto",
                   minHeight: "50vh",
-                 marginTop:6,
+                  marginTop: 6,
                   backgroundColor: "rgba(35, 78, 112, 0.31)",
                 }}
                 noValidate
@@ -210,32 +227,31 @@ export const EmployersComponent = () => {
                   }}
                 />
                 <Grid item xs={12}>
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    color="primary"
-                    value={shouldSubscribe}
-                    onChange={() => setShouldSubscribe(!shouldSubscribe)}
+                  <FormControlLabel
+                    control={
+                      <Checkbox
+                        color="primary"
+                        value={shouldSubscribe}
+                        onChange={() => setShouldSubscribe(!shouldSubscribe)}
+                      />
+                    }
+                    label="Subscribe for our newsletter"
                   />
-                }
-                label="Subscribe for our newsletter"
-              />
-            </Grid>
+                </Grid>
 
-            <Grid item xs={12}>
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    color="primary"
-                    required
-                    name="termsAndPolicy"
-                    value={true}
+                <Grid item xs={12}>
+                  <FormControlLabel
+                    control={
+                      <Checkbox
+                        color="primary"
+                        required
+                        name="termsAndPolicy"
+                        value={true}
+                      />
+                    }
+                    label="I agree to and understand the Privacy Notice and Terms of Use"
                   />
-                }
-                label="I agree to and understand the Privacy Notice and Terms of Use"
-              />
-            </Grid>
-       
+                </Grid>
 
                 <Button onClick={handleToggle}>SUBMIT JOB</Button>
                 <Backdrop
@@ -252,6 +268,8 @@ export const EmployersComponent = () => {
             </Container>
           </Item>
           <Item>
+          <Container component="main" sx={{ width: "85%"}}>
+              <CssBaseline />
             <Button onClick={handleToggle}>SEARCH CVs</Button>
             <Backdrop
               sx={{
@@ -263,6 +281,12 @@ export const EmployersComponent = () => {
             >
               <CircularProgress color="inherit" />
             </Backdrop>
+            </Container>
+            <Stack spacing={4} direction="row" sx={{ marginTop: "5px", justifyContent: "space-around"}}>
+      <Button variant="outlined">Frontend</Button>
+      <Button variant="outlined">Backend</Button>
+      <Button variant="outlined">FullStack</Button>
+    </Stack>
           </Item>
         </Stack>
       </Box>

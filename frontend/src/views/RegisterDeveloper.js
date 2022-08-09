@@ -5,6 +5,7 @@ import { Navbar } from "../components/Navbar";
 export const RegisterDeveloper = () => {
     return (
     <>
+   
     <Navbar/> 
      <DeveloperRegister/> 
     </>
