@@ -20,7 +20,7 @@ export const userEmployerDataGet = async (req, res, next) => {
   
   if (foundUser) {
     const userEmployerData = {
-        companyName: foundUser.companyName
+        username: foundUser.username
     } 
     res.json(userEmployerData)
   } else {

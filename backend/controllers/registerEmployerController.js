@@ -156,5 +156,5 @@ export const registerEmployerPost = async (req, res, next) => {
     );
   }
 
-  res.status(201).json({ id: newUserEmployer._id, token: newToken });
+  res.status(201).json({ id: newUserEmployer._id, username: newUserEmployer.username, token: newToken });
 };
