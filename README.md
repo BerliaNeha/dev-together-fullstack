@@ -1,5 +1,6 @@
 # DEV NET
 Final project DCI- Fullstack project: Vaia Zymara and Neha Berlia
+
 ## DevNet provides developers and employers a platform to grow, explore and invest.
 
 # TECH Stack
