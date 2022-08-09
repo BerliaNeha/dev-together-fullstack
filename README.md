@@ -6,7 +6,7 @@ Final project DCI- Fullstack project: Vaia Zymara and Neha Berlia
 
 
 
-# github
+# github BASICS
 
 ## check status
 to check where you are
