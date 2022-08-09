@@ -34,7 +34,7 @@ function Copyright(props) {
 }
 
 export const DeveloperRegister = () => {
-  const { isLoggedIn } = React.useContext(MyContext);
+  const { isLoggedIn, setIsDev, setIsLoggedIn, setCurrentUserId } = React.useContext(MyContext);
   
   let navigate = useNavigate();
   const [jobTitle, setJobTitle] = React.useState("");
@@ -76,7 +76,10 @@ export const DeveloperRegister = () => {
 
     try {
       if (response.ok) {
-        navigate(`/developer`);
+        setCurrentUserId(parsedRes.id);
+        setIsDev(true);
+        setIsLoggedIn(true);
+        navigate("/developers")
       } else {
         throw new Error(parsedRes.message);
       }
@@ -87,7 +90,7 @@ export const DeveloperRegister = () => {
   };
 
   return isLoggedIn ? (
-    <Navigate to="/login" />
+    <Navigate to="/developers" />
   ) : (
     <Container component="main" maxWidth="xs">
       <CssBaseline />

@@ -16,6 +16,7 @@ import { MyContext } from "./Context/context";
 import { FormControl, FormLabel, Radio, RadioGroup } from "@mui/material";
 
 import { Navigate, useNavigate } from "react-router-dom";
+import { Employers } from "../views/Employers";
 
 function Copyright(props) {
   return (
@@ -36,7 +37,7 @@ function Copyright(props) {
 }
 
 export const EmployerRegister = () => {
- const { isLoggedIn} = React.useContext(MyContext);
+  const { isLoggedIn, setIsLoggedIn, setIsDev, setCurrentUserId } = React.useContext(MyContext);
   let navigate = useNavigate();
 
   const [shouldSubscribe, setShouldSubscribe] = React.useState(false);
@@ -74,7 +75,10 @@ export const EmployerRegister = () => {
 
     try {
       if (response.ok) {
-        navigate(`/employer`);
+        setCurrentUserId(parsedRes.id);
+        setIsDev(false);
+        setIsLoggedIn(true);
+        navigate(`/employers`);
       } else {
         throw new Error(parsedRes.message);
       }
@@ -96,7 +100,7 @@ export const EmployerRegister = () => {
   };
 
   return isLoggedIn ? (
-    <Navigate to="/login" />
+    <Employers />
   ) : (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
