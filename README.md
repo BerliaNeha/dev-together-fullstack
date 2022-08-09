@@ -1,7 +1,13 @@
-# together
-6 weeks fullstack project managed by 4 DCI participants/developers
+# DEV NET
+Final project DCI- Fullstack project: Vaia Zymara and Neha Berlia
 
-# github
+## DevNet provides developers and employers a platform to grow, explore and invest.
+
+# TECH Stack
+
+
+
+# github BASICS
 
 ## check status
 to check where you are
