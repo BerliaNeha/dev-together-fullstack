@@ -21,6 +21,7 @@ const UserEmployerSchema = new Schema({
         type:Boolean, required:true
     },
     subscribeCheckbox:{type:Boolean},
+    jobs: [ { type: mongoose.Types.ObjectId, required: true, ref: "Jobs" } ]
 
 },
 {timestamps:true}

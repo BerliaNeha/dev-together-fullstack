@@ -11,6 +11,10 @@ export const registerEmployerPost = async (req, res, next) => {
     phoneNumber,
     companyName,
     companyWebsite,
+    hiringNumberRadioButton,
+    subscribeCheckbox,
+    policyAndTermsCheckbox,
+    hiringRemoteDeveloperCheckbox
   } = req.body;
 
   console.log(req.body);
@@ -121,16 +125,17 @@ export const registerEmployerPost = async (req, res, next) => {
   // If not, pass them with encryption
 
   const newUserEmployer = new UserEmployer({
-    username: req.body.username,
-    email: req.body.email,
+    username: username,
+    email: email,
     password: CryptoJS.AES.encrypt(password, process.env.PASS_SEC).toString(),
-    phoneNumber: req.body.phoneNumber,
-    companyName: req.body.companyName,
-    companyWebsite: req.body.companyWebsite,
-    hiringNumberRadioButton: req.body.hiringNumberRadioButton,
-    hiringRemoteDeveloperCheckbox: req.body.hiringRemoteDeveloperCheckbox,
-    policyAndTermsCheckbox: req.body.policyAndTermsCheckbox,
-    subscribeCheckbox: req.body.subscribeCheckbox,
+    phoneNumber: phoneNumber,
+    companyName: companyName,
+    companyWebsite:companyWebsite,
+    hiringNumberRadioButton: hiringNumberRadioButton,
+    hiringRemoteDeveloperCheckbox: hiringRemoteDeveloperCheckbox,
+    policyAndTermsCheckbox: policyAndTermsCheckbox,
+    subscribeCheckbox: subscribeCheckbox,
+    jobs:[],
   });
 
   try {
@@ -157,4 +162,8 @@ export const registerEmployerPost = async (req, res, next) => {
   }
 
   res.status(201).json({ id: newUserEmployer._id, username: newUserEmployer.username, token: newToken });
+
+
 };
+
+
