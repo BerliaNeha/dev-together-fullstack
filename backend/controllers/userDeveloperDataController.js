@@ -27,3 +27,7 @@ export const userDeveloperDataGet = async (req, res, next) => {
     next(createError(404, "No user exists with this email. Please try again"));
   }
 };
+
+export const updateCV = async (req, res, next) => {
+ 
+}
