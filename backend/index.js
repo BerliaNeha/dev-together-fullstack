@@ -10,6 +10,7 @@ import userDeveloperDataRouter from "./routes/userDeveloperData.js";
 
 import registerDeveloperRouter from "./routes/registerDeveloper.js";
 import morgan from "morgan";
+import CVrouter from "./routes/cvRoute.js";
 
 const app = express();
 dotenv.config();
@@ -36,9 +37,9 @@ app.use("/register-developer", registerDeveloperRouter);
 app.use("/register-employer", registerEmployerRouter);
 
 
-app.use("/developers", userDeveloperDataRouter);
+//app.use("/developers", userDeveloperDataRouter);
 app.use("/employers", userEmployerDataRouter);
-
+app.use("/developers", CVrouter)
 
 app.listen(process.env.PORT || 3001, () => {
     console.log(`Server has started on port ${process.env.port || 3001}!`);

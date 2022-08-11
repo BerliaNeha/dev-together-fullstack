@@ -16,6 +16,7 @@ const UserDeveloperSchema = new Schema(
       required: true,
     },
     subscribeCheckbox: { type: Boolean },
+    cv: {type: String}
   },
   { timestamps: true }
 );
