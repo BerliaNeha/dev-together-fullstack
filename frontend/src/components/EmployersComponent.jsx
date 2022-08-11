@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-
 import { Navbar } from "./Navbar";
 import CssBaseline from "@mui/material/CssBaseline";
 import Container from "@mui/material/Container";
@@ -7,7 +6,6 @@ import Box from "@mui/material/Box";
 import Backdrop from "@mui/material/Backdrop";
 import CircularProgress from "@mui/material/CircularProgress";
 import Button from "@mui/material/Button";
-
 import Paper from "@mui/material/Paper";
 import Stack from "@mui/material/Stack";
 import { styled } from "@mui/material/styles";
@@ -20,9 +18,8 @@ import TextField from "@mui/material/TextField";
 import BgEmployerPage from "../assets/bgEmployerPage.jpg";
 import { Typography } from "@mui/material";
 
-export const EmployersComponent = (props) => {
+export const EmployersComponent = () => {
   const { currentUserId } = React.useContext(MyContext);
-
 
   // employer state
 
@@ -32,45 +29,17 @@ export const EmployersComponent = (props) => {
 
   // Job states
 
-    const [companyName, setCompanyName] = useState("");
-    const [email, setEmail] = useState("");
-    const [position, setPosition] = useState("");
-    const [jobDescription, setJobDescription] = useState("");
-    const [jobList, setJobList] = useState([]);
+  const [companyName, setCompanyName] = useState("");
+  const [email, setEmail] = useState("");
+  const [position, setPosition] = useState("");
+  const [jobDescription, setJobDescription] = useState("");
+  const [jobList, setJobList] = useState([]);
 
-     // When the <Jobs/> component first renders...
-    // GET relevant data about the user who logged in, and update state...
-    // So the employer can see their name and current list of albums immediately after they log in/register
-
-    useEffect(() => {
-      const fetchUserData = async () => {
-          // Make a GET request to the "/employers/:id" endpoint in our server...
-          // ... and then handle the response from the server
-          const response = await fetch(process.env.REACT_APP_SERVER_URL + `/employers/${props.currentUserId}`);
-
-          const parsedRes = await response.json();
-
-          try {
-              // If the request was successful...
-              if (response.ok) {
-                  console.log("Server response", parsedRes);
-                  setUsername(parsedRes.username);
-                  // setJobList(parsedRes.jobList);
-                  // If the request was unsuccessful...
-              } else {
-                  throw new Error(parsedRes.message);
-              }
-          } catch (err) {
-              alert(err.message);
-          }
-      }
-
-      fetchUserData();
-  }, [props.currentUserId])
+  // When the <Jobs/> component first renders...
+  // GET relevant data about the user who logged in, and update state...
+  // So the employer can see their name and current list of albums immediately after they log in/register
 
   //********************************* */
-
-    
 
   const handleClose = () => {
     setOpen(false);
@@ -79,7 +48,37 @@ export const EmployersComponent = (props) => {
     setOpen(!open);
   };
 
+  useEffect(() => {
+    console.log( "fetching data")
+    const fetchUserData = async () => {
+      // Make a GET request to the "/employers/:id" endpoint in our server...
+      // ... and then handle the response from the server
+      const response = await fetch(
+        process.env.REACT_APP_SERVER_URL + `/employers/${currentUserId}`
+      );
+
+      const parsedRes = await response.json();
+
+      try {
+        // If the request was successful...
+        if (response.ok) {
+          console.log("Server response", parsedRes);
+          setUsername(parsedRes.username);
+          // setJobList(parsedRes.jobs);
+          // If the request was unsuccessful...
+        } else {
+          throw new Error(parsedRes.message);
+        }
+      } catch (err) {
+        alert(err.message);
+      }
+    };
+
+    fetchUserData();
+  }, [currentUserId]);
+
   const submitJob = async (event) => {
+    console.log("submitting")
     event.preventDefault();
     const data = new FormData(event.currentTarget);
 
@@ -101,7 +100,7 @@ export const EmployersComponent = (props) => {
         // "Authorization": "Bearer " + props.token
       },
     };
-  // fetch the new job added by teh employer
+    // fetch the new job added by teh employer
 
     const response = await fetch(
       process.env.REACT_APP_SERVER_URL + "/jobs",
@@ -110,55 +109,50 @@ export const EmployersComponent = (props) => {
     const parsedRes = await response.json();
 
     try {
-
       // If the first fetch request was successful...
       if (response.ok) {
-          const settings = {
-              method: "PATCH",
-              body: JSON.stringify({ id: parsedRes.id }),
-              headers: {
-                  "Content-Type": "application/json"
-              }
-          }
+        const settings = {
+          method: "PATCH",
+          body: JSON.stringify({ id: parsedRes.id }),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        };
 
-          // Make a second fetch request to add the new album id to the user's "albums" array
-          const secondResponse = await fetch(process.env.REACT_APP_SERVER_URL + `/employers/${props.currentUserId}/jobs`, settings);
-          const secondParsedRes = await secondResponse.json();
+        // Make a second fetch request to add the new album id to the user's "albums" array
+        const secondResponse = await fetch(
+          process.env.REACT_APP_SERVER_URL +
+            `/employers/${currentUserId}/jobs`,
+          settings
+        );
+        const secondParsedRes = await secondResponse.json();
 
-          // If the second request was successful...
-          // Update the "jobs" state variable with the user's up-to-date "jobs" array (containing album ids)
-          // This will re-render the app, and the new array will be mapped in the JSX below
+        // If the second request was successful...
+        // Update the "jobs" state variable with the user's up-to-date "jobs" array (containing album ids)
+        // This will re-render the app, and the new array will be mapped in the JSX below
 
-          if (secondResponse.ok) {
-              console.log("Add job server response", secondParsedRes.jobs);
-              setJobList(secondParsedRes.jobs);
-              setCompanyName("");
-              setEmail("");
-              setPosition("");
-              setJobDescription("");
-          
+        if (secondResponse.ok) {
+          console.log("Add job server response", secondParsedRes.jobs);
+          setJobList(secondParsedRes.jobs);
+          setCompanyName("");
+          setEmail("");
+          setPosition("");
+          setJobDescription("");
+
+          console.log("second fetch")
+
           // If the second fetch request was unsuccessful...
-          } else {
-              throw new Error(secondParsedRes.message);    
-          }
-      // If the first fetch request was unsuccessful...
+        } else {
+          throw new Error(secondParsedRes.message);
+        }
+        // If the first fetch request was unsuccessful...
       } else {
-          throw new Error(parsedRes.message);
+        throw new Error(parsedRes.message);
       }
-  } catch (err) {
+    } catch (err) {
       alert(err.message);
-  }
-}
-
-
-
-  
-
-
-
-
-
-
+    }
+  };
   const [remoteWork, setRemoteWork] = React.useState("yes");
 
   const handleRemoteWork = (event) => {
@@ -173,48 +167,12 @@ export const EmployersComponent = (props) => {
     color: theme.palette.text.secondary,
   }));
 
-  useEffect(() => {
-    const fetchUserData = async () => {
-      const settings = {
-        method: "GET",
-        body: JSON.stringify(),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      };
-
-      const response = await fetch(
-        process.env.REACT_APP_SERVER_URL + `/employers/${currentUserId}`,
-        settings
-      );
-
-      const parsedRes = await response.json();
-
-      try {
-        // If the request was successful...
-        if (response.ok) {
-          console.log("Server response", parsedRes);
-          setUsername(parsedRes.username);
-
-          // If the request was unsuccessful...
-        } else {
-          throw new Error(parsedRes.message);
-        }
-      } catch (err) {
-        alert(err.message);
-      }
-    };
-
-    fetchUserData();
-  }, [currentUserId]);
-
   return (
     <>
       <Navbar />
-      <Box sx={{ width: "100%" }}>
+       <Box sx={{ width: "100%" }}>
         <Stack spacing={2}>
-          <Item
-            sx={{
+          <Box  sx={{
               width: "100vw",
               backgroundImage: `url(${BgEmployerPage})`,
               backgroundSize: "cover",
@@ -224,12 +182,28 @@ export const EmployersComponent = (props) => {
               color: "#fff",
               fontSize: "40px",
               opacity: "0.75",
-            }}
-          >
-            <h2 id="greeting">Welcome {username}!</h2>
+            }}>
+          <h2 id="greeting">Welcome {username}!</h2>
 
-          </Item>
-          <Item>
+          </Box>
+         {/* <Item
+             sx={{
+              width: "100vw",
+              backgroundImage: `url(${BgEmployerPage})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              backgroundRepeat: "no-repeat",
+              height: "200px",
+              color: "#fff",
+              fontSize: "40px",
+              opacity: "0.75",
+            }} 
+           
+           >  */}
+          
+           {/* </Item>  */}
+           <Box>
+          {/* <Item>  */}
             <Container component="main" sx={{ width: "65%" }}>
               <CssBaseline />
               <Typography variant="h3">
@@ -238,14 +212,12 @@ export const EmployersComponent = (props) => {
               <Typography sx={{ marginBottom: "-25px" }} variant="h5">
                 Start Hiring!
               </Typography>
-              <Box
-                component="form"
-                // validate onSubmit={handleSubmit}
+             
+              <Box component="form" validate onSubmit={submitJob} 
+              
                 sx={{
                   boxShadow: "1px 1px 25px 4px #000000",
                   borderRadius: 5,
-                  // "& > :not(style)": { m: 1, width: "150%" },
-
                   display: "flex",
                   flexDirection: "column",
                   justifyContent: "center",
@@ -258,16 +230,16 @@ export const EmployersComponent = (props) => {
                   marginTop: 6,
                   backgroundColor: "rgba(35, 78, 112, 0.31)",
                 }}
-                noValidate
-                autoComplete="off"
-                onSubmit={submitJob}
+              
+                // noValidate
+                // autoComplete="off"
+               
               >
                 <TextField
-                 required
+                  required
                   label="Company Name"
                   variant="standard"
                   id="companyName"
-                  type="text"
                   name="companyName"
                   sx={{ width: "80%" }}
                   InputLabelProps={{
@@ -289,11 +261,10 @@ export const EmployersComponent = (props) => {
                 />
 
                 <TextField
-                 required
+                  required
                   label="Email"
                   variant="standard"
                   id="email"
-                  type="email"
                   name="email"
                   sx={{ width: "80%" }}
                   InputLabelProps={{
@@ -315,11 +286,10 @@ export const EmployersComponent = (props) => {
                 />
 
                 <TextField
-                 required
+                  required
                   label="Position"
                   variant="standard"
                   id="position"
-                  type="position"
                   name="position"
                   sx={{ width: "80%" }}
                   InputLabelProps={{
@@ -341,8 +311,8 @@ export const EmployersComponent = (props) => {
                 />
 
                 <TextField
-                 required
-                  id="standard-multiline-static"
+                  required
+                  id="jobDescription"
                   label="Job Description"
                   multiline
                   rows={10}
@@ -358,25 +328,29 @@ export const EmployersComponent = (props) => {
                   }}
                 />
                 <Grid item xs={6}>
-              <FormControl>
-                <FormLabel id="demo-controlled-radio-buttons-group">
-                  Remote work
-                </FormLabel>
-                <RadioGroup
-                  aria-labelledby="demo-controlled-radio-buttons-group"
-                  name="controlled-radio-buttons-group"
-                  value={remoteWork}
-                  onChange={handleRemoteWork}
-                >
-                  <FormControlLabel
-                    value="yes"
-                    control={<Radio />}
-                    label="Yes"
-                  />
-                  <FormControlLabel value="no" control={<Radio />} label="No" />
-                </RadioGroup>
-              </FormControl>
-            </Grid>
+                  <FormControl>
+                    <FormLabel id="demo-controlled-radio-buttons-group">
+                      Remote work
+                    </FormLabel>
+                    <RadioGroup
+                      aria-labelledby="demo-controlled-radio-buttons-group"
+                      name="controlled-radio-buttons-group"
+                      value={remoteWork}
+                      onChange={handleRemoteWork}
+                    >
+                      <FormControlLabel
+                        value="yes"
+                        control={<Radio />}
+                        label="Yes"
+                      />
+                      <FormControlLabel
+                        value="no"
+                        control={<Radio />}
+                        label="No"
+                      />
+                    </RadioGroup>
+                  </FormControl>
+                </Grid>
                 <Grid item xs={12}>
                   <FormControlLabel
                     control={
@@ -403,8 +377,16 @@ export const EmployersComponent = (props) => {
                     label="I agree to and understand the Privacy Notice and Terms of Use"
                   />
                 </Grid>
+                <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              sx={{ mt: 3, mb: 2 }}
+            >
+              Sign Up
+            </Button>
 
-                <Button onClick={handleToggle}>SUBMIT JOB</Button>
+                 <Button onClick={handleToggle}>SUBMIT JOB</Button>
                 <Backdrop
                   sx={{
                     color: "#fff",
@@ -414,11 +396,13 @@ export const EmployersComponent = (props) => {
                   onClick={handleClose}
                 >
                   <CircularProgress color="inherit" />
-                </Backdrop>
+                </Backdrop> 
+             
               </Box>
             </Container>
-          </Item>
-          <Item>
+          {/* </Item> */}
+          </Box> 
+           {/* <Item> */}
             <Container component="main" sx={{ width: "85%" }}>
               <CssBaseline />
               <Button onClick={handleToggle}>SEARCH CVs</Button>
@@ -442,7 +426,7 @@ export const EmployersComponent = (props) => {
               <Button variant="outlined">Backend</Button>
               <Button variant="outlined">FullStack</Button>
             </Stack>
-          </Item>
+          {/* </Item> */}
         </Stack>
       </Box>
     </>
