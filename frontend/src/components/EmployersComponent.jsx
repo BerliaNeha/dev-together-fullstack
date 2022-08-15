@@ -54,9 +54,9 @@ export const EmployersComponent = () => {
         if (response.ok) {
           console.log("Server response", parsedRes);
           setUsername(parsedRes.username);
-          //setCompanyEmail(parsedRes.email)
-          //setCompanyTitle(parsedRes.companyName)
-          //setJobDescription(parsedRes.jobDescription)
+          setCompanyEmail(parsedRes.email)
+          setCompanyTitle(parsedRes.companyName)
+          setJobDescription(parsedRes.jobDescription)
           
           // setJobList(parsedRes.jobs);
           // If the request was unsuccessful...
@@ -119,10 +119,10 @@ export const EmployersComponent = () => {
         if (secondResponse.ok) {
           console.log("Add job server response", secondParsedRes.jobs);
           setJobList(secondParsedRes.jobs);
-          //setCompanyTitle("");
-          //setCompanyEmail("")
-          //setPosition("");
-          //setJobDescription("");
+          setCompanyTitle("");
+          setCompanyEmail("")
+          setPosition("");
+          setJobDescription("");
           console.log("second fetch");
           // If the second fetch request was unsuccessful...
         } else {
@@ -220,7 +220,7 @@ console.log(companyEmail, companyTitle)
                   variant="standard"
                   id="companyName"
                   name="companyName"
-                  //value={companyTitle}
+                  value={companyTitle}
                   sx={{ width: "80%" }}
                   InputLabelProps={{
                     style: {
@@ -245,7 +245,7 @@ console.log(companyEmail, companyTitle)
                   variant="standard"
                   id="email"
                   name="email"
-                  //value={companyEmail}
+                  value={companyEmail}
                   sx={{ width: "80%" }}
                   InputLabelProps={{
                     style: {

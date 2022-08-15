@@ -34,7 +34,7 @@ function Footer(props) {
     <Box
       component="footer"
       sx={{
-        py: 6,
+        py: 2,
         display: "flex",
         justifyContent: "space-between",
         backgroundColor: (theme) => theme.palette.primary.main,
