@@ -9,9 +9,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 import { Login } from "./views/Login.js";
 import { Box } from "@mui/material";
 import { RegisterEmployer } from "./views/RegisterEmployer.js";
-
 import { RegisterDeveloper } from "./views/RegisterDeveloper.js";
-import ContactForm from "./components/Contact.jsx";
 import Contact from "./components/Contact.jsx";
 import { AboutUs } from "./views/AboutUs.js";
 import { Developers } from "./views/Developers.js";
@@ -49,7 +47,6 @@ const App = () => {
                 <Route path="/developers" element={<Developers />} />
                 <Route path="/employers" element={<Employers />} />
                 <Route path="/dev-community" element={<DevCommunity />} />
-
 
                 <Route
                   path="/register-employer"

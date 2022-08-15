@@ -3,14 +3,11 @@ import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
-
 import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
-
 import { Link, useNavigate } from "react-router-dom";
-import CodeIcon from "@mui/icons-material/Code";
 import { AccountCircle } from "@mui/icons-material";
 import Logo from "../assets/logoNobg.png";
 import { MyContext } from "./Context/context";
@@ -93,22 +90,21 @@ export const Navbar = () => {
                 // <MenuItem key={page} onClick={handleCloseNavMenu}>
                 //   <Typography textAlign="center">{page}</Typography>
                 // </MenuItem>
-                
-                  <Button
-                    size="medium"
-                    key={page}
-                    onClick={() => handleMenuItemPress(page)}
-                    sx={{
-                      display: "block",
-                      color: (theme) => theme.palette.secondary.main,
-                    }}
-                  >
-                    {key === 5 ? (
-                      <AccountCircle sx={{ marginRight: 1, fontSize: 15 }} />
-                    ) : null}
-                    {page}
-                  </Button>
-                
+
+                <Button
+                  size="medium"
+                  key={page}
+                  onClick={() => handleMenuItemPress(page)}
+                  sx={{
+                    display: "block",
+                    color: (theme) => theme.palette.secondary.main,
+                  }}
+                >
+                  {key === 5 ? (
+                    <AccountCircle sx={{ marginRight: 1, fontSize: 15 }} />
+                  ) : null}
+                  {page}
+                </Button>
               ))}
             </Menu>
             <Link to={"/"}>
@@ -181,6 +177,21 @@ export const Navbar = () => {
               }
 
                 
+
+                {/* { key === 2 ?(
+                  <Button
+                  href="http://localhost:3000/dev#/dev-community"
+                  target="_blank"
+                    size="medium"
+                    key={page}
+                    sx={{
+                      display: "block",
+                      color: (theme) => theme.palette.secondary.main,
+                    }}
+                  >
+                    {page}
+                  </Button>
+                ): null} */}
 
                 {/* <Button
                 size="medium"

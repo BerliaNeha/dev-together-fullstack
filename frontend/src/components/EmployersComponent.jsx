@@ -21,11 +21,12 @@ export const EmployersComponent = () => {
   const { currentUser } = React.useContext(MyContext);
   // employer state
   const [username, setUsername] = useState("");
+  const [companyEmail, setCompanyEmail] = useState("");
+  const [companyTitle, setCompanyTitle] = useState("");
+
   const [open, setOpen] = React.useState(false);
   const [shouldSubscribe, setShouldSubscribe] = React.useState(false);
   // Job states
-  const [companyName, setCompanyName] = useState("");
-  const [email, setEmail] = useState("");
   const [position, setPosition] = useState("");
   const [jobDescription, setJobDescription] = useState("");
   const [jobList, setJobList] = useState([]);
@@ -67,6 +68,35 @@ export const EmployersComponent = () => {
   //   fetchUserData();
   // }, [currentUserId]);
 
+  useEffect(() => {
+    console.log("fetching data");
+    const fetchUserData = async () => {
+      // Make a GET request to the "/employers/:id" endpoint in our server...
+      // ... and then handle the response from the server
+      const response = await fetch(
+        process.env.REACT_APP_SERVER_URL + `/employers/${currentUserId}`
+      );
+      const parsedRes = await response.json();
+      try {
+        // If the request was successful...
+        if (response.ok) {
+          console.log("Server response", parsedRes);
+          setUsername(parsedRes.username);
+          //setCompanyEmail(parsedRes.email)
+          //setCompanyTitle(parsedRes.companyName)
+          //setJobDescription(parsedRes.jobDescription)
+          
+          // setJobList(parsedRes.jobs);
+          // If the request was unsuccessful...
+        } else {
+          throw new Error(parsedRes.message);
+        }
+      } catch (err) {
+        alert(err.message);
+      }
+    };
+    fetchUserData();
+  }, [currentUserId]);
   const submitJob = async (event) => {
     console.log("submitting");
     event.preventDefault();
@@ -140,19 +170,58 @@ console.log(parsedRes)
     // } catch (err) {
     //   alert(err.message);
     // }
+    try {
+      // If the first fetch request was successful...
+      if (response.ok) {
+        const settings = {
+          method: "PATCH",
+          body: JSON.stringify({ id: parsedRes.id }),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        };
+        // Make a second fetch request to add the new album id to the user's "albums" array
+        const secondResponse = await fetch(
+          process.env.REACT_APP_SERVER_URL +
+            `/employers/${currentUserId}/jobs`,
+          settings
+        );
+        const secondParsedRes = await secondResponse.json();
+        // If the second request was successful...
+        // Update the "jobs" state variable with the user's up-to-date "jobs" array (containing album ids)
+        // This will re-render the app, and the new array will be mapped in the JSX below
+        if (secondResponse.ok) {
+          console.log("Add job server response", secondParsedRes.jobs);
+          setJobList(secondParsedRes.jobs);
+          //setCompanyTitle("");
+          //setCompanyEmail("")
+          //setPosition("");
+          //setJobDescription("");
+          console.log("second fetch");
+          // If the second fetch request was unsuccessful...
+        } else {
+          throw new Error(secondParsedRes.message);
+        }
+        // If the first fetch request was unsuccessful...
+      } else {
+        throw new Error(parsedRes.message);
+      }
+    } catch (err) {
+      alert(err.message);
+    }
   };
   const [remoteWork, setRemoteWork] = React.useState("yes");
   const handleRemoteWork = (event) => {
     setRemoteWork(event.target.value);
   };
-  const Item = styled(Paper)(({ theme }) => ({
-    backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
-    ...theme.typography.body2,
-    padding: theme.spacing(1),
-    textAlign: "center",
-    color: theme.palette.text.secondary,
-  }));
-
+  // const Item = styled(Paper)(({ theme }) => ({
+  //   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
+  //   ...theme.typography.body2,
+  //   padding: theme.spacing(1),
+  //   textAlign: "center",
+  //   color: theme.palette.text.secondary,
+  // }));
+console.log(companyEmail, companyTitle)
   return (
     <>
       <Navbar />
@@ -226,6 +295,7 @@ console.log(parsedRes)
                   id="companyName"
                   name="companyName"
                   value={currentUser.companyName}
+                  //value={companyTitle}
                   sx={{ width: "80%" }}
                   InputLabelProps={{
                     style: {
@@ -251,6 +321,7 @@ console.log(parsedRes)
                   id="email"
                   name="email"
                   value={currentUser.email}
+                  //value={companyEmail}
                   sx={{ width: "80%" }}
                   InputLabelProps={{
                     style: {
@@ -366,9 +437,8 @@ console.log(parsedRes)
                   variant="contained"
                   sx={{ mt: 3, mb: 2 }}
                 >
-                  Sign Up
+                  Submit Job
                 </Button>
-                <Button onClick={handleToggle}>SUBMIT JOB</Button>
                 <Backdrop
                   sx={{
                     color: "#fff",
