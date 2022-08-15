@@ -18,7 +18,7 @@ import TextField from "@mui/material/TextField";
 import BgEmployerPage from "../assets/bgEmployerPage.jpg";
 import { Typography } from "@mui/material";
 export const EmployersComponent = () => {
-  const { currentUserId } = React.useContext(MyContext);
+  const { currentUser } = React.useContext(MyContext);
   // employer state
   const [username, setUsername] = useState("");
   const [open, setOpen] = React.useState(false);
@@ -39,44 +39,49 @@ export const EmployersComponent = () => {
   const handleToggle = () => {
     setOpen(!open);
   };
-  useEffect(() => {
-    console.log("fetching data");
-    const fetchUserData = async () => {
-      // Make a GET request to the "/employers/:id" endpoint in our server...
-      // ... and then handle the response from the server
-      const response = await fetch(
-        process.env.REACT_APP_SERVER_URL + `/employers/${currentUserId}`
-      );
-      const parsedRes = await response.json();
-      try {
-        // If the request was successful...
-        if (response.ok) {
-          console.log("Server response", parsedRes);
-          setUsername(parsedRes.username);
-          // setJobList(parsedRes.jobs);
-          // If the request was unsuccessful...
-        } else {
-          throw new Error(parsedRes.message);
-        }
-      } catch (err) {
-        alert(err.message);
-      }
-    };
-    fetchUserData();
-  }, [currentUserId]);
+  // useEffect(() => {
+  //   console.log("fetching data");
+  //   const fetchUserData = async () => {
+  //     // Make a GET request to the "/employers/:id" endpoint in our server...
+  //     // ... and then handle the response from the server
+  //     const response = await fetch(
+  //       process.env.REACT_APP_SERVER_URL + `/employers/${currentUserId}`
+  //     );
+  //     const parsedRes = await response.json();
+  //     try {
+  //       // If the request was successful...
+  //       if (response.ok) {
+  //         console.log("Server response", parsedRes);
+  //         setUsername(parsedRes.username);
+  //         setCompanyName(parsedRes.companyName);
+  //         setEmail(parsedRes.email)
+  //         // setJobList(parsedRes.jobs);
+  //         // If the request was unsuccessful...
+  //       } else {
+  //         throw new Error(parsedRes.message);
+  //       }
+  //     } catch (err) {
+  //       alert(err.message);
+  //     }
+  //   };
+  //   fetchUserData();
+  // }, [currentUserId]);
+
   const submitJob = async (event) => {
     console.log("submitting");
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     const newJob = {
-      companyName: data.get("companyName"),
-      email: data.get("email"),
+      companyName: currentUser.companyName,
+      email: currentUser.email,
       position: data.get("position"),
       jobDescription: data.get("jobDescription"),
       hiringRemoteDeveloperCheckbox: remoteWork,
       subscribeCheckbox: shouldSubscribe,
       policyAndTermsCheckbox: true,
     };
+
+    console.log(newJob);
     const settings = {
       method: "POST",
       body: JSON.stringify(newJob),
@@ -91,44 +96,50 @@ export const EmployersComponent = () => {
       settings
     );
     const parsedRes = await response.json();
-    try {
-      // If the first fetch request was successful...
-      if (response.ok) {
-        const settings = {
-          method: "PATCH",
-          body: JSON.stringify({ id: parsedRes.id }),
-          headers: {
-            "Content-Type": "application/json",
-          },
-        };
-        // Make a second fetch request to add the new album id to the user's "albums" array
-        const secondResponse = await fetch(
-          process.env.REACT_APP_SERVER_URL + `/employers/${currentUserId}/jobs`,
-          settings
-        );
-        const secondParsedRes = await secondResponse.json();
-        // If the second request was successful...
-        // Update the "jobs" state variable with the user's up-to-date "jobs" array (containing album ids)
-        // This will re-render the app, and the new array will be mapped in the JSX below
-        if (secondResponse.ok) {
-          console.log("Add job server response", secondParsedRes.jobs);
-          setJobList(secondParsedRes.jobs);
-          setCompanyName("");
-          setEmail("");
-          setPosition("");
-          setJobDescription("");
-          console.log("second fetch");
-          // If the second fetch request was unsuccessful...
-        } else {
-          throw new Error(secondParsedRes.message);
-        }
-        // If the first fetch request was unsuccessful...
-      } else {
-        throw new Error(parsedRes.message);
-      }
-    } catch (err) {
-      alert(err.message);
-    }
+console.log(parsedRes)
+    setJobList(parsedRes.jobs);
+    setPosition("");
+    setJobDescription("");
+
+
+    // try {
+    //   // If the first fetch request was successful...
+    //   if (response.ok) {
+    //     const settings = {
+    //       method: "PATCH",
+    //       body: JSON.stringify({ id: parsedRes.id }),
+    //       headers: {
+    //         "Content-Type": "application/json",
+    //       },
+    //     };
+    //     // Make a second fetch request to add the new album id to the user's "albums" array
+    //     const secondResponse = await fetch(
+    //       process.env.REACT_APP_SERVER_URL + `/employers/${currentUser}/jobs`,
+    //       settings
+    //     );
+    //     const secondParsedRes = await secondResponse.json();
+    //     // If the second request was successful...
+    //     // Update the "jobs" state variable with the user's up-to-date "jobs" array (containing album ids)
+    //     // This will re-render the app, and the new array will be mapped in the JSX below
+    //     if (secondResponse.ok) {
+    //       console.log("Add job server response", secondParsedRes.jobs);
+    //       setJobList(secondParsedRes.jobs);
+    //       // setCompanyName("");
+    //       // setEmail("");
+    //       setPosition("");
+    //       setJobDescription("");
+    //       console.log("second fetch");
+    //       // If the second fetch request was unsuccessful...
+    //     } else {
+    //       throw new Error(secondParsedRes.message);
+    //     }
+    //     // If the first fetch request was unsuccessful...
+    //   } else {
+    //     throw new Error(parsedRes.message);
+    //   }
+    // } catch (err) {
+    //   alert(err.message);
+    // }
   };
   const [remoteWork, setRemoteWork] = React.useState("yes");
   const handleRemoteWork = (event) => {
@@ -160,7 +171,7 @@ export const EmployersComponent = () => {
               opacity: "0.75",
             }}
           >
-            <h2 id="greeting">Welcome {username}!</h2>
+            <h2 id="greeting">Welcome {currentUser.username}!</h2>
           </Box>
           {/* <Item
              sx={{
@@ -214,6 +225,7 @@ export const EmployersComponent = () => {
                   variant="standard"
                   id="companyName"
                   name="companyName"
+                  value={currentUser.companyName}
                   sx={{ width: "80%" }}
                   InputLabelProps={{
                     style: {
@@ -238,6 +250,7 @@ export const EmployersComponent = () => {
                   variant="standard"
                   id="email"
                   name="email"
+                  value={currentUser.email}
                   sx={{ width: "80%" }}
                   InputLabelProps={{
                     style: {
@@ -284,6 +297,7 @@ export const EmployersComponent = () => {
                   required
                   id="jobDescription"
                   label="Job Description"
+                  name="jobDescription"
                   multiline
                   rows={10}
                   col={10}

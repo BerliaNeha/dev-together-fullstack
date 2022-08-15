@@ -37,7 +37,7 @@ function Copyright(props) {
 }
 
 export const EmployerRegister = () => {
-  const { isLoggedIn, setIsLoggedIn, setIsDev, setCurrentUserId } = React.useContext(MyContext);
+  const { isLoggedIn, setIsLoggedIn, setIsDev, setCurrentUser } = React.useContext(MyContext);
   let navigate = useNavigate();
 
   const [shouldSubscribe, setShouldSubscribe] = React.useState(false);
@@ -75,7 +75,7 @@ export const EmployerRegister = () => {
 
     try {
       if (response.ok) {
-        setCurrentUserId(parsedRes.id);
+        setCurrentUser(parsedRes.id);
         setIsDev(false);
         setIsLoggedIn(true);
         navigate(`/employers`);

@@ -36,7 +36,7 @@ function Copyright(props) {
 }
 
 export const SignIn = () => {
-  const { setIsLoggedIn, isLoggedIn, setCurrentUserId, setIsDev, isDev } =
+  const { setIsLoggedIn, isLoggedIn, setCurrentUser, setIsDev, isDev } =
     React.useContext(MyContext);
 
   let navigate = useNavigate();
@@ -80,7 +80,7 @@ export const SignIn = () => {
       // If the request was successful and has a company name in response go to employer page or else to developer page
 
       if (response.ok) {
-        setCurrentUserId(parsedRes.id);
+        setCurrentUser(parsedRes);
         if (parsedRes.companyName) {
           setIsLoggedIn(true);
           setIsDev(false);

@@ -1,19 +1,18 @@
 import mongoose from "mongoose";
 
 const { Schema } = mongoose;
-
 const JobsSchema = new Schema(
   {
-    companyName: { type: String, required: true, unique: true },
-    email: { type: String, required: true, unique: true },
-    position: { type: String, required: true },
+    companyName: { type: String },
+    email: { type: String },
+    position: { type: String},
+    jobDescription: { type: String, },
     hiringRemoteDeveloperCheckbox: {
-      type: Boolean,
-      required: true,
+      type: Boolean
     },
     policyAndTermsCheckbox: {
       type: Boolean,
-      required: true,
+   
     },
     subscribeCheckbox: { type: Boolean },
   },

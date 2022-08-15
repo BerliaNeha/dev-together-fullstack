@@ -20,7 +20,9 @@ export const userEmployerDataGet = async (req, res, next) => {
   
   if (foundUser) {
     const userEmployerData = {
-        username: foundUser.username
+        username: foundUser.username,
+        companyName: foundUser.companyName,
+        email:foundUser.email
     } 
     res.json(userEmployerData)
   } else {
@@ -62,7 +64,7 @@ export const updateJobs = async(req, res, next) =>{
 } else {
     // * Case 2: the job id already exists in the user's "jobs" array (oh no!)
     // We don't want to add the same id twice, so let's send an error back to the frontend
-    next(createError(409, "The album already exists in your collection!"));
+    next(createError(409, "The job already exists in your collection!"));
 }
 }
 // ==========================================================

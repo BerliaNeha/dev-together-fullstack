@@ -70,7 +70,7 @@ export const loginPost = async (req, res, next) => {
       );
     }
 
-    res.json({ id: foundUser._id, token: newToken, companyName: foundUser.companyName  });
+    res.json({ id: foundUser._id, token: newToken, companyName: foundUser.companyName, email:foundUser.email, username:foundUser.username  });
   } else {
     next(createError(404, "No user exists with this email. Please try again"));
   }

@@ -4,7 +4,7 @@ import { MyContext } from "./context";
 export default function Container({ children }) {
 
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
-  const [currentUserId, setCurrentUserId] = React.useState("");
+  const [currentUser, setCurrentUser] = React.useState("");
   const [role, setRole] = React.useState();
   const [isDev, setIsDev] = React.useState(true);
   const [ token, setToken ] = useState(false);
@@ -14,8 +14,8 @@ export default function Container({ children }) {
       value={{
         isLoggedIn,
         setIsLoggedIn,
-        currentUserId,
-        setCurrentUserId,
+        currentUser,
+        setCurrentUser,
         isDev,
         setIsDev,
         token,
