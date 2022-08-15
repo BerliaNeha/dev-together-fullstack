@@ -21,11 +21,12 @@ export const EmployersComponent = () => {
   const { currentUserId } = React.useContext(MyContext);
   // employer state
   const [username, setUsername] = useState("");
+  const [companyEmail, setCompanyEmail] = useState("");
+  const [companyTitle, setCompanyTitle] = useState("");
+
   const [open, setOpen] = React.useState(false);
   const [shouldSubscribe, setShouldSubscribe] = React.useState(false);
   // Job states
-  const [companyName, setCompanyName] = useState("");
-  const [email, setEmail] = useState("");
   const [position, setPosition] = useState("");
   const [jobDescription, setJobDescription] = useState("");
   const [jobList, setJobList] = useState([]);
@@ -53,6 +54,10 @@ export const EmployersComponent = () => {
         if (response.ok) {
           console.log("Server response", parsedRes);
           setUsername(parsedRes.username);
+          //setCompanyEmail(parsedRes.email)
+          //setCompanyTitle(parsedRes.companyName)
+          //setJobDescription(parsedRes.jobDescription)
+          
           // setJobList(parsedRes.jobs);
           // If the request was unsuccessful...
         } else {
@@ -103,7 +108,8 @@ export const EmployersComponent = () => {
         };
         // Make a second fetch request to add the new album id to the user's "albums" array
         const secondResponse = await fetch(
-          process.env.REACT_APP_SERVER_URL + `/employers/${currentUserId}/jobs`,
+          process.env.REACT_APP_SERVER_URL +
+            `/employers/${currentUserId}/jobs`,
           settings
         );
         const secondParsedRes = await secondResponse.json();
@@ -113,10 +119,10 @@ export const EmployersComponent = () => {
         if (secondResponse.ok) {
           console.log("Add job server response", secondParsedRes.jobs);
           setJobList(secondParsedRes.jobs);
-          setCompanyName("");
-          setEmail("");
-          setPosition("");
-          setJobDescription("");
+          //setCompanyTitle("");
+          //setCompanyEmail("")
+          //setPosition("");
+          //setJobDescription("");
           console.log("second fetch");
           // If the second fetch request was unsuccessful...
         } else {
@@ -134,14 +140,14 @@ export const EmployersComponent = () => {
   const handleRemoteWork = (event) => {
     setRemoteWork(event.target.value);
   };
-  const Item = styled(Paper)(({ theme }) => ({
-    backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
-    ...theme.typography.body2,
-    padding: theme.spacing(1),
-    textAlign: "center",
-    color: theme.palette.text.secondary,
-  }));
-
+  // const Item = styled(Paper)(({ theme }) => ({
+  //   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
+  //   ...theme.typography.body2,
+  //   padding: theme.spacing(1),
+  //   textAlign: "center",
+  //   color: theme.palette.text.secondary,
+  // }));
+console.log(companyEmail, companyTitle)
   return (
     <>
       <Navbar />
@@ -214,6 +220,7 @@ export const EmployersComponent = () => {
                   variant="standard"
                   id="companyName"
                   name="companyName"
+                  //value={companyTitle}
                   sx={{ width: "80%" }}
                   InputLabelProps={{
                     style: {
@@ -238,6 +245,7 @@ export const EmployersComponent = () => {
                   variant="standard"
                   id="email"
                   name="email"
+                  //value={companyEmail}
                   sx={{ width: "80%" }}
                   InputLabelProps={{
                     style: {
@@ -284,6 +292,7 @@ export const EmployersComponent = () => {
                   required
                   id="jobDescription"
                   label="Job Description"
+                  name="jobDescription"
                   multiline
                   rows={10}
                   col={10}
@@ -352,9 +361,8 @@ export const EmployersComponent = () => {
                   variant="contained"
                   sx={{ mt: 3, mb: 2 }}
                 >
-                  Sign Up
+                  Submit Job
                 </Button>
-                <Button onClick={handleToggle}>SUBMIT JOB</Button>
                 <Backdrop
                   sx={{
                     color: "#fff",
