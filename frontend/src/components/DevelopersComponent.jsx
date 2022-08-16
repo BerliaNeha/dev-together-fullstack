@@ -477,6 +477,9 @@ export const DevelopersComponent = () => {
                           <MenuItem value="Full Stack Developer">
                             Full Stack Developer
                           </MenuItem>
+                          <MenuItem value="Full Stack Developer">
+                            Others
+                          </MenuItem>
                         </Select>
                       </FormControl>
                     </Grid>
