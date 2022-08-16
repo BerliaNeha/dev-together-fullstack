@@ -18,7 +18,7 @@ import TextField from "@mui/material/TextField";
 import BgEmployerPage from "../assets/bgEmployerPage.jpg";
 import { Typography } from "@mui/material";
 export const EmployersComponent = () => {
-  const { currentUser } = React.useContext(MyContext);
+  const { currentUserId } = React.useContext(MyContext);
   // employer state
   const [username, setUsername] = useState("");
   const [companyEmail, setCompanyEmail] = useState("");
@@ -82,9 +82,9 @@ export const EmployersComponent = () => {
         if (response.ok) {
           console.log("Server response", parsedRes);
           setUsername(parsedRes.username);
-          //setCompanyEmail(parsedRes.email)
-          //setCompanyTitle(parsedRes.companyName)
-          //setJobDescription(parsedRes.jobDescription)
+          setCompanyEmail(parsedRes.email)
+          setCompanyTitle(parsedRes.companyName)
+          setJobDescription(parsedRes.jobDescription)
           
           // setJobList(parsedRes.jobs);
           // If the request was unsuccessful...
@@ -102,8 +102,8 @@ export const EmployersComponent = () => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     const newJob = {
-      companyName: currentUser.companyName,
-      email: currentUser.email,
+      companyName: currentUserId.companyName,
+      email: currentUserId.email,
       position: data.get("position"),
       jobDescription: data.get("jobDescription"),
       hiringRemoteDeveloperCheckbox: remoteWork,
@@ -132,44 +132,6 @@ console.log(parsedRes)
     setJobDescription("");
 
 
-    // try {
-    //   // If the first fetch request was successful...
-    //   if (response.ok) {
-    //     const settings = {
-    //       method: "PATCH",
-    //       body: JSON.stringify({ id: parsedRes.id }),
-    //       headers: {
-    //         "Content-Type": "application/json",
-    //       },
-    //     };
-    //     // Make a second fetch request to add the new album id to the user's "albums" array
-    //     const secondResponse = await fetch(
-    //       process.env.REACT_APP_SERVER_URL + `/employers/${currentUser}/jobs`,
-    //       settings
-    //     );
-    //     const secondParsedRes = await secondResponse.json();
-    //     // If the second request was successful...
-    //     // Update the "jobs" state variable with the user's up-to-date "jobs" array (containing album ids)
-    //     // This will re-render the app, and the new array will be mapped in the JSX below
-    //     if (secondResponse.ok) {
-    //       console.log("Add job server response", secondParsedRes.jobs);
-    //       setJobList(secondParsedRes.jobs);
-    //       // setCompanyName("");
-    //       // setEmail("");
-    //       setPosition("");
-    //       setJobDescription("");
-    //       console.log("second fetch");
-    //       // If the second fetch request was unsuccessful...
-    //     } else {
-    //       throw new Error(secondParsedRes.message);
-    //     }
-    //     // If the first fetch request was unsuccessful...
-    //   } else {
-    //     throw new Error(parsedRes.message);
-    //   }
-    // } catch (err) {
-    //   alert(err.message);
-    // }
     try {
       // If the first fetch request was successful...
       if (response.ok) {
@@ -193,10 +155,10 @@ console.log(parsedRes)
         if (secondResponse.ok) {
           console.log("Add job server response", secondParsedRes.jobs);
           setJobList(secondParsedRes.jobs);
-          //setCompanyTitle("");
-          //setCompanyEmail("")
-          //setPosition("");
-          //setJobDescription("");
+          setCompanyTitle("");
+          setCompanyEmail("")
+          setPosition("");
+          setJobDescription("");
           console.log("second fetch");
           // If the second fetch request was unsuccessful...
         } else {
@@ -214,13 +176,7 @@ console.log(parsedRes)
   const handleRemoteWork = (event) => {
     setRemoteWork(event.target.value);
   };
-  // const Item = styled(Paper)(({ theme }) => ({
-  //   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
-  //   ...theme.typography.body2,
-  //   padding: theme.spacing(1),
-  //   textAlign: "center",
-  //   color: theme.palette.text.secondary,
-  // }));
+ 
 console.log(companyEmail, companyTitle)
   return (
     <>
@@ -240,7 +196,7 @@ console.log(companyEmail, companyTitle)
               opacity: "0.75",
             }}
           >
-            <h2 id="greeting">Welcome {currentUser.username}!</h2>
+            <h2 id="greeting">Welcome {currentUserId.username}!</h2>
           </Box>
           {/* <Item
              sx={{
@@ -294,8 +250,7 @@ console.log(companyEmail, companyTitle)
                   variant="standard"
                   id="companyName"
                   name="companyName"
-                  value={currentUser.companyName}
-                  //value={companyTitle}
+                  value={companyTitle}
                   sx={{ width: "80%" }}
                   InputLabelProps={{
                     style: {
@@ -320,8 +275,7 @@ console.log(companyEmail, companyTitle)
                   variant="standard"
                   id="email"
                   name="email"
-                  value={currentUser.email}
-                  //value={companyEmail}
+                  value={companyEmail}
                   sx={{ width: "80%" }}
                   InputLabelProps={{
                     style: {
