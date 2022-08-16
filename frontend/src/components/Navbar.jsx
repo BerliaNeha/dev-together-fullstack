@@ -139,17 +139,15 @@ export const Navbar = () => {
 
             {page.map((page, key) => (
               <>
-                {isLoggedIn && key === 5 ? null : page === "dev-community"? (
+                {isLoggedIn && key === 5 ? null : page === "dev-community" ? (
                   <Button
-                  href = "http://localhost:3000/dev#/dev-community"
-                  target = "__blank" 
-                  
+                    href="http://localhost:3000/dev#/dev-community"
+                    target="__blank"
                     size="medium"
                     key={page}
                     // onClick={() => handleMenuItemPress(page)}
                     sx={{
                       display: "block",
-                   
                       lineHeight: "92px",
                       color: (theme) => theme.palette.secondary.main,
                     }}
@@ -159,56 +157,22 @@ export const Navbar = () => {
                     ) : null} */}
                     {page}
                   </Button>
-                )
-                : <Button
-                size="medium"
-                key={page}
-                onClick={() => handleMenuItemPress(page)}
-                sx={{
-                  display: "block",
-                  color: (theme) => theme.palette.secondary.main,
-                }}
-              >
-                {key === 5 ? (
-                  <AccountCircle sx={{ marginRight: 1, fontSize: 15 }} />
-                ) : null}
-                {page}
-              </Button>
-              }
-
-                
-
-                {/* { key === 2 ?(
+                ) : (
                   <Button
-                  href="http://localhost:3000/dev#/dev-community"
-                  target="_blank"
                     size="medium"
                     key={page}
+                    onClick={() => handleMenuItemPress(page)}
                     sx={{
                       display: "block",
                       color: (theme) => theme.palette.secondary.main,
                     }}
                   >
+                    {key === 5 ? (
+                      <AccountCircle sx={{ marginRight: 1, fontSize: 15 }} />
+                    ) : null}
                     {page}
                   </Button>
-                ): null} */}
-
-                {/* <Button
-                size="medium"
-                key={page}
-                onClick={() => handleMenuItemPress(page)}
-                sx={{
-                  display: !isLoggedIn ? "block" : (page==="login") ? "none": "block",
-                  color: (theme) => theme.palette.secondary.main,
-                }}
-              >
-                {key === 5 ? (
-                  <AccountCircle sx={{ marginRight: 1, fontSize: 15 }} />
-                ) : null}
-                {page}
-              </Button>
-              
- */}
+                )}
               </>
             ))}
           </Box>
