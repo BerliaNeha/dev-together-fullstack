@@ -42,7 +42,6 @@ app.use("/developers", userDeveloperDataRouter);
 app.use("/employers", userEmployerDataRouter);
 
 app.use("/jobs", jobsRouter);
-app.use("/cv", CVrouter)
 
 app.listen(process.env.PORT || 3001, () => {
   console.log(`Server has started on port ${process.env.port || 3001}!`);
