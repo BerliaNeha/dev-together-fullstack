@@ -28,7 +28,7 @@ const style = {
   position: "absolute",
   top: "50%",
   left: "50%",
-  width: "30%",
+  width: "50%",
   transform: "translate(-50%, -50%)",
   bgcolor: "background.paper",
   border: "2px solid #000",
@@ -107,6 +107,7 @@ export const DevelopersComponent = () => {
       {
         company: "",
         position: "",
+        description: "",
         startDate: "",
         endDate: "",
       },
@@ -149,12 +150,17 @@ export const DevelopersComponent = () => {
 
   const [position, setPosition] = React.useState("");
   const [company, setCompany] = React.useState("");
+  const [description, setDescription] = React.useState("");
+
   const handlePosition = (event) => {
     setPosition(event.target.value);
   };
 
   const handleCompany = (event) => {
     setCompany(event.target.value);
+  };
+  const handleDescription = (event) => {
+    setDescription(event.target.value);
   };
 
   const submitExperience = async (event) => {
@@ -163,6 +169,7 @@ export const DevelopersComponent = () => {
     const newExperience = {
       company: company,
       position: position,
+      description: description,
       startDate: valueStartDateExp,
       endDate: valueEndDateExp,
     };
@@ -268,13 +275,11 @@ export const DevelopersComponent = () => {
   const submitSkills = async (event) => {
     event.preventDefault();
 
-    const newSkills = { skills };
-
     const settings = {
       method: "POST",
       body: JSON.stringify({
         ...CV,
-        skills: [...CV.skills, newSkills],
+        skills: [...CV.skills, skills],
       }),
       headers: {
         "Content-Type": "application/json",
@@ -312,13 +317,11 @@ export const DevelopersComponent = () => {
   const submitLanguages = async (event) => {
     event.preventDefault();
 
-    const newLanguages = { languages };
-
     const settings = {
       method: "POST",
       body: JSON.stringify({
         ...CV,
-        languages: [...CV.languages, newLanguages],
+        languages: [...CV.languages, languages],
       }),
       headers: {
         "Content-Type": "application/json",
@@ -344,6 +347,8 @@ export const DevelopersComponent = () => {
 
     fetchUserCV();
   };
+
+  console.log(CV, "cvcvcvcv");
   return (
     <>
       <Navbar />
@@ -412,7 +417,7 @@ export const DevelopersComponent = () => {
 
       <Box sx={{ width: "80%", margin: "auto", marginTop: "2%" }}>
         {/* first CARD EXPERIENCE */}
-        <Card sx={{ marginBottom: "2%", border: "0.5px solid #EEA47FFF" }}>
+        <Box sx={{ marginBottom: "2%", borderBottom:1, borderLeft:1 }}>
           <CardContent
             sx={{ display: "flex", justifyContent: "space-between" }}
           >
@@ -475,6 +480,20 @@ export const DevelopersComponent = () => {
                         </Select>
                       </FormControl>
                     </Grid>
+                    <Grid item xs={12} sm={12} md={12}>
+                      <TextField
+                        id="description"
+                        label="Description"
+                        multiline
+                        rows={4}
+                        defaultValue="Description"
+                        variant="standard"
+                        onChange={handleDescription}
+                        value={description}
+                        sx={{ width: "95%", mb: 5 }}
+                        required
+                      />
+                    </Grid>
                     <Grid item xs={12} sm={12} md={6} sx={{ mt: 2 }}>
                       <LocalizationProvider dateAdapter={AdapterDateFns}>
                         <DesktopDatePicker
@@ -531,24 +550,83 @@ export const DevelopersComponent = () => {
               </Modal>
             </div>
           </CardContent>
-        </Card>
-        {CV.experience.map(({ company, position, startDate, endDate }) => {
-          return (
-            <Box
-              sx={{ display: "flex", justifyContent: "space-around", mt: 3 }}
-            >
-              {/* right card */}
-              <Card sx={{ width: "70%" }}>
-                <Typography variant="h5">company: {company}</Typography>
-                <Typography variant="h4">{position} position</Typography>
-                <Typography variant="h6">{startDate.substring(5,7)} {startDate.substring(0,4)} start</Typography>
-                <Typography variant="h6">{endDate.substring(5,7)} {endDate.substring(0,4)} end</Typography>
-              </Card>
-            </Box>
-          );
-        })}
+        </Box>
+        {CV.experience.map(
+          ({ company, position, description, startDate, endDate }) => {
+            if (company === "") {
+              return null;
+            } else {
+              return (
+                <Box
+                  sx={{
+                    display: "flex",
+                    justifyContent: "space-around",
+                    mt: 3,
+                  }}
+                >
+                  {/* right card */}
+                  <Card sx={{ width: "90%",border: "0.5px solid #EEA47FFF", p:2 }}>
+                    <Grid
+                      container
+                      direction="row"
+                      justifyContent="space-between"
+                      alignItems="center"
+                    >
+                      <Grid
+                        container
+                        md={6}
+                        direction="column"
+                        justifyContent="space-evenly"
+                        alignItems="flex-start"
+                      >
+                        <Grid item>
+                          <Typography variant="h5">{position}</Typography>
+                        </Grid>
+                        <Grid item>
+                          <Typography variant="h6" sx={{ fontWeight: "light" }}>
+                            {company}
+                          </Typography>
+                        </Grid>
+                        <Grid item>
+                          <Typography
+                            variant="h6"
+                            sx={{ fontWeight: "regular" }}
+                          >
+                            {description}
+                          </Typography>
+                        </Grid>
+                      </Grid>
+                      <Grid
+                        container
+                        md={6}
+                        direction="row"
+                        justifyContent="flex-end"
+                        alignItems="flex-start"
+                      >
+                        <Grid item>
+                          <Typography variant="h6">
+                            {startDate.substring(5, 7)}{" "}
+                            {startDate.substring(0, 4)}{" "}
+                          </Typography>
+                        </Grid>
+                        &nbsp; &nbsp;
+                        <Grid item>
+                          <Typography variant="h6">
+                            {endDate.substring(5, 7)} {endDate.substring(0, 4)}{" "}
+                          </Typography>
+                        </Grid>
+                      </Grid>
+                    </Grid>
+                  </Card>
+                </Box>
+              );
+            }
+          }
+        )}
         {/* second CARD EDUCATION */}
-        <Card sx={{ marginBottom: "2%", border: "1.5px solid #234E70" }}>
+        <Box
+          sx={{ marginBottom: "1%", mt: "1%", borderBottom: 1, borderLeft:1 }}
+        >
           <CardContent
             sx={{ display: "flex", justifyContent: "space-between" }}
           >
@@ -578,31 +656,39 @@ export const DevelopersComponent = () => {
                     direction="column"
                     justifyContent="space-evenly"
                   >
-                    <Grid item xs={12} sm={12} md={6}>
-                      <TextField
-                        sx={{ marginBottom: "15%", marginRight: "10px" }}
-                        required
-                        id="schoolName"
-                        label="School/University"
-                        variant="standard"
-                        onChange={handleSchoolName}
-                        value={schoolName}
-                      />
+                    <Grid
+                      container
+                      direction="row"
+                      justifyContent="space-between"
+                      alignItems="center"
+                    >
+                      <Grid item xs={12} sm={12} md={6}>
+                        <TextField
+                          sx={{ marginBottom: "15%", marginRight: "10px" }}
+                          required
+                          id="schoolName"
+                          label="School/University"
+                          variant="standard"
+                          onChange={handleSchoolName}
+                          value={schoolName}
+                        />
+                      </Grid>
+                      <Grid item xs={12} sm={12} md={6}>
+                        <TextField
+                          sx={{ marginBottom: "15%", marginRight: "10px" }}
+                          required
+                          id="studies"
+                          label="Studies"
+                          variant="standard"
+                          onChange={handleStudies}
+                          value={studies}
+                        />
+                      </Grid>
                     </Grid>
-                    <Grid item xs={12} sm={12} md={6}>
-                      <TextField
-                        sx={{ marginBottom: "15%", marginRight: "10px" }}
-                        required
-                        id="studies"
-                        label="Studies"
-                        variant="standard"
-                        onChange={handleStudies}
-                        value={studies}
-                      />
-                    </Grid>
+
                     <Grid item xs={12} sm={12} md={12}>
                       <FormControl
-                        sx={{ width: "auto" }}
+                        sx={{ width: "80%" }}
                         required
                         variant="standard"
                       >
@@ -676,10 +762,82 @@ export const DevelopersComponent = () => {
               </Modal>
             </div>
           </CardContent>
-        </Card>
+        </Box>
+        {CV.education.map(
+          ({ schoolName, studies, degree, startDate, endDate }) => {
+            if (studies === "") {
+              return null;
+            } else {
+              return (
+                <Box
+                  sx={{
+                    display: "flex",
+                    justifyContent: "space-around",
+                    mt: 1,
+                  }}
+                >
+                  {/* right card */}
+                  <Card sx={{ width: "90%", border: "0.5px solid #EEA47FFF", p:2 }}>
+                    <Grid
+                      container
+                      direction="row"
+                      justifyContent="space-between"
+                      alignItems="center"
+                    >
+                      <Grid
+                        container
+                        md={6}
+                        direction="column"
+                        justifyContent="space-evenly"
+                        alignItems="flex-start"
+                      >
+                        <Grid item>
+                          <Typography variant="h5">{studies}</Typography>
+                        </Grid>
+                        <Grid item>
+                          <Typography variant="h6" sx={{ fontWeight: "light" }}>
+                            {schoolName}
+                          </Typography>
+                        </Grid>
+                        <Grid item>
+                          <Typography
+                            variant="h6"
+                            sx={{ fontWeight: "regular" }}
+                          >
+                            {degree}
+                          </Typography>
+                        </Grid>
+                      </Grid>
+                      <Grid
+                        container
+                        md={6}
+                        direction="row"
+                        justifyContent="flex-end"
+                        alignItems="flex-start"
+                      >
+                        <Grid item>
+                          <Typography variant="h6">
+                            {startDate.substring(5, 7)}{" "}
+                            {startDate.substring(0, 4)}{" "}
+                          </Typography>
+                        </Grid>
+                        &nbsp; &nbsp;
+                        <Grid item>
+                          <Typography variant="h6">
+                            {endDate.substring(5, 7)} {endDate.substring(0, 4)}
+                          </Typography>
+                        </Grid>
+                      </Grid>
+                    </Grid>
+                  </Card>
+                </Box>
+              );
+            }
+          }
+        )}
 
         {/* third CARD SKILLS */}
-        <Card sx={{ marginBottom: "2%", border: "0.5px solid" }}>
+        <Box sx={{ marginBottom: "1%", mt: "1%", borderBottom:1, borderLeft:1 }}>
           <CardContent
             sx={{ display: "flex", justifyContent: "space-between" }}
           >
@@ -728,10 +886,26 @@ export const DevelopersComponent = () => {
               </Modal>
             </div>
           </CardContent>
-        </Card>
+        </Box>
+        <Box sx={{ display: "flex", flexWrap: "wrap", justifyContent:"flex-start" }}>
+          {CV.skills.map((item) => {
+            return (
+              <>
+                <Card sx={{ width: "10%", mr:2, mt:2, mb:2, border: "0.5px solid #EEA47FFF"}}>
+                  <Typography
+                    variant="h6"
+                    sx={{ fontWeight: "regular", textAlign: "center" }}
+                  >
+                    {item}
+                  </Typography>
+                </Card>
+              </>
+            );
+          })}
+        </Box>
 
         {/* fourth CARD languages */}
-        <Card sx={{ marginBottom: "2%", border: "0.5px solid" }}>
+        <Box sx={{ marginBottom: "1%", borderBottom: 1, borderLeft:1 }}>
           <CardContent
             sx={{ display: "flex", justifyContent: "space-between" }}
           >
@@ -781,7 +955,24 @@ export const DevelopersComponent = () => {
               </Modal>
             </div>
           </CardContent>
-        </Card>
+        </Box>
+
+        <Box sx={{ display: "flex", flexWrap: "wrap", justifyContent:"flex-start" }}>
+          {CV.languages.map((item) => {
+            return (
+              <>
+                <Card sx={{ width: "10%", mr:2, mt:2, mb:2, border: "0.5px solid #EEA47FFF"}}>
+                  <Typography
+                    variant="h6"
+                    sx={{ fontWeight: "regular", textAlign: "center" }}
+                  >
+                    {item}
+                  </Typography>
+                </Card>
+              </>
+            );
+          })}
+        </Box>
       </Box>
     </>
   );
