@@ -4,9 +4,10 @@ const { Schema } = mongoose;
 
 const JobsSchema = new Schema(
   {
-    companyName: { type: String, required: true, unique: true },
-    email: { type: String, required: true, unique: true },
+    companyName: { type: String, required: true },
+    email: { type: String, required: true},
     position: { type: String, required: true },
+    jobDescription: {type: String, required: true},
     hiringRemoteDeveloperCheckbox: {
       type: Boolean,
       required: true,
