@@ -3,25 +3,32 @@ import {
   Card,
   CardContent,
   CardMedia,
+  FormControl,
   Grid,
+  InputLabel,
+  MenuItem,
   Modal,
+  Select,
   TextField,
   Typography,
 } from "@mui/material";
 import { Box } from "@mui/system";
-import React from "react";
+import React, { useEffect } from "react";
 import { Navbar } from "./Navbar";
 import User from "../assets/userDev.png";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { DesktopDatePicker } from "@mui/x-date-pickers";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
-import {makeStyles} from "@mui/styles";
+import { makeStyles } from "@mui/styles";
+import { MyContext } from "./Context/context";
+import { CalendarViewDay } from "@mui/icons-material";
+
 const style = {
   position: "absolute",
   top: "50%",
   left: "50%",
-  width:"35%",
+  width: "50%",
   transform: "translate(-50%, -50%)",
   bgcolor: "background.paper",
   border: "2px solid #000",
@@ -30,25 +37,25 @@ const style = {
   color: (theme) => theme.palette.primary.main,
 };
 
-const datePickerStyle = makeStyles({
-    root: {
-      "& .MuiInputBase-root": {
-        padding: 20,
-        margin: 50,
-        "& .MuiButtonBase-root": {
-          padding: 30,
-          paddingLeft: 10
-        },
-        "& .MuiInputBase-input": {
-          padding: 105,
-          paddingLeft: 0
-        }
-      }
-    }
-  });
+const style4 = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  width: "35%",
+  transform: "translate(-50%, -50%)",
+  bgcolor: "background.paper",
+  border: "2px solid #000",
+  boxShadow: 24,
+  p: "2%",
+  color: (theme) => theme.palette.primary.main,
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "center",
+  alignItems: "center",
+};
+
 export const DevelopersComponent = () => {
-  //    4 fetch requests for education, experience, skills, languages
-const dateStyle = datePickerStyle();
+  const { currentUserId } = React.useContext(MyContext);
   // Education
   const [openEducation, setOpenEducation] = React.useState(false);
   const handleOpenEducation = () => {
@@ -111,12 +118,91 @@ const dateStyle = datePickerStyle();
   //Value end date education
   const [valueEndDateEdu, setValueEndDateEdu] = React.useState(new Date());
 
+  // jon position
+
+  const [position, setPosition] = React.useState("");
+
+  const handlePosition = (event) => {
+    setPosition(event.target.value);
+  };
+
+  //company
+  const [company, setCompany] = React.useState("");
+
+  const handleCompany = (event) => {
+    setCompany(event.target.value);
+  };
+  // fetch cv from backend when you first login
+  const [CV, setCV] = React.useState([]);
+
+  const fetchUserCV = async () => {
+    const response = await fetch(
+      process.env.REACT_APP_SERVER_URL + `/developers/${currentUserId}/cv`
+    );
+    const parsedRes = await response.json();
+    try {
+      if (response.ok) {
+        console.log("Server response", parsedRes);
+        setCV(parsedRes);
+      } else {
+        throw new Error(parsedRes.message);
+      }
+    } catch (err) {
+      alert(err.message);
+    }
+  };
+
+  useEffect(() => {
+    fetchUserCV();
+  }, [currentUserId]);
+
+  const submitExperience = async (event) => {
+    event.preventDefault();
+  
+    const newExperience = {
+      company: company,
+      position: position,
+      startDate: valueStartDateExp,
+      endDate: valueEndDateExp,
+    };
+    console.log(CV, "cv");
+    const settings = {
+      method: "POST",
+      body: JSON.stringify({
+        ...CV,
+        experience: [...CV.experience, newExperience],
+      }),
+      headers: {
+        "Content-Type": "application/json",
+        // "Authorization": "Bearer " + props.token
+      },
+    };
+    // fetch the new job added by teh employer
+    const response = await fetch(
+      process.env.REACT_APP_SERVER_URL + `/developers/${currentUserId}/cv`,
+      settings
+    );
+    const parsedRes = await response.json();
+    try {
+      // If the first fetch request was successful...
+      if (response.ok) {
+        console.log(parsedRes);
+      } else {
+        throw new Error(parsedRes.message);
+      }
+    } catch (err) {
+      alert(err.message);
+    }
+
+    fetchUserCV();
+  };
+
   return (
     <>
       <Navbar />
       {/* smaller screens */}
       <Box sx={{ display: { xs: "block", sm: "block", md: "none" } }}>
-        <Box sx={{ display: "flex", flexDirection: "column" }}>
+        <Box sx={{ display: "flex", flexDirection: "column", mt: 3 }}>
           {/* left card user image and information */}
           <Card sx={{ minWidth: 345, height: "auto" }}>
             <CardMedia
@@ -147,9 +233,9 @@ const dateStyle = datePickerStyle();
 
       {/* bigger screens */}
       <Box sx={{ display: { xs: "none", sm: "none", md: "block" } }}>
-        <Box sx={{ display: "flex" }}>
+        <Box sx={{ display: "flex", justifyContent: "space-around", mt: 3 }}>
           {/* left card user image and information */}
-          <Card sx={{ minWidth: 345, height: "20%" }}>
+          <Card sx={{ width: "25%", height: "20%" }}>
             <CardMedia
               component="img"
               alt="green iguana"
@@ -168,7 +254,7 @@ const dateStyle = datePickerStyle();
           </Card>
 
           {/* right card */}
-          <Card sx={{ width: "100%" }}>
+          <Card sx={{ width: "70%" }}>
             <CardContent sx={{ height: "20px" }}>
               <Typography variant="h4">hello I am a Developer</Typography>
             </CardContent>
@@ -177,7 +263,7 @@ const dateStyle = datePickerStyle();
       </Box>
       {/* ########## CV ########## */}
 
-      <Box sx={{ width: "70%", margin: "auto", marginTop: "2%" }}>
+      <Box sx={{ width: "80%", margin: "auto", marginTop: "2%" }}>
         <Card sx={{ marginBottom: "2%", border: "0.5px solid #EEA47FFF" }}>
           <CardContent
             sx={{ display: "flex", justifyContent: "space-between" }}
@@ -202,31 +288,53 @@ const dateStyle = datePickerStyle();
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description"
               >
-                <Box sx={style} component="form">
+                <Box sx={style}>
                   <Grid container>
                     <Grid item xs={12} sm={12} md={6}>
                       <TextField
-                        sx={{ marginBottom: "15%", marginRight:"10px" }}
+                        sx={{ marginBottom: "15%", marginRight: "10px" }}
                         required
                         id="company"
                         label="Company"
                         variant="standard"
+                        onChange={handleCompany}
+                        value={company}
+              
                       />
                     </Grid>
                     <Grid item xs={12} sm={12} md={6}>
-                      <TextField
-                        sx={{ paddingBottom: "15%" }}
+                      <FormControl
+                        sx={{ width: "95%" }}
                         required
-                        id="position"
-                        label="Position"
                         variant="standard"
-                      />
+                      >
+                        <InputLabel id="position">Position</InputLabel>
+                        <Select
+                          labelId="position"
+                          id="position"
+                          value={position}
+                          label="Job Title"
+                          onChange={handlePosition}
+                     
+                        >
+                          <MenuItem value="Frontend Developer">
+                            Frontend Developer
+                          </MenuItem>
+                          <MenuItem value="Backend Developer">
+                            Backend Developer
+                          </MenuItem>
+                          <MenuItem value="Full Stack Developer">
+                            Full Stack Developer
+                          </MenuItem>
+                        </Select>
+                      </FormControl>
                     </Grid>
-                    <Grid item xs={12}>
+                    <Grid item xs={12} sm={12} md={6} sx={{ mt: 2 }}>
                       <LocalizationProvider dateAdapter={AdapterDateFns}>
                         <DesktopDatePicker
+                          id="startDate"
+                         
                           required
-                          className={dateStyle.root}
                           variant="standard"
                           disableFuture
                           label="Start Date"
@@ -238,7 +346,13 @@ const dateStyle = datePickerStyle();
                           }}
                           renderInput={(params) => <TextField {...params} />}
                         />
+                      </LocalizationProvider>
+                    </Grid>
+                    <Grid item xs={12} sm={12} md={6} sx={{ mt: 2 }}>
+                      <LocalizationProvider dateAdapter={AdapterDateFns}>
                         <DesktopDatePicker
+                          id="endDate"
+                         
                           required
                           sx={{ paddingBottom: "50%" }}
                           variant="standard"
@@ -256,12 +370,14 @@ const dateStyle = datePickerStyle();
                     </Grid>
                     <Grid item xs={12}>
                       <Button
+                        type="submit"
                         variant="outlined"
                         sx={{
                           width: "150px",
                           marginTop: "4%",
                           color: (theme) => theme.palette.secondary.main,
                         }}
+                        onClick={submitExperience}
                       >
                         Add
                       </Button>
@@ -434,7 +550,7 @@ const dateStyle = datePickerStyle();
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description"
               >
-                <Box sx={style} component="form">
+                <Box sx={style4} component="form">
                   <TextField
                     sx={{ marginBottom: "15%" }}
                     required
