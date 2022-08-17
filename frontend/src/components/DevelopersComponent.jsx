@@ -141,7 +141,7 @@ export const DevelopersComponent = () => {
       alert(err.message);
     }
   };
-
+console.log("hello")
   useEffect(() => {
     fetchUserCV();
   }, [currentUserId]);
