@@ -141,7 +141,7 @@ export const DevelopersComponent = () => {
       alert(err.message);
     }
   };
-
+console.log("hello")
   useEffect(() => {
     fetchUserCV();
   }, [currentUserId]);
@@ -476,6 +476,9 @@ export const DevelopersComponent = () => {
                           </MenuItem>
                           <MenuItem value="Full Stack Developer">
                             Full Stack Developer
+                          </MenuItem>
+                          <MenuItem value="Full Stack Developer">
+                            Others
                           </MenuItem>
                         </Select>
                       </FormControl>
