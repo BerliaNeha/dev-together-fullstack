@@ -30,16 +30,21 @@ export const EmployersComponent = () => {
   const [position, setPosition] = useState("");
   const [jobDescription, setJobDescription] = useState("");
   const [jobList, setJobList] = useState([]);
+
   // When the <Jobs/> component first renders...
   // GET relevant data about the user who logged in, and update state...
   // So the employer can see their name and current list of albums immediately after they log in/register
   //********************************* */
+  
   const handleClose = () => {
     setOpen(false);
   };
-  const handleToggle = () => {
-    setOpen(!open);
-  };
+
+  // const handleToggle = () => {
+  //   setOpen(!open);
+  // };
+
+
   useEffect(() => {
     console.log("fetching data");
     const fetchUserData = async () => {
@@ -54,10 +59,10 @@ export const EmployersComponent = () => {
         if (response.ok) {
           console.log("Server response", parsedRes);
           setUsername(parsedRes.username);
-          setCompanyEmail(parsedRes.email)
-          setCompanyTitle(parsedRes.companyName)
-          setJobDescription(parsedRes.jobDescription)
-          
+          setCompanyEmail(parsedRes.email);
+          setCompanyTitle(parsedRes.companyName);
+          setJobDescription(parsedRes.jobDescription);
+
           // setJobList(parsedRes.jobs);
           // If the request was unsuccessful...
         } else {
@@ -108,8 +113,7 @@ export const EmployersComponent = () => {
         };
         // Make a second fetch request to add the new album id to the user's "albums" array
         const secondResponse = await fetch(
-          process.env.REACT_APP_SERVER_URL +
-            `/employers/${currentUserId}/jobs`,
+          process.env.REACT_APP_SERVER_URL + `/employers/${currentUserId}/jobs`,
           settings
         );
         const secondParsedRes = await secondResponse.json();
@@ -120,7 +124,7 @@ export const EmployersComponent = () => {
           console.log("Add job server response", secondParsedRes.jobs);
           setJobList(secondParsedRes.jobs);
           setCompanyTitle("");
-          setCompanyEmail("")
+          setCompanyEmail("");
           setPosition("");
           setJobDescription("");
           console.log("second fetch");
@@ -147,7 +151,7 @@ export const EmployersComponent = () => {
   //   textAlign: "center",
   //   color: theme.palette.text.secondary,
   // }));
-console.log(companyEmail, companyTitle)
+  console.log(companyEmail, companyTitle);
   return (
     <>
       <Navbar />
@@ -378,24 +382,37 @@ console.log(companyEmail, companyTitle)
             {/* </Item> */}
           </Box>
           {/* <Item> */}
-          <Container component="main" sx={{ width: "85%" }}>
+          {/* <Container component="main" sx={{ width: "40%", display: "flex", justifyContent:"center" }}>
             <CssBaseline />
-            <Button onClick={handleToggle}>SEARCH CVs</Button>
-            <Backdrop
-              sx={{
-                color: "#fff",
-                zIndex: (theme) => theme.zIndex.drawer + 1,
-              }}
-              open={open}
-              onClick={handleClose}
+            <Button
+                  type="submit"
+                  fullWidth
+                  variant="contained"
+                  sx={{ mt: 3, mb: 2 }}
+                >
+                  Search CVs
+                </Button>
+               
+          </Container> */}
+
+          <Box>
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              sx={{ mt: 3, mb: 2, width: "82%", display: "block", ml: "auto", mr:"auto", color:"bbc8d3"}}
             >
-              <CircularProgress color="inherit" />
-            </Backdrop>
-          </Container>
+              Search CVs
+            </Button>
+          </Box>
           <Stack
             spacing={4}
             direction="row"
-            sx={{ marginTop: "5px", justifyContent: "space-around" }}
+            sx={{
+              marginTop: "5px",
+              justifyContent: "space-around",
+              paddingBottom: "5px",
+            }}
           >
             <Button variant="outlined">Frontend</Button>
             <Button variant="outlined">Backend</Button>

@@ -102,6 +102,8 @@ export const deleteJob = async (req, res, next) => {
   res.json({ jobs: updatedUser.jobs });
 }
 // DELETE an employer from the "user employers" collection
+
+
 export const deleteUser = async (req, res, next) => {
   const userId = req.params.id;
   try {

@@ -8,7 +8,14 @@ import {
   InputLabel,
   MenuItem,
   Modal,
+  Paper,
   Select,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
   TextField,
   Typography,
 } from "@mui/material";
@@ -23,6 +30,32 @@ import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import { makeStyles } from "@mui/styles";
 import { MyContext } from "./Context/context";
 import { CalendarViewDay } from "@mui/icons-material";
+import { Row } from "./Row";
+
+function createData(name, calories, fat, carbs, protein, price) {
+  return {
+    name,
+    calories,
+    fat,
+    carbs,
+    protein,
+    price,
+    history: [
+      {
+        date: '2020-01-05',
+        customerId: '11091700',
+        amount: 3,
+      },
+      {
+        date: '2020-01-02',
+        customerId: 'Anonymous',
+        amount: 1,
+      },
+    ],
+  };
+}
+
+
 
 const style = {
   position: "absolute",
@@ -38,7 +71,7 @@ const style = {
 };
 
 export const DevelopersComponent = () => {
-  const { currentUserId } = React.useContext(MyContext);
+  const { currentUserId, jobId } = React.useContext(MyContext);
   // Education
   const [openEducation, setOpenEducation] = React.useState(false);
   const handleOpenEducation = () => {
@@ -138,6 +171,7 @@ export const DevelopersComponent = () => {
         throw new Error(parsedRes.message);
       }
     } catch (err) {
+      console.log(err)
       alert(err.message);
     }
   };
@@ -214,7 +248,7 @@ export const DevelopersComponent = () => {
         // "Authorization": "Bearer " + props.token
       },
     };
-    // fetch the new job added by teh employer
+
     const response = await fetch(
       process.env.REACT_APP_SERVER_URL + `/developers/${currentUserId}/cv`,
       settings
@@ -377,7 +411,61 @@ export const DevelopersComponent = () => {
     fetchUserCV();
   };
 
+  //To fetch jobs from the jobs collection
+
+  const [jobs, setJobs] = React.useState({});
+
+  const fetchEmployerJobs = async () => {
+    // const newJobList = {
+    //   companyTitle: companyTitle,
+    //   companyEmail: companyEmail,
+    //   position: position,
+    //   jobDescription: jobDescription,
+    //   remoteWork: remoteWork,
+    // };
+
+    const response = await fetch(process.env.REACT_APP_SERVER_URL + `/jobs`);
+    const parsedRes = await response.json();
+
+    try {
+      if (response.ok) {
+        setJobs(parsedRes);
+        console.log(parsedRes, "jobs");
+      } else {
+        throw new Error(parsedRes.message);
+      }
+    } catch (err) {
+      alert(err.message);
+    }
+
+  };
+
+  // useEffect(() => {
+  //   fetchEmployerJobs();
+  // }, []);
+
+  const handleJobs = async () => {
+    fetchEmployerJobs();
+
+    // const [companyTitle, setCompanyTitle] = React.useState("");
+    // const [companyEmail, setCompanyEmail] = React.useState("");
+    // const [position, setPosition] = React.useState("");
+    // const [jobDescription, setJobDescription] = React.useState("");
+    // const [remoteWork, setRemoteWork] = React.useState("");
+    // const [jobList, setJobList] = React.useState([]);
+  };
+
+  const rows = [
+    createData(`${jobs.position}`, 159, 6.0, 24, 4.0, 3.99),
+    createData('Ice cream sandwich', 237, 9.0, 37, 4.3, 4.99),
+    createData('Eclair', 262, 16.0, 24, 6.0, 3.79),
+    createData('Cupcake', 305, 3.7, 67, 4.3, 2.5),
+    createData('Gingerbread', 356, 16.0, 49, 3.9, 1.5),
+  ];
+
+=======
   console.log(CV, "cvcvcvcv");
+
   return (
     <>
       <Navbar />
@@ -1046,6 +1134,52 @@ export const DevelopersComponent = () => {
             );
           })}
         </Box>
+      </Box>
+      <Box>
+        <Button
+          type="submit"
+          fullWidth
+          variant="contained"
+          sx={{
+            mt: 3,
+            mb: 2,
+            width: "80%",
+            display: "block",
+            ml: "auto",
+            mr: "auto",
+          }}
+          onClick={handleJobs}
+        >
+          Search Jobs
+        </Button>
+        {/* <Box>
+
+        </Box> */}
+        <TableContainer component={Paper} sx ={{width: "90%", margin: "auto"}}>
+      <Table aria-label="collapsible table">
+        <TableHead>
+          <TableRow>
+            <TableCell />
+            <TableCell>Open Positions</TableCell>
+            <TableCell align="right">Company</TableCell>
+            <TableCell align="right">Remote / Onsite</TableCell>
+            <TableCell align="right">Contact</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {/* {jobs.map((job) => {
+            <Row key={jobs._id} id={jobs._id}  />
+            
+          })} */}
+          {rows.map((row) => (
+            <Row key={row.name} row={row} />
+          ))}
+        </TableBody>
+      </Table>
+    </TableContainer>
+          
+
+      
       </Box>
     </>
   );
