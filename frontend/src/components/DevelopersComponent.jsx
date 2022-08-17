@@ -158,7 +158,7 @@ export const DevelopersComponent = () => {
 
   const submitExperience = async (event) => {
     event.preventDefault();
-  
+
     const newExperience = {
       company: company,
       position: position,
@@ -177,7 +177,7 @@ export const DevelopersComponent = () => {
         // "Authorization": "Bearer " + props.token
       },
     };
-    // fetch the new job added by teh employer
+
     const response = await fetch(
       process.env.REACT_APP_SERVER_URL + `/developers/${currentUserId}/cv`,
       settings
@@ -196,6 +196,63 @@ export const DevelopersComponent = () => {
 
     fetchUserCV();
   };
+
+  //To fetch jobs from the jobs collection
+
+  const handleJobs = () => {
+    const [companyTitle, setCompanyTitle] = React.useState("");
+    const [companyEmail, setCompanyEmail] = React.useState("");
+    const [position, setPosition] = React.useState("");
+    const [jobDescription, setJobDescription] = React.useState("");
+    const [remoteWork, setRemoteWork] = React.useState("");
+    const [jobList, setJobList] = React.useState([]);
+
+    const fetchJobs = async () => {
+      event.preventDefault()
+
+      const newJobList = {
+        companyTitle: companyTitle,
+        companyEmail: companyEmail,
+        position: position,
+        jobDescription: jobDescription,
+        remoteWork: remoteWork,
+      };
+      const settings = {
+        method: "GET",
+        body: JSON.stringify(newJoblist),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      };
+
+      const response = await fetch(
+        process.env.REACT_APP_SERVER_URL + `/jobs`,
+        settings
+      );
+      const parsedRes = await response.json();
+
+      try {
+        if (response.ok) {
+          setCompanyTitle("");
+          setCompanyEmail("");
+          setPosition("");
+          setJobDescription("");
+          setJobList([]);
+        } else {
+          throw new Error(parsedRes.message);
+        }
+      } catch (err) {
+        alert(err.message);
+      }
+    };
+
+    useEffect(() => {
+      fetchJobs();
+    }, []);
+  };
+
+
+
 
   return (
     <>
@@ -299,7 +356,6 @@ export const DevelopersComponent = () => {
                         variant="standard"
                         onChange={handleCompany}
                         value={company}
-              
                       />
                     </Grid>
                     <Grid item xs={12} sm={12} md={6}>
@@ -315,7 +371,6 @@ export const DevelopersComponent = () => {
                           value={position}
                           label="Job Title"
                           onChange={handlePosition}
-                     
                         >
                           <MenuItem value="Frontend Developer">
                             Frontend Developer
@@ -333,7 +388,6 @@ export const DevelopersComponent = () => {
                       <LocalizationProvider dateAdapter={AdapterDateFns}>
                         <DesktopDatePicker
                           id="startDate"
-                         
                           required
                           variant="standard"
                           disableFuture
@@ -352,7 +406,6 @@ export const DevelopersComponent = () => {
                       <LocalizationProvider dateAdapter={AdapterDateFns}>
                         <DesktopDatePicker
                           id="endDate"
-                         
                           required
                           sx={{ paddingBottom: "50%" }}
                           variant="standard"
@@ -574,6 +627,24 @@ export const DevelopersComponent = () => {
             </div>
           </CardContent>
         </Card>
+      </Box>
+      <Box>
+        <Button
+          type="submit"
+          fullWidth
+          variant="contained"
+          sx={{
+            mt: 3,
+            mb: 2,
+            width: "80%",
+            display: "block",
+            ml: "auto",
+            mr: "auto",
+          }}
+          onClick={handleJobs}
+        >
+          Search Jobs
+        </Button>
       </Box>
     </>
   );

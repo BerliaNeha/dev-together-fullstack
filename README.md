@@ -50,6 +50,9 @@ To help one another with their branch without merging to main
 
 npm install, React, react router dom, material UIs, 
 
+## git push --force --set-upstream origin main
+to set up the git repo after deleting and setting up main again
+
 
 ## classic project, Kanban template
 
