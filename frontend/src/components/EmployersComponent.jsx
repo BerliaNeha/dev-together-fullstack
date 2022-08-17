@@ -30,16 +30,21 @@ export const EmployersComponent = () => {
   const [position, setPosition] = useState("");
   const [jobDescription, setJobDescription] = useState("");
   const [jobList, setJobList] = useState([]);
+
   // When the <Jobs/> component first renders...
   // GET relevant data about the user who logged in, and update state...
   // So the employer can see their name and current list of albums immediately after they log in/register
   //********************************* */
+  
   const handleClose = () => {
     setOpen(false);
   };
-  const handleToggle = () => {
-    setOpen(!open);
-  };
+
+  // const handleToggle = () => {
+  //   setOpen(!open);
+  // };
+
+
   useEffect(() => {
     console.log("fetching data");
     const fetchUserData = async () => {

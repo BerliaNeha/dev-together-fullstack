@@ -8,6 +8,8 @@ export default function Container({ children }) {
   const [role, setRole] = React.useState();
   const [isDev, setIsDev] = React.useState(true);
   const [ token, setToken ] = useState(false);
+  const [jobId, setJobId] = React.useState("");
+  
 
   return (
     <MyContext.Provider
@@ -19,6 +21,8 @@ export default function Container({ children }) {
         isDev,
         setIsDev,
         token,
+        setJobId,
+        jobId,
       }}
     >
       {children}
