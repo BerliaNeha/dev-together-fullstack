@@ -70,23 +70,6 @@ const style = {
   color: (theme) => theme.palette.primary.main,
 };
 
-const style4 = {
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  width: "35%",
-  transform: "translate(-50%, -50%)",
-  bgcolor: "background.paper",
-  border: "2px solid #000",
-  boxShadow: 24,
-  p: "2%",
-  color: (theme) => theme.palette.primary.main,
-  display: "flex",
-  flexDirection: "column",
-  justifyContent: "center",
-  alignItems: "center",
-};
-
 export const DevelopersComponent = () => {
   const { currentUserId, jobId } = React.useContext(MyContext);
   // Education
@@ -151,22 +134,29 @@ export const DevelopersComponent = () => {
   //Value end date education
   const [valueEndDateEdu, setValueEndDateEdu] = React.useState(new Date());
 
-  // jon position
-
-  const [position, setPosition] = React.useState("");
-
-  const handlePosition = (event) => {
-    setPosition(event.target.value);
-  };
-
-  //company
-  const [company, setCompany] = React.useState("");
-
-  const handleCompany = (event) => {
-    setCompany(event.target.value);
-  };
   // fetch cv from backend when you first login
-  const [CV, setCV] = React.useState([]);
+  const [CV, setCV] = React.useState({
+    experience: [
+      {
+        company: "",
+        position: "",
+        description: "",
+        startDate: "",
+        endDate: "",
+      },
+    ],
+    education: [
+      {
+        schoolName: "",
+        studies: "",
+        degree: "",
+        startDate: "",
+        endDate: "",
+      },
+    ],
+    skills: [],
+    languages: [],
+  });
 
   const fetchUserCV = async () => {
     const response = await fetch(
@@ -185,10 +175,27 @@ export const DevelopersComponent = () => {
       alert(err.message);
     }
   };
-
+console.log("hello")
   useEffect(() => {
     fetchUserCV();
   }, [currentUserId]);
+
+  // ############### Experience ################
+
+  const [position, setPosition] = React.useState("");
+  const [company, setCompany] = React.useState("");
+  const [description, setDescription] = React.useState("");
+
+  const handlePosition = (event) => {
+    setPosition(event.target.value);
+  };
+
+  const handleCompany = (event) => {
+    setCompany(event.target.value);
+  };
+  const handleDescription = (event) => {
+    setDescription(event.target.value);
+  };
 
   const submitExperience = async (event) => {
     event.preventDefault();
@@ -196,10 +203,11 @@ export const DevelopersComponent = () => {
     const newExperience = {
       company: company,
       position: position,
+      description: description,
       startDate: valueStartDateExp,
       endDate: valueEndDateExp,
     };
-    console.log(CV, "cv");
+
     const settings = {
       method: "POST",
       body: JSON.stringify({
@@ -220,7 +228,150 @@ export const DevelopersComponent = () => {
     try {
       // If the first fetch request was successful...
       if (response.ok) {
-        console.log(parsedRes);
+        handleCloseExperience(true);
+      } else {
+        throw new Error(parsedRes.message);
+      }
+    } catch (err) {
+      alert(err.message);
+    }
+
+    fetchUserCV();
+  };
+
+  // ############# Education #######################
+  const [schoolName, setSchoolName] = React.useState("");
+  const [studies, setStudies] = React.useState("");
+  const [degree, setDegree] = React.useState("");
+
+  const handleSchoolName = (event) => {
+    setSchoolName(event.target.value);
+  };
+
+  const handleStudies = (event) => {
+    setStudies(event.target.value);
+  };
+
+  const handleDegree = (event) => {
+    setDegree(event.target.value);
+  };
+
+  const submitEducation = async (event) => {
+    event.preventDefault();
+
+    const newEducation = {
+      schoolName: schoolName,
+      studies: studies,
+      degree: degree,
+      startDate: valueStartDateExp,
+      endDate: valueEndDateExp,
+    };
+
+    const settings = {
+      method: "POST",
+      body: JSON.stringify({
+        ...CV,
+        education: [...CV.education, newEducation],
+      }),
+      headers: {
+        "Content-Type": "application/json",
+        // "Authorization": "Bearer " + props.token
+      },
+    };
+    // fetch the new job added by teh employer
+    const response = await fetch(
+      process.env.REACT_APP_SERVER_URL + `/developers/${currentUserId}/cv`,
+      settings
+    );
+    const parsedRes = await response.json();
+    try {
+      // If the first fetch request was successful...
+      if (response.ok) {
+        handleCloseEducation(true);
+      } else {
+        throw new Error(parsedRes.message);
+      }
+    } catch (err) {
+      alert(err.message);
+    }
+
+    fetchUserCV();
+  };
+
+  // ############# Skills #######################
+
+  const [skills, setSkills] = React.useState("");
+
+  const handleSkills = (event) => {
+    setSkills(event.target.value);
+  };
+
+  const submitSkills = async (event) => {
+    event.preventDefault();
+
+    const settings = {
+      method: "POST",
+      body: JSON.stringify({
+        ...CV,
+        skills: [...CV.skills, skills],
+      }),
+      headers: {
+        "Content-Type": "application/json",
+        // "Authorization": "Bearer " + props.token
+      },
+    };
+    // fetch the new job added by teh employer
+    const response = await fetch(
+      process.env.REACT_APP_SERVER_URL + `/developers/${currentUserId}/cv`,
+      settings
+    );
+    const parsedRes = await response.json();
+    try {
+      // If the first fetch request was successful...
+      if (response.ok) {
+        handleCloseSkills(true);
+      } else {
+        throw new Error(parsedRes.message);
+      }
+    } catch (err) {
+      alert(err.message);
+    }
+
+    fetchUserCV();
+  };
+
+  // ############# Languages #######################
+
+  const [languages, setLanguages] = React.useState("");
+
+  const handleLanguages = (event) => {
+    setLanguages(event.target.value);
+  };
+
+  const submitLanguages = async (event) => {
+    event.preventDefault();
+
+    const settings = {
+      method: "POST",
+      body: JSON.stringify({
+        ...CV,
+        languages: [...CV.languages, languages],
+      }),
+      headers: {
+        "Content-Type": "application/json",
+        // "Authorization": "Bearer " + props.token
+      },
+    };
+    // fetch the new job added by teh employer
+    const response = await fetch(
+      process.env.REACT_APP_SERVER_URL + `/developers/${currentUserId}/cv`,
+      settings
+    );
+    const parsedRes = await response.json();
+    try {
+      // If the first fetch request was successful...
+      if (response.ok) {
+        handleCloseLanguages(true);
       } else {
         throw new Error(parsedRes.message);
       }
@@ -282,6 +433,9 @@ export const DevelopersComponent = () => {
     createData('Cupcake', 305, 3.7, 67, 4.3, 2.5),
     createData('Gingerbread', 356, 16.0, 49, 3.9, 1.5),
   ];
+
+=======
+  console.log(CV, "cvcvcvcv");
 
   return (
     <>
@@ -350,7 +504,8 @@ export const DevelopersComponent = () => {
       {/* ########## CV ########## */}
 
       <Box sx={{ width: "80%", margin: "auto", marginTop: "2%" }}>
-        <Card sx={{ marginBottom: "2%", border: "0.5px solid #EEA47FFF" }}>
+        {/* first CARD EXPERIENCE */}
+        <Box sx={{ marginBottom: "2%", borderBottom:1, borderLeft:1 }}>
           <CardContent
             sx={{ display: "flex", justifyContent: "space-between" }}
           >
@@ -410,8 +565,25 @@ export const DevelopersComponent = () => {
                           <MenuItem value="Full Stack Developer">
                             Full Stack Developer
                           </MenuItem>
+                          <MenuItem value="Full Stack Developer">
+                            Others
+                          </MenuItem>
                         </Select>
                       </FormControl>
+                    </Grid>
+                    <Grid item xs={12} sm={12} md={12}>
+                      <TextField
+                        id="description"
+                        label="Description"
+                        multiline
+                        rows={4}
+                        defaultValue="Description"
+                        variant="standard"
+                        onChange={handleDescription}
+                        value={description}
+                        sx={{ width: "95%", mb: 5 }}
+                        required
+                      />
                     </Grid>
                     <Grid item xs={12} sm={12} md={6} sx={{ mt: 2 }}>
                       <LocalizationProvider dateAdapter={AdapterDateFns}>
@@ -469,10 +641,83 @@ export const DevelopersComponent = () => {
               </Modal>
             </div>
           </CardContent>
-        </Card>
-
-        {/* second card */}
-        <Card sx={{ marginBottom: "2%", border: "1.5px solid #234E70" }}>
+        </Box>
+        {CV.experience.map(
+          ({ company, position, description, startDate, endDate }) => {
+            if (company === "") {
+              return null;
+            } else {
+              return (
+                <Box
+                  sx={{
+                    display: "flex",
+                    justifyContent: "space-around",
+                    mt: 3,
+                  }}
+                >
+                  {/* right card */}
+                  <Card sx={{ width: "90%",border: "0.5px solid #EEA47FFF", p:2 }}>
+                    <Grid
+                      container
+                      direction="row"
+                      justifyContent="space-between"
+                      alignItems="center"
+                    >
+                      <Grid
+                        container
+                        md={6}
+                        direction="column"
+                        justifyContent="space-evenly"
+                        alignItems="flex-start"
+                      >
+                        <Grid item>
+                          <Typography variant="h5">{position}</Typography>
+                        </Grid>
+                        <Grid item>
+                          <Typography variant="h6" sx={{ fontWeight: "light" }}>
+                            {company}
+                          </Typography>
+                        </Grid>
+                        <Grid item>
+                          <Typography
+                            variant="h6"
+                            sx={{ fontWeight: "regular" }}
+                          >
+                            {description}
+                          </Typography>
+                        </Grid>
+                      </Grid>
+                      <Grid
+                        container
+                        md={6}
+                        direction="row"
+                        justifyContent="flex-end"
+                        alignItems="flex-start"
+                      >
+                        <Grid item>
+                          <Typography variant="h6">
+                            {startDate.substring(5, 7)}{" "}
+                            {startDate.substring(0, 4)}{" "}
+                          </Typography>
+                        </Grid>
+                        &nbsp; &nbsp;
+                        <Grid item>
+                          <Typography variant="h6">
+                            {endDate.substring(5, 7)} {endDate.substring(0, 4)}{" "}
+                          </Typography>
+                        </Grid>
+                      </Grid>
+                    </Grid>
+                  </Card>
+                </Box>
+              );
+            }
+          }
+        )}
+        {/* second CARD EDUCATION */}
+        <Box
+          sx={{ marginBottom: "1%", mt: "1%", borderBottom: 1, borderLeft:1 }}
+        >
           <CardContent
             sx={{ display: "flex", justifyContent: "space-between" }}
           >
@@ -496,70 +741,194 @@ export const DevelopersComponent = () => {
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description"
               >
-                <Box sx={style} component="form">
-                  <TextField
-                    sx={{ marginBottom: "15%" }}
-                    required
-                    id="universitySchool"
-                    label="University / School"
-                    variant="standard"
-                  />
-                  <TextField
-                    sx={{ paddingBottom: "15%" }}
-                    required
-                    id="studies "
-                    label="Studies "
-                    variant="standard"
-                  />
-                  <LocalizationProvider dateAdapter={AdapterDateFns}>
-                    <DesktopDatePicker
-                      required
-                      sx={{ marginBottom: "15%" }}
-                      variant="standard"
-                      disableFuture
-                      label="Start Date"
-                      openTo="year"
-                      views={["year", "month"]}
-                      value={valueStartDateEdu}
-                      onChange={(newValue) => {
-                        setValueStartDateEdu(newValue);
-                      }}
-                      renderInput={(params) => <TextField {...params} />}
-                    />
-                    <DesktopDatePicker
-                      required
-                      sx={{ paddingBottom: "50%" }}
-                      variant="standard"
-                      disableFuture
-                      label="End Date"
-                      openTo="year"
-                      views={["year", "month"]}
-                      value={valueEndDateEdu}
-                      onChange={(newValue) => {
-                        setValueEndDateEdu(newValue);
-                      }}
-                      renderInput={(params) => <TextField {...params} />}
-                    />
-                  </LocalizationProvider>
-
-                  <Button
-                    variant="outlined"
-                    sx={{
-                      width: "150px",
-                      marginTop: "4%",
-                      color: (theme) => theme.palette.secondary.main,
-                    }}
+                <Box sx={style}>
+                  <Grid
+                    container
+                    direction="column"
+                    justifyContent="space-evenly"
                   >
-                    Add
-                  </Button>
+                    <Grid
+                      container
+                      direction="row"
+                      justifyContent="space-between"
+                      alignItems="center"
+                    >
+                      <Grid item xs={12} sm={12} md={6}>
+                        <TextField
+                          sx={{ marginBottom: "15%", marginRight: "10px" }}
+                          required
+                          id="schoolName"
+                          label="School/University"
+                          variant="standard"
+                          onChange={handleSchoolName}
+                          value={schoolName}
+                        />
+                      </Grid>
+                      <Grid item xs={12} sm={12} md={6}>
+                        <TextField
+                          sx={{ marginBottom: "15%", marginRight: "10px" }}
+                          required
+                          id="studies"
+                          label="Studies"
+                          variant="standard"
+                          onChange={handleStudies}
+                          value={studies}
+                        />
+                      </Grid>
+                    </Grid>
+
+                    <Grid item xs={12} sm={12} md={12}>
+                      <FormControl
+                        sx={{ width: "80%" }}
+                        required
+                        variant="standard"
+                      >
+                        <InputLabel id="degree">Degree</InputLabel>
+                        <Select
+                          labelId="degree"
+                          id="degree"
+                          value={degree}
+                          label="Degree"
+                          onChange={handleDegree}
+                        >
+                          <MenuItem value="Bachelor">Bachelor</MenuItem>
+                          <MenuItem value="Master">Master</MenuItem>
+                          <MenuItem value="PhD">PhD</MenuItem>
+                        </Select>
+                      </FormControl>
+                    </Grid>
+                    <Grid item xs={12} sm={12} md={6} sx={{ mt: 2 }}>
+                      <LocalizationProvider dateAdapter={AdapterDateFns}>
+                        <DesktopDatePicker
+                          id="startDate"
+                          required
+                          variant="standard"
+                          disableFuture
+                          label="Start Date"
+                          openTo="year"
+                          views={["year", "month"]}
+                          value={valueStartDateEdu}
+                          onChange={(newValue) => {
+                            setValueStartDateEdu(newValue);
+                          }}
+                          renderInput={(params) => <TextField {...params} />}
+                        />
+                      </LocalizationProvider>
+                    </Grid>
+                    <Grid item xs={12} sm={12} md={6} sx={{ mt: 2 }}>
+                      <LocalizationProvider dateAdapter={AdapterDateFns}>
+                        <DesktopDatePicker
+                          id="endDate"
+                          required
+                          sx={{ paddingBottom: "50%" }}
+                          variant="standard"
+                          disableFuture
+                          label="End Date"
+                          openTo="year"
+                          views={["year", "month"]}
+                          value={valueEndDateEdu}
+                          onChange={(newValue) => {
+                            setValueEndDateEdu(newValue);
+                          }}
+                          renderInput={(params) => <TextField {...params} />}
+                        />
+                      </LocalizationProvider>
+                    </Grid>
+                    <Grid item xs={12}>
+                      <Button
+                        type="submit"
+                        variant="outlined"
+                        sx={{
+                          width: "150px",
+                          marginTop: "4%",
+                          color: (theme) => theme.palette.secondary.main,
+                        }}
+                        onClick={submitEducation}
+                      >
+                        Add
+                      </Button>
+                    </Grid>
+                  </Grid>
                 </Box>
               </Modal>
             </div>
           </CardContent>
-        </Card>
+        </Box>
+        {CV.education.map(
+          ({ schoolName, studies, degree, startDate, endDate }) => {
+            if (studies === "") {
+              return null;
+            } else {
+              return (
+                <Box
+                  sx={{
+                    display: "flex",
+                    justifyContent: "space-around",
+                    mt: 1,
+                  }}
+                >
+                  {/* right card */}
+                  <Card sx={{ width: "90%", border: "0.5px solid #EEA47FFF", p:2 }}>
+                    <Grid
+                      container
+                      direction="row"
+                      justifyContent="space-between"
+                      alignItems="center"
+                    >
+                      <Grid
+                        container
+                        md={6}
+                        direction="column"
+                        justifyContent="space-evenly"
+                        alignItems="flex-start"
+                      >
+                        <Grid item>
+                          <Typography variant="h5">{studies}</Typography>
+                        </Grid>
+                        <Grid item>
+                          <Typography variant="h6" sx={{ fontWeight: "light" }}>
+                            {schoolName}
+                          </Typography>
+                        </Grid>
+                        <Grid item>
+                          <Typography
+                            variant="h6"
+                            sx={{ fontWeight: "regular" }}
+                          >
+                            {degree}
+                          </Typography>
+                        </Grid>
+                      </Grid>
+                      <Grid
+                        container
+                        md={6}
+                        direction="row"
+                        justifyContent="flex-end"
+                        alignItems="flex-start"
+                      >
+                        <Grid item>
+                          <Typography variant="h6">
+                            {startDate.substring(5, 7)}{" "}
+                            {startDate.substring(0, 4)}{" "}
+                          </Typography>
+                        </Grid>
+                        &nbsp; &nbsp;
+                        <Grid item>
+                          <Typography variant="h6">
+                            {endDate.substring(5, 7)} {endDate.substring(0, 4)}
+                          </Typography>
+                        </Grid>
+                      </Grid>
+                    </Grid>
+                  </Card>
+                </Box>
+              );
+            }
+          }
+        )}
 
-        {/* third card */}
-        <Card sx={{ marginBottom: "2%", border: "0.5px solid" }}>
+        {/* third CARD SKILLS */}
+        <Box sx={{ marginBottom: "1%", mt: "1%", borderBottom:1, borderLeft:1 }}>
           <CardContent
             sx={{ display: "flex", justifyContent: "space-between" }}
           >
@@ -583,13 +952,15 @@ export const DevelopersComponent = () => {
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description"
               >
-                <Box sx={style} component="form">
+                <Box sx={style}>
                   <TextField
                     sx={{ marginBottom: "15%" }}
                     required
                     id="skills"
                     label="Skills"
                     variant="standard"
+                    value={skills}
+                    onChange={handleSkills}
                   />
                   <Button
                     variant="outlined"
@@ -598,6 +969,7 @@ export const DevelopersComponent = () => {
                       marginTop: "4%",
                       color: (theme) => theme.palette.secondary.main,
                     }}
+                    onClick={submitSkills}
                   >
                     Add
                   </Button>
@@ -605,10 +977,26 @@ export const DevelopersComponent = () => {
               </Modal>
             </div>
           </CardContent>
-        </Card>
+        </Box>
+        <Box sx={{ display: "flex", flexWrap: "wrap", justifyContent:"flex-start" }}>
+          {CV.skills.map((item) => {
+            return (
+              <>
+                <Card sx={{ width: "10%", mr:2, mt:2, mb:2, border: "0.5px solid #EEA47FFF"}}>
+                  <Typography
+                    variant="h6"
+                    sx={{ fontWeight: "regular", textAlign: "center" }}
+                  >
+                    {item}
+                  </Typography>
+                </Card>
+              </>
+            );
+          })}
+        </Box>
 
-        {/* fourth card */}
-        <Card sx={{ marginBottom: "2%", border: "0.5px solid" }}>
+        {/* fourth CARD languages */}
+        <Box sx={{ marginBottom: "1%", borderBottom: 1, borderLeft:1 }}>
           <CardContent
             sx={{ display: "flex", justifyContent: "space-between" }}
           >
@@ -632,13 +1020,15 @@ export const DevelopersComponent = () => {
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description"
               >
-                <Box sx={style4} component="form">
+                <Box sx={style}>
                   <TextField
                     sx={{ marginBottom: "15%" }}
                     required
                     id="languages"
                     label="Languages"
                     variant="standard"
+                    value={languages}
+                    onChange={handleLanguages}
                   />
 
                   <Button
@@ -648,6 +1038,7 @@ export const DevelopersComponent = () => {
                       marginTop: "4%",
                       color: (theme) => theme.palette.secondary.main,
                     }}
+                    onClick={submitLanguages}
                   >
                     Add
                   </Button>
@@ -655,7 +1046,24 @@ export const DevelopersComponent = () => {
               </Modal>
             </div>
           </CardContent>
-        </Card>
+        </Box>
+
+        <Box sx={{ display: "flex", flexWrap: "wrap", justifyContent:"flex-start" }}>
+          {CV.languages.map((item) => {
+            return (
+              <>
+                <Card sx={{ width: "10%", mr:2, mt:2, mb:2, border: "0.5px solid #EEA47FFF"}}>
+                  <Typography
+                    variant="h6"
+                    sx={{ fontWeight: "regular", textAlign: "center" }}
+                  >
+                    {item}
+                  </Typography>
+                </Card>
+              </>
+            );
+          })}
+        </Box>
       </Box>
       <Box>
         <Button
