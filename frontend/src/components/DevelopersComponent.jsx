@@ -141,9 +141,38 @@ export const DevelopersComponent = () => {
       alert(err.message);
     }
   };
-console.log("hello")
+  console.log("hello");
   useEffect(() => {
     fetchUserCV();
+  }, [currentUserId]);
+
+  // developer's data
+
+  const [developerUsername, setDeveloperUsername] = React.useState("")
+  const [developerJobTitle, setDeveloperJobTitle] = React.useState("")
+
+
+  useEffect(() => {
+    console.log("fetching data");
+    const fetchUserData = async () => {
+      const response = await fetch(
+        process.env.REACT_APP_SERVER_URL + `/developers/${currentUserId}`
+      );
+      const parsedRes = await response.json();
+      try {
+        if (response.ok) {
+          console.log("Server response", parsedRes);
+          setDeveloperUsername(parsedRes.username);
+          setDeveloperJobTitle(parsedRes.jobTitle)
+
+        } else {
+          throw new Error(parsedRes.message);
+        }
+      } catch (err) {
+        alert(err.message);
+      }
+    };
+    fetchUserData();
   }, [currentUserId]);
 
   // ############### Experience ################
@@ -366,10 +395,10 @@ console.log("hello")
             />
             <CardContent>
               <Typography gutterBottom variant="h5" component="div">
-                User Developer
+                {developerUsername}
               </Typography>
               <Typography variant="body2" color="text.secondary">
-                Full Stack Developer
+                {developerJobTitle}
               </Typography>
             </CardContent>
           </Card>
@@ -397,10 +426,10 @@ console.log("hello")
             />
             <CardContent>
               <Typography gutterBottom variant="h5" component="div">
-                User Developer
+                {developerUsername}
               </Typography>
               <Typography variant="body2" color="text.secondary">
-                Full Stack Developer
+                {developerJobTitle}
               </Typography>
             </CardContent>
           </Card>
@@ -417,7 +446,7 @@ console.log("hello")
 
       <Box sx={{ width: "80%", margin: "auto", marginTop: "2%" }}>
         {/* first CARD EXPERIENCE */}
-        <Box sx={{ marginBottom: "2%", borderBottom:1, borderLeft:1 }}>
+        <Box sx={{ marginBottom: "2%", borderBottom: 1, borderLeft: 1 }}>
           <CardContent
             sx={{ display: "flex", justifyContent: "space-between" }}
           >
@@ -568,7 +597,9 @@ console.log("hello")
                   }}
                 >
                   {/* right card */}
-                  <Card sx={{ width: "90%",border: "0.5px solid #EEA47FFF", p:2 }}>
+                  <Card
+                    sx={{ width: "90%", border: "0.5px solid #EEA47FFF", p: 2 }}
+                  >
                     <Grid
                       container
                       direction="row"
@@ -608,14 +639,20 @@ console.log("hello")
                       >
                         <Grid item>
                           <Typography variant="h6">
-                            {startDate.substring(5, 7)}{" "}
-                            {startDate.substring(0, 4)}{" "}
+                            {/* {startDate.substr(5, 7)}{" "}
+                            {startDate.substr(0, 4)}{" "} */}
+                            {new Date(startDate).toLocaleDateString("de",{month:"2-digit", year:"numeric"})}
+                            
                           </Typography>
                         </Grid>
                         &nbsp; &nbsp;
                         <Grid item>
                           <Typography variant="h6">
-                            {endDate.substring(5, 7)} {endDate.substring(0, 4)}{" "}
+                            {/* {endDate.substr(5, 7)} 
+                            {endDate.substr(0, 4)}{" "} */}
+                            {new Date(endDate).toLocaleDateString("de",{month:"2-digit", year:"numeric"})}
+                           
+                           
                           </Typography>
                         </Grid>
                       </Grid>
@@ -628,7 +665,7 @@ console.log("hello")
         )}
         {/* second CARD EDUCATION */}
         <Box
-          sx={{ marginBottom: "1%", mt: "1%", borderBottom: 1, borderLeft:1 }}
+          sx={{ marginBottom: "1%", mt: "1%", borderBottom: 1, borderLeft: 1 }}
         >
           <CardContent
             sx={{ display: "flex", justifyContent: "space-between" }}
@@ -780,7 +817,9 @@ console.log("hello")
                   }}
                 >
                   {/* right card */}
-                  <Card sx={{ width: "90%", border: "0.5px solid #EEA47FFF", p:2 }}>
+                  <Card
+                    sx={{ width: "90%", border: "0.5px solid #EEA47FFF", p: 2 }}
+                  >
                     <Grid
                       container
                       direction="row"
@@ -820,14 +859,15 @@ console.log("hello")
                       >
                         <Grid item>
                           <Typography variant="h6">
-                            {startDate.substring(5, 7)}{" "}
-                            {startDate.substring(0, 4)}{" "}
+                          {new Date(startDate).toLocaleDateString("de",{month:"2-digit", year:"numeric"})}
+
                           </Typography>
                         </Grid>
                         &nbsp; &nbsp;
                         <Grid item>
                           <Typography variant="h6">
-                            {endDate.substring(5, 7)} {endDate.substring(0, 4)}
+                          {new Date(endDate).toLocaleDateString("de",{month:"2-digit", year:"numeric"})}
+
                           </Typography>
                         </Grid>
                       </Grid>
@@ -840,7 +880,9 @@ console.log("hello")
         )}
 
         {/* third CARD SKILLS */}
-        <Box sx={{ marginBottom: "1%", mt: "1%", borderBottom:1, borderLeft:1 }}>
+        <Box
+          sx={{ marginBottom: "1%", mt: "1%", borderBottom: 1, borderLeft: 1 }}
+        >
           <CardContent
             sx={{ display: "flex", justifyContent: "space-between" }}
           >
@@ -890,11 +932,25 @@ console.log("hello")
             </div>
           </CardContent>
         </Box>
-        <Box sx={{ display: "flex", flexWrap: "wrap", justifyContent:"flex-start" }}>
+        <Box
+          sx={{
+            display: "flex",
+            flexWrap: "wrap",
+            justifyContent: "flex-start",
+          }}
+        >
           {CV.skills.map((item) => {
             return (
               <>
-                <Card sx={{ width: "10%", mr:2, mt:2, mb:2, border: "0.5px solid #EEA47FFF"}}>
+                <Card
+                  sx={{
+                    width: "10%",
+                    mr: 2,
+                    mt: 2,
+                    mb: 2,
+                    border: "0.5px solid #EEA47FFF",
+                  }}
+                >
                   <Typography
                     variant="h6"
                     sx={{ fontWeight: "regular", textAlign: "center" }}
@@ -908,7 +964,7 @@ console.log("hello")
         </Box>
 
         {/* fourth CARD languages */}
-        <Box sx={{ marginBottom: "1%", borderBottom: 1, borderLeft:1 }}>
+        <Box sx={{ marginBottom: "1%", borderBottom: 1, borderLeft: 1 }}>
           <CardContent
             sx={{ display: "flex", justifyContent: "space-between" }}
           >
@@ -960,11 +1016,25 @@ console.log("hello")
           </CardContent>
         </Box>
 
-        <Box sx={{ display: "flex", flexWrap: "wrap", justifyContent:"flex-start" }}>
+        <Box
+          sx={{
+            display: "flex",
+            flexWrap: "wrap",
+            justifyContent: "flex-start",
+          }}
+        >
           {CV.languages.map((item) => {
             return (
               <>
-                <Card sx={{ width: "10%", mr:2, mt:2, mb:2, border: "0.5px solid #EEA47FFF"}}>
+                <Card
+                  sx={{
+                    width: "10%",
+                    mr: 2,
+                    mt: 2,
+                    mb: 2,
+                    border: "0.5px solid #EEA47FFF",
+                  }}
+                >
                   <Typography
                     variant="h6"
                     sx={{ fontWeight: "regular", textAlign: "center" }}
