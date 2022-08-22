@@ -81,15 +81,18 @@ export const SignIn = () => {
 
       if (response.ok) {
         setCurrentUserId(parsedRes.id);
+        window.localStorage.setItem("currentUserId", parsedRes.id);
         if (parsedRes.companyName) {
           setIsLoggedIn(true);
           setIsDev(false);
+          window.localStorage.setItem("isDev", false);
           navigate("/employers");
         }
 
         if (!parsedRes.companyName) {
           setIsLoggedIn(true);
           setIsDev(true);
+          window.localStorage.setItem("isDev", true);
           navigate("/developers");
         }
       } else {
@@ -103,87 +106,86 @@ export const SignIn = () => {
     }
   };
 
-  return(
+  return (
     <Container component="main" maxWidth="xs">
-    <CssBaseline />
-    <Box
-      sx={{
-        marginTop: 8,
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-      }}
-    >
-      <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
-        <LockOutlinedIcon />
-      </Avatar>
-      <Typography component="h1" variant="h5">
-        Sign in
-      </Typography>
-      <Box component="form" onSubmit={attemptLogin} noValidate sx={{ mt: 1 }}>
-        <TextField
-          margin="normal"
-          required
-          fullWidth
-          id="email"
-          label="Email Address"
-          name="email"
-          autoComplete="email"
-          autoFocus
-          onChange={updateData}
-          value={email}
-        />
-        <TextField
-          margin="normal"
-          required
-          fullWidth
-          name="password"
-          label="Password"
-          type="password"
-          id="password"
-          autoComplete="current-password"
-          onChange={updateData}
-          value={password}
-        />
-        <FormControlLabel
-          control={<Checkbox value="remember" color="primary" />}
-          label="Remember me"
-        />
-        <Button
-          type="submit"
-          fullWidth
-          variant="contained"
-          sx={{ mt: 3, mb: 2 }}
-        >
-          Sign In
-        </Button>
-        <div>
-          <Link href="#" variant="body2">
-            Forgot password?
-          </Link>
-        </div>
-        <div>
-          <Link
-            onClick={() => navigate(`/register-developer`)}
-            cursor="default"
-            variant="body2"
+      <CssBaseline />
+      <Box
+        sx={{
+          marginTop: 8,
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+        }}
+      >
+        <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
+          <LockOutlinedIcon />
+        </Avatar>
+        <Typography component="h1" variant="h5">
+          Sign in
+        </Typography>
+        <Box component="form" onSubmit={attemptLogin} noValidate sx={{ mt: 1 }}>
+          <TextField
+            margin="normal"
+            required
+            fullWidth
+            id="email"
+            label="Email Address"
+            name="email"
+            autoComplete="email"
+            autoFocus
+            onChange={updateData}
+            value={email}
+          />
+          <TextField
+            margin="normal"
+            required
+            fullWidth
+            name="password"
+            label="Password"
+            type="password"
+            id="password"
+            autoComplete="current-password"
+            onChange={updateData}
+            value={password}
+          />
+          <FormControlLabel
+            control={<Checkbox value="remember" color="primary" />}
+            label="Remember me"
+          />
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            sx={{ mt: 3, mb: 2 }}
           >
-            {"Don't have an account? Sign Up as Developer"}
-          </Link>
-        </div>
-        <div>
-          <Link
-            onClick={() => navigate(`/register-employer`)}
-            cursor="default"
-            variant="body2"
-          >
-            {"Don't have an account? Sign Up as Company"}
-          </Link>
-        </div>
+            Sign In
+          </Button>
+          <div>
+            <Link href="#" variant="body2">
+              Forgot password?
+            </Link>
+          </div>
+          <div>
+            <Link
+              onClick={() => navigate(`/register-developer`)}
+              cursor="default"
+              variant="body2"
+            >
+              {"Don't have an account? Sign Up as Developer"}
+            </Link>
+          </div>
+          <div>
+            <Link
+              onClick={() => navigate(`/register-employer`)}
+              cursor="default"
+              variant="body2"
+            >
+              {"Don't have an account? Sign Up as Company"}
+            </Link>
+          </div>
+        </Box>
       </Box>
-    </Box>
-    <Copyright sx={{ mt: 8, mb: 4 }} />
-  </Container>
-  )
-  
+      <Copyright sx={{ mt: 8, mb: 4 }} />
+    </Container>
+  );
 };

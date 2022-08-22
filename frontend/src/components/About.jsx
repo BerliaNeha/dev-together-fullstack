@@ -16,6 +16,8 @@ import Arrow from "../assets/arrows2.gif";
 import { HashLink } from "react-router-hash-link";
 import Logo from "../assets/logoNobg.png";
 import { Navigate } from "react-router-dom";
+import Berlia from "../assets/Berlia.jpg"
+import Vanesa from "../assets/Vanesa.jpg"
 
 function About(props) {
   const About = {
@@ -32,7 +34,7 @@ function About(props) {
       title: "Hello, I am",
       date: "Berlia",
       description: "Working as a Web Developer",
-      image: { Dev },
+      image: { Berlia },
       imageLabel: "Image Text",
       linkText: "https://www.linkedin.com/in/neha-berlia-66b14554/",
       linkText2: "https://portfolio-neha-berlia.vercel.app/",
@@ -41,7 +43,7 @@ function About(props) {
       title: "Hello, I am",
       date: "Vaia",
       description: "Working as a Web Developer.",
-      image: { Dev },
+      image: { Vanesa },
       imageLabel: "Image Text",
       linkText: "https://www.linkedin.com/in/neha-berlia-66b14554/",
       linkText2: "https://portfolio-neha-berlia.vercel.app/",
@@ -277,7 +279,7 @@ function About(props) {
               <CardMedia
                 component="img"
                 sx={{ width: 160, display: { xs: "none", sm: "block" } }}
-                image={Dev}
+                image={AboutTeam.image}
                 alt={AboutTeam.imageLabel}
               />
             </Card>

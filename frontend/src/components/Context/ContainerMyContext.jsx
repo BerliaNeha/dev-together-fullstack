@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { MyContext } from "./context";
 
-export default function Container({ children }) {
+export default function ContainerMyContext({ children }) {
 
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
   const [currentUserId, setCurrentUserId] = React.useState("");

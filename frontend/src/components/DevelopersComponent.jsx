@@ -31,7 +31,14 @@ import { makeStyles } from "@mui/styles";
 import { MyContext } from "./Context/context";
 import { CalendarViewDay } from "@mui/icons-material";
 import { Row } from "./Row";
+
+import SchoolIcon from "@mui/icons-material/School";
+import WorkIcon from "@mui/icons-material/Work";
+import LanguageIcon from "@mui/icons-material/Language";
+import CodeIcon from "@mui/icons-material/Code";
+
 import Footer from "./Footer";
+
 
 function createData(name, calories, fat, carbs, protein, price) {
   return {
@@ -65,7 +72,7 @@ const style = {
   bgcolor: "background.paper",
   border: "2px solid #000",
   boxShadow: 24,
-  p: "2%",
+  p: "1%",
   color: (theme) => theme.palette.primary.main,
 };
 
@@ -164,8 +171,9 @@ export const DevelopersComponent = () => {
     const parsedRes = await response.json();
     try {
       if (response.ok) {
-        console.log("Server response", parsedRes);
+        
         setCV(parsedRes);
+        console.log("Server response", parsedRes);
       } else {
         throw new Error(parsedRes.message);
       }
@@ -193,7 +201,7 @@ export const DevelopersComponent = () => {
       const parsedRes = await response.json();
       try {
         if (response.ok) {
-          console.log("Server response", parsedRes);
+          console.log("userName,jobTitle", parsedRes);
           setDeveloperUsername(parsedRes.username);
           setDeveloperJobTitle(parsedRes.jobTitle);
         } else {
@@ -451,9 +459,7 @@ export const DevelopersComponent = () => {
     }
   };
 
-  // useEffect(() => {
-  //   fetchEmployerJobs();
-  // }, []);
+
 
   const handleJobs = async () => {
     fetchEmployerJobs();
@@ -540,11 +546,11 @@ export const DevelopersComponent = () => {
 
       <Box sx={{ width: "80%", margin: "auto", marginTop: "2%" }}>
         {/* first CARD EXPERIENCE */}
-        <Box sx={{ marginBottom: "2%", borderBottom: 1, borderLeft: 1 }}>
+        <Box sx={{ marginBottom: "2%" }}>
           <CardContent
             sx={{ display: "flex", justifyContent: "space-between" }}
           >
-            <Typography variant="h5">Work Experience</Typography>
+            <Typography variant="h5"> <WorkIcon/> Work Experience</Typography>
             <div>
               <Button
                 variant="outlined"
@@ -767,7 +773,7 @@ export const DevelopersComponent = () => {
           <CardContent
             sx={{ display: "flex", justifyContent: "space-between" }}
           >
-            <Typography variant="h5">Education</Typography>
+            <Typography variant="h5"> <SchoolIcon/>  Education</Typography>
             <div>
               <Button
                 variant="outlined"
@@ -987,7 +993,7 @@ export const DevelopersComponent = () => {
           <CardContent
             sx={{ display: "flex", justifyContent: "space-between" }}
           >
-            <Typography variant="h5">Skills</Typography>
+            <Typography variant="h5"> <CodeIcon/> Skills</Typography>
             <div>
               <Button
                 variant="outlined"
@@ -1045,7 +1051,8 @@ export const DevelopersComponent = () => {
               <>
                 <Card
                   sx={{
-                    width: "10%",
+                    width: "auto",
+                    p:1,
                     mr: 2,
                     mt: 2,
                     mb: 2,
@@ -1069,7 +1076,7 @@ export const DevelopersComponent = () => {
           <CardContent
             sx={{ display: "flex", justifyContent: "space-between" }}
           >
-            <Typography variant="h5">Languages</Typography>
+            <Typography variant="h5"><LanguageIcon/> Languages</Typography>
             <div>
               <Button
                 variant="outlined"
@@ -1129,7 +1136,8 @@ export const DevelopersComponent = () => {
               <>
                 <Card
                   sx={{
-                    width: "10%",
+                    width: "auto",
+                    p:1,
                     mr: 2,
                     mt: 2,
                     mb: 2,
