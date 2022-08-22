@@ -12,11 +12,23 @@ import { styled } from "@mui/material/styles";
 import { MyContext } from "../components/Context/context.js";
 import Grid from "@mui/material/Grid";
 import FormControlLabel from "@mui/material/FormControlLabel";
-import { FormControl, FormLabel, Radio, RadioGroup } from "@mui/material";
+import {
+  FormControl,
+  FormLabel,
+  Radio,
+  RadioGroup,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+} from "@mui/material";
 import Checkbox from "@mui/material/Checkbox";
 import TextField from "@mui/material/TextField";
 import BgEmployerPage from "../assets/bgEmployerPage.jpg";
 import { Typography } from "@mui/material";
+import { RowCV } from "./Context/RowCV";
 export const EmployersComponent = () => {
   const { currentUserId } = React.useContext(MyContext);
   // employer state
@@ -35,7 +47,7 @@ export const EmployersComponent = () => {
   // GET relevant data about the user who logged in, and update state...
   // So the employer can see their name and current list of albums immediately after they log in/register
   //********************************* */
-  
+
   const handleClose = () => {
     setOpen(false);
   };
@@ -43,7 +55,6 @@ export const EmployersComponent = () => {
   // const handleToggle = () => {
   //   setOpen(!open);
   // };
-
 
   useEffect(() => {
     console.log("fetching data");
@@ -144,14 +155,52 @@ export const EmployersComponent = () => {
   const handleRemoteWork = (event) => {
     setRemoteWork(event.target.value);
   };
-  // const Item = styled(Paper)(({ theme }) => ({
-  //   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
-  //   ...theme.typography.body2,
-  //   padding: theme.spacing(1),
-  //   textAlign: "center",
-  //   color: theme.palette.text.secondary,
-  // }));
-  console.log(companyEmail, companyTitle);
+
+  // fetch all developers data
+
+  const [allDevelopers, setAllDevelopers] = React.useState([]);
+
+  const fetchEmployerDevelopers = async () => {
+    const response = await fetch(
+      process.env.REACT_APP_SERVER_URL + `/developers`
+    );
+    const parsedRes = await response.json();
+
+    try {
+      if (response.ok) {
+        setAllDevelopers(parsedRes);
+      } else {
+        throw new Error(parsedRes.message);
+      }
+    } catch (err) {
+      alert(err.message);
+    }
+  };
+
+  const [allCVs, setAllCVs] = React.useState([]);
+
+  const fetchEmployerCVs = async () => {
+    const response = await fetch(process.env.REACT_APP_SERVER_URL + `/cvs`);
+    const parsedRes = await response.json();
+
+    try {
+      if (response.ok) {
+        setAllCVs(parsedRes);
+      } else {
+        throw new Error(parsedRes.message);
+      }
+    } catch (err) {
+      alert(err.message);
+    }
+  };
+ //console.log(allCVs, "all cv from backend stored in a state")
+ // console.log(allDevelopers, "all developers from backend stored in a state")
+
+  const handleCVs = () => {
+    fetchEmployerCVs();
+    fetchEmployerDevelopers();
+  };
+
   return (
     <>
       <Navbar />
@@ -400,13 +449,21 @@ export const EmployersComponent = () => {
               type="submit"
               fullWidth
               variant="contained"
-              sx={{ mt: 3, mb: 2, width: "82%", display: "block", ml: "auto", mr:"auto", color:"bbc8d3"}}
+              sx={{
+                mt: 3,
+                mb: 2,
+                width: "82%",
+                display: "block",
+                ml: "auto",
+                mr: "auto",
+                color: "bbc8d3",
+              }}
+              onClick={handleCVs}
             >
               Search CVs
             </Button>
           </Box>
           <Stack
-            spacing={4}
             direction="row"
             sx={{
               marginTop: "5px",
@@ -420,6 +477,42 @@ export const EmployersComponent = () => {
           </Stack>
           {/* </Item> */}
         </Stack>
+        <TableContainer
+
+          sx={{margin: "auto", p: 5 }}
+        >
+          <Table aria-label="collapsible table">
+            <TableHead>
+              <TableRow>
+                <TableCell>CVs</TableCell>
+                <TableCell align="left">Name</TableCell>
+                <TableCell align="left">Position</TableCell>
+                <TableCell align="left">Contact</TableCell>
+              </TableRow>
+            </TableHead>
+
+            {/* {jobs.map((job) => {
+            <Row key={jobs._id} id={jobs._id}  />
+            
+          })} */}
+            {/* {allDevelopers.map(
+              ({ firstName, lastName, email, jobTitle, _id }, index) => (
+                <RowCV
+                  key={index}
+                  firstName={firstName}
+                  lastName={lastName}
+                  email={email}
+                  jobTitle={jobTitle}
+                  idDeveloper={_id}
+                />
+              )
+            )}
+            {allCVs.map(({experience, education, skills, languages, userId}, index) => (
+              <RowCV key={index} experience={experience} education={education} skills={skills} languages={languages} userId={userId} />
+            ))} */}
+            <RowCV allCVs={allCVs} allDevelopers={allDevelopers}/>
+          </Table>
+        </TableContainer>
       </Box>
     </>
   );
