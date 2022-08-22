@@ -31,6 +31,7 @@ import { makeStyles } from "@mui/styles";
 import { MyContext } from "./Context/context";
 import { CalendarViewDay } from "@mui/icons-material";
 import { Row } from "./Row";
+import Footer from "./Footer";
 
 function createData(name, calories, fat, carbs, protein, price) {
   return {
@@ -42,20 +43,18 @@ function createData(name, calories, fat, carbs, protein, price) {
     price,
     history: [
       {
-        date: '2020-01-05',
-        customerId: '11091700',
+        date: "2020-01-05",
+        customerId: "11091700",
         amount: 3,
       },
       {
-        date: '2020-01-02',
-        customerId: 'Anonymous',
+        date: "2020-01-02",
+        customerId: "Anonymous",
         amount: 1,
       },
     ],
   };
 }
-
-
 
 const style = {
   position: "absolute",
@@ -171,7 +170,7 @@ export const DevelopersComponent = () => {
         throw new Error(parsedRes.message);
       }
     } catch (err) {
-      console.log(err)
+      console.log(err);
       alert(err.message);
     }
   };
@@ -182,9 +181,8 @@ export const DevelopersComponent = () => {
 
   // developer's data
 
-  const [developerUsername, setDeveloperUsername] = React.useState("")
-  const [developerJobTitle, setDeveloperJobTitle] = React.useState("")
-
+  const [developerUsername, setDeveloperUsername] = React.useState("");
+  const [developerJobTitle, setDeveloperJobTitle] = React.useState("");
 
   useEffect(() => {
     console.log("fetching data");
@@ -197,8 +195,7 @@ export const DevelopersComponent = () => {
         if (response.ok) {
           console.log("Server response", parsedRes);
           setDeveloperUsername(parsedRes.username);
-          setDeveloperJobTitle(parsedRes.jobTitle)
-
+          setDeveloperJobTitle(parsedRes.jobTitle);
         } else {
           throw new Error(parsedRes.message);
         }
@@ -414,6 +411,9 @@ export const DevelopersComponent = () => {
   //To fetch jobs from the jobs collection
 
   const [jobs, setJobs] = React.useState(null);
+  const [itemsPerPage, setItemsPerPage] = React.useState(5);
+  const [currentPage, setCurrentPage] = React.useState(0);
+  const [endofJobs, setEndofJobs] = React.useState(false);
 
   const fetchEmployerJobs = async () => {
     // const newJobList = {
@@ -424,20 +424,31 @@ export const DevelopersComponent = () => {
     //   remoteWork: remoteWork,
     // };
 
-    const response = await fetch(process.env.REACT_APP_SERVER_URL + `/jobs`);
+    const response = await fetch(
+      process.env.REACT_APP_SERVER_URL +
+        `/jobs?page=${currentPage + 1}&pageSize=${itemsPerPage}`
+    );
     const parsedRes = await response.json();
 
     try {
       if (response.ok) {
-        setJobs(parsedRes);
-        console.log(parsedRes, "jobs");
+        if (jobs === null) {
+          setJobs(parsedRes);
+          console.log(parsedRes, "jobs");
+        } else {
+          setJobs((jobs) => jobs.concat(parsedRes));
+        }
+        if (parsedRes.length < itemsPerPage) {
+          setEndofJobs(true);
+        } else {
+          setCurrentPage((page) => page + 1);
+        }
       } else {
         throw new Error(parsedRes.message);
       }
     } catch (err) {
       alert(err.message);
     }
-
   };
 
   // useEffect(() => {
@@ -453,6 +464,10 @@ export const DevelopersComponent = () => {
     // const [jobDescription, setJobDescription] = React.useState("");
     // const [remoteWork, setRemoteWork] = React.useState("");
     // const [jobList, setJobList] = React.useState([]);
+  };
+
+  const handleSeeMore = async () => {
+    fetchEmployerJobs();
   };
 
   console.log(CV, "cvcvcvcv");
@@ -720,8 +735,10 @@ export const DevelopersComponent = () => {
                           <Typography variant="h6">
                             {/* {startDate.substr(5, 7)}{" "}
                             {startDate.substr(0, 4)}{" "} */}
-                            {new Date(startDate).toLocaleDateString("de",{month:"2-digit", year:"numeric"})}
-                            
+                            {new Date(startDate).toLocaleDateString("de", {
+                              month: "2-digit",
+                              year: "numeric",
+                            })}
                           </Typography>
                         </Grid>
                         &nbsp; &nbsp;
@@ -729,9 +746,10 @@ export const DevelopersComponent = () => {
                           <Typography variant="h6">
                             {/* {endDate.substr(5, 7)} 
                             {endDate.substr(0, 4)}{" "} */}
-                            {new Date(endDate).toLocaleDateString("de",{month:"2-digit", year:"numeric"})}
-                           
-                           
+                            {new Date(endDate).toLocaleDateString("de", {
+                              month: "2-digit",
+                              year: "numeric",
+                            })}
                           </Typography>
                         </Grid>
                       </Grid>
@@ -938,15 +956,19 @@ export const DevelopersComponent = () => {
                       >
                         <Grid item>
                           <Typography variant="h6">
-                          {new Date(startDate).toLocaleDateString("de",{month:"2-digit", year:"numeric"})}
-
+                            {new Date(startDate).toLocaleDateString("de", {
+                              month: "2-digit",
+                              year: "numeric",
+                            })}
                           </Typography>
                         </Grid>
                         &nbsp; &nbsp;
                         <Grid item>
                           <Typography variant="h6">
-                          {new Date(endDate).toLocaleDateString("de",{month:"2-digit", year:"numeric"})}
-
+                            {new Date(endDate).toLocaleDateString("de", {
+                              month: "2-digit",
+                              year: "numeric",
+                            })}
                           </Typography>
                         </Grid>
                       </Grid>
@@ -1143,31 +1165,44 @@ export const DevelopersComponent = () => {
         >
           Search Jobs
         </Button>
-        {/* <Box>
 
-        </Box> */}
-        <TableContainer component={Paper} sx ={{width: "100%", margin: "auto"}}>
-      <Table aria-label="collapsible table">
-        <TableHead>
-          <TableRow>
-            <TableCell />
-            <TableCell>Open Positions</TableCell>
-            <TableCell align="right">Company</TableCell>
-            <TableCell align="right">Remote / Onsite</TableCell>
-            <TableCell align="right">Contact</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {jobs && jobs.map((job) => (
-            <Row key={job._id} row={job} />
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
-          
+        <TableContainer
+          component={Paper}
+          sx={{ width: "80%", margin: "auto", padding: "5px" }}
+        >
+         
+          {jobs && (
+            <Table aria-label="collapsible table">
+              <TableHead>
+                <TableRow>
+                  <TableCell />
+                  <TableCell>Open Positions</TableCell>
+                  <TableCell align="center">Remote / Onsite</TableCell>
 
-      
+                  <TableCell align="right">Company</TableCell>
+                  <TableCell align="right">Contact</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {jobs.map((job) => (
+                  <Row key={job._id} row={job} />
+                ))}
+              </TableBody>
+            </Table>
+          )}
+        </TableContainer>
+        {jobs && (
+        <Button
+          disabled={endofJobs}
+          variant="outlined"
+          component="label"
+          sx={{ width: "10%", margin: "auto", padding: "5px", display:"flex", justifyContent: "center", mt:"15px", mb: "5px"  }}
+          onClick={handleSeeMore}
+        >
+          {endofJobs ? "end of jobs list" : "See more"}
+        </Button>)};
       </Box>
+      <Footer />
     </>
   );
 };

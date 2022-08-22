@@ -10,6 +10,7 @@ import { Box } from "@mui/system";
 import React from "react";
 
 import HomepageGif from "../assets/Homepagegif.gif";
+import Footer from "../components/Footer";
 import { Navbar } from "../components/Navbar";
 
 import styles from "./Homepage.module.css";
@@ -128,6 +129,7 @@ export const Homepage = () => {
           </CardActionArea>
         </Card> */}
       </Box>
+      <Footer/>
     </>
   );
 };
