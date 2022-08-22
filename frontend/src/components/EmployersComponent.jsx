@@ -162,7 +162,7 @@ export const EmployersComponent = () => {
 
   // fetch all developers data
 
-  const [allDevelopers, setAllDevelopers] = React.useState([]);
+  const [allDevelopers, setAllDevelopers] = React.useState(null);
 
   const fetchEmployerDevelopers = async () => {
     const response = await fetch(
@@ -416,7 +416,7 @@ export const EmployersComponent = () => {
                   type="submit"
                   fullWidth
                   variant="contained"
-                  sx={{ mt: 3, mb: 2 }}
+                  sx={{ mt: 3, mb: 2, width: "20%" }}
                 >
                   Submit Job
                 </Button>
@@ -456,7 +456,7 @@ export const EmployersComponent = () => {
               sx={{
                 mt: 3,
                 mb: 2,
-                width: "82%",
+                width: "40%",
                 display: "block",
                 ml: "auto",
                 mr: "auto",
@@ -481,11 +481,13 @@ export const EmployersComponent = () => {
           </Stack>
           {/* </Item> */}
         </Stack>
+        {allDevelopers && (
         <TableContainer
 
           sx={{margin: "auto", p: 5 }}
         >
-          <Table aria-label="collapsible table">
+           
+            <Table aria-label="collapsible table">
             <TableHead>
               <TableRow>
                 <TableCell>CVs</TableCell>
@@ -495,28 +497,11 @@ export const EmployersComponent = () => {
               </TableRow>
             </TableHead>
 
-            {/* {jobs.map((job) => {
-            <Row key={jobs._id} id={jobs._id}  />
-            
-          })} */}
-            {/* {allDevelopers.map(
-              ({ firstName, lastName, email, jobTitle, _id }, index) => (
-                <RowCV
-                  key={index}
-                  firstName={firstName}
-                  lastName={lastName}
-                  email={email}
-                  jobTitle={jobTitle}
-                  idDeveloper={_id}
-                />
-              )
-            )}
-            {allCVs.map(({experience, education, skills, languages, userId}, index) => (
-              <RowCV key={index} experience={experience} education={education} skills={skills} languages={languages} userId={userId} />
-            ))} */}
             <RowCV allCVs={allCVs} allDevelopers={allDevelopers}/>
           </Table>
-        </TableContainer>
+        </TableContainer>)}
+           
+          
       </Box>
       <Footer/>
     </>
