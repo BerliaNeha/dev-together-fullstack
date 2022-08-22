@@ -40,28 +40,28 @@ import CodeIcon from "@mui/icons-material/Code";
 import Footer from "./Footer";
 
 
-function createData(name, calories, fat, carbs, protein, price) {
-  return {
-    name,
-    calories,
-    fat,
-    carbs,
-    protein,
-    price,
-    history: [
-      {
-        date: "2020-01-05",
-        customerId: "11091700",
-        amount: 3,
-      },
-      {
-        date: "2020-01-02",
-        customerId: "Anonymous",
-        amount: 1,
-      },
-    ],
-  };
-}
+// function createData(name, calories, fat, carbs, protein, price) {
+//   return {
+//     name,
+//     calories,
+//     fat,
+//     carbs,
+//     protein,
+//     price,
+//     history: [
+//       {
+//         date: "2020-01-05",
+//         customerId: "11091700",
+//         amount: 3,
+//       },
+//       {
+//         date: "2020-01-02",
+//         customerId: "Anonymous",
+//         amount: 1,
+//       },
+//     ],
+//   };
+// }
 
 const style = {
   position: "absolute",
