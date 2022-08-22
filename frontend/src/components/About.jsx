@@ -18,6 +18,7 @@ import Logo from "../assets/logoNobg.png";
 import { Navigate } from "react-router-dom";
 import Berlia from "../assets/Berlia.jpg"
 import Vanesa from "../assets/Vanesa.jpg"
+import Arrow2 from "../assets/arrow3.gif"
 
 function About(props) {
   const About = {
@@ -34,7 +35,7 @@ function About(props) {
       title: "Hello, I am",
       date: "Berlia",
       description: "Working as a Web Developer",
-      image: { Berlia },
+      image:"../assets/Berlia.jpg",
       imageLabel: "Image Text",
       linkText: "https://www.linkedin.com/in/neha-berlia-66b14554/",
       linkText2: "https://portfolio-neha-berlia.vercel.app/",
@@ -43,7 +44,7 @@ function About(props) {
       title: "Hello, I am",
       date: "Vaia",
       description: "Working as a Web Developer.",
-      image: { Vanesa },
+      image: {Vanesa},
       imageLabel: "Image Text",
       linkText: "https://www.linkedin.com/in/neha-berlia-66b14554/",
       linkText2: "https://portfolio-neha-berlia.vercel.app/",
@@ -61,12 +62,12 @@ function About(props) {
           width: "100%",
           display: { xs: "none", sm: "none", md: "block" },
           position: "relative",
-          backgroundColor: (theme) => theme.palette.primary.main,
+          // backgroundColor: (theme) => theme.palette.primary.main,
           color: "#fff",
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
           backgroundPosition: "top",
-          backgroundImage: `url(${Arrow})`,
+          backgroundImage: `url(${Arrow2})`,
         }}
       >
         <Box
