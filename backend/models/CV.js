@@ -9,6 +9,7 @@ const cvSchema = new Schema(
       {
         company: { type: String },
         position: { type: String },
+        description:{type: String},
         startDate: { type: String },
         endDate: { type: String },
       },
@@ -16,9 +17,10 @@ const cvSchema = new Schema(
     education: [
       {
         schoolName: { type: String },
-        degreeDescription: { type: String },
-        start: { type: String },
-        end: { type: String },
+        studies: { type: String },
+        degree: { type: String },
+        startDate: { type: String },
+        endDate: { type: String },
       },
     ],
     skills: [],
