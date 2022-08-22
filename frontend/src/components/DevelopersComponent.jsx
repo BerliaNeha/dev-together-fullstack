@@ -418,7 +418,7 @@ export const DevelopersComponent = () => {
 
   //To fetch jobs from the jobs collection
 
-  const [jobs, setJobs] = React.useState({});
+  const [jobs, setJobs] = React.useState(null);
 
   const fetchEmployerJobs = async () => {
     // const newJobList = {
@@ -457,15 +457,6 @@ export const DevelopersComponent = () => {
     // const [remoteWork, setRemoteWork] = React.useState("");
     // const [jobList, setJobList] = React.useState([]);
   };
-
-  const rows = [
-    createData(`${jobs.position}`, 159, 6.0, 24, 4.0, 3.99),
-    createData('Ice cream sandwich', 237, 9.0, 37, 4.3, 4.99),
-    createData('Eclair', 262, 16.0, 24, 6.0, 3.79),
-    createData('Cupcake', 305, 3.7, 67, 4.3, 2.5),
-    createData('Gingerbread', 356, 16.0, 49, 3.9, 1.5),
-  ];
-
 
   console.log(CV, "cvcvcvcv");
 
@@ -1160,7 +1151,7 @@ export const DevelopersComponent = () => {
         {/* <Box>
 
         </Box> */}
-        <TableContainer component={Paper} sx ={{width: "90%", margin: "auto"}}>
+        <TableContainer component={Paper} sx ={{width: "100%", margin: "auto"}}>
       <Table aria-label="collapsible table">
         <TableHead>
           <TableRow>
@@ -1172,12 +1163,8 @@ export const DevelopersComponent = () => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {/* {jobs.map((job) => {
-            <Row key={jobs._id} id={jobs._id}  />
-            
-          })} */}
-          {rows.map((row) => (
-            <Row key={row.name} row={row} />
+          {jobs && jobs.map((job) => (
+            <Row key={job._id} row={job} />
           ))}
         </TableBody>
       </Table>
