@@ -254,7 +254,7 @@ export const EmployersComponent = () => {
                 validate
                 onSubmit={submitJob}
                 sx={{
-                  boxShadow: "1px 1px 25px 4px #000000",
+                  boxShadow: `0px 15px 20px rgba(0,0,0,0.20)`,
                   borderRadius: 5,
                   display: "flex",
                   flexDirection: "column",

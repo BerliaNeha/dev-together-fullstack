@@ -39,7 +39,6 @@ import CodeIcon from "@mui/icons-material/Code";
 
 import Footer from "./Footer";
 
-
 // function createData(name, calories, fat, carbs, protein, price) {
 //   return {
 //     name,
@@ -72,8 +71,8 @@ const style = {
   bgcolor: "background.paper",
   border: "2px solid #000",
   boxShadow: 24,
-  p: "1%",
-  color: (theme) => theme.palette.primary.main,
+  p: "3%",
+  color: (theme) => theme.palette.secondary.main,
 };
 
 export const DevelopersComponent = () => {
@@ -171,7 +170,6 @@ export const DevelopersComponent = () => {
     const parsedRes = await response.json();
     try {
       if (response.ok) {
-        
         setCV(parsedRes);
         console.log("Server response", parsedRes);
       } else {
@@ -459,8 +457,6 @@ export const DevelopersComponent = () => {
     }
   };
 
-
-
   const handleJobs = async () => {
     fetchEmployerJobs();
 
@@ -550,14 +546,17 @@ export const DevelopersComponent = () => {
           <CardContent
             sx={{ display: "flex", justifyContent: "space-between" }}
           >
-            <Typography variant="h5"> <WorkIcon/> Work Experience</Typography>
+            <Typography variant="h5">
+              {" "}
+              <WorkIcon /> Work Experience
+            </Typography>
             <div>
               <Button
                 variant="outlined"
                 sx={{
                   width: "100px",
                   marginTop: "4%",
-                  color: (theme) => theme.palette.secondary.main,
+                  color: (theme) => theme.palette.primary.main,
                 }}
                 onClick={handleOpenExperience}
               >
@@ -670,7 +669,7 @@ export const DevelopersComponent = () => {
                         sx={{
                           width: "150px",
                           marginTop: "4%",
-                          color: (theme) => theme.palette.secondary.main,
+                          color: (theme) => theme.palette.primary.main,
                         }}
                         onClick={submitExperience}
                       >
@@ -698,7 +697,7 @@ export const DevelopersComponent = () => {
                 >
                   {/* right card */}
                   <Card
-                    sx={{ width: "90%", border: "0.5px solid #EEA47FFF", p: 2 }}
+                    sx={{ width: "90%", border: "0.5px solid #7b9acc", p: 2 }}
                   >
                     <Grid
                       container
@@ -767,20 +766,21 @@ export const DevelopersComponent = () => {
           }
         )}
         {/* second CARD EDUCATION */}
-        <Box
-          sx={{ marginBottom: "1%", mt: "1%", borderBottom: 1, borderLeft: 1 }}
-        >
+        <Box sx={{ marginBottom: "1%", mt: "1%" }}>
           <CardContent
             sx={{ display: "flex", justifyContent: "space-between" }}
           >
-            <Typography variant="h5"> <SchoolIcon/>  Education</Typography>
+            <Typography variant="h5">
+              {" "}
+              <SchoolIcon /> Education
+            </Typography>
             <div>
               <Button
                 variant="outlined"
                 sx={{
                   width: "100px",
                   marginTop: "4%",
-                  color: (theme) => theme.palette.secondary.main,
+                  color: (theme) => theme.palette.primary.main,
                 }}
                 onClick={handleOpenEducation}
               >
@@ -794,11 +794,7 @@ export const DevelopersComponent = () => {
                 aria-describedby="modal-modal-description"
               >
                 <Box sx={style}>
-                  <Grid
-                    container
-                    direction="column"
-                    justifyContent="space-evenly"
-                  >
+                  <Grid container direction="column">
                     <Grid
                       container
                       direction="row"
@@ -846,46 +842,51 @@ export const DevelopersComponent = () => {
                           <MenuItem value="Bachelor">Bachelor</MenuItem>
                           <MenuItem value="Master">Master</MenuItem>
                           <MenuItem value="PhD">PhD</MenuItem>
+                          <MenuItem value="Other">Other</MenuItem>
+
                         </Select>
                       </FormControl>
                     </Grid>
-                    <Grid item xs={12} sm={12} md={6} sx={{ mt: 2 }}>
-                      <LocalizationProvider dateAdapter={AdapterDateFns}>
-                        <DesktopDatePicker
-                          id="startDate"
-                          required
-                          variant="standard"
-                          disableFuture
-                          label="Start Date"
-                          openTo="year"
-                          views={["year", "month"]}
-                          value={valueStartDateEdu}
-                          onChange={(newValue) => {
-                            setValueStartDateEdu(newValue);
-                          }}
-                          renderInput={(params) => <TextField {...params} />}
-                        />
-                      </LocalizationProvider>
+                    <Grid container>
+                      <Grid item sx={{ mt: 2 }}>
+                        <LocalizationProvider dateAdapter={AdapterDateFns}>
+                          <DesktopDatePicker
+                            id="startDate"
+                            required
+                            variant="standard"
+                            disableFuture
+                            label="Start Date"
+                            openTo="year"
+                            views={["year", "month"]}
+                            value={valueStartDateEdu}
+                            onChange={(newValue) => {
+                              setValueStartDateEdu(newValue);
+                            }}
+                            renderInput={(params) => <TextField {...params} />}
+                          />
+                        </LocalizationProvider>
+                      </Grid>
+                      <Grid item sx={{ mt: 2, ml:2 }}>
+                        <LocalizationProvider dateAdapter={AdapterDateFns}>
+                          <DesktopDatePicker
+                            id="endDate"
+                            required
+                            sx={{ paddingBottom: "50%" }}
+                            variant="standard"
+                            disableFuture
+                            label="End Date"
+                            openTo="year"
+                            views={["year", "month"]}
+                            value={valueEndDateEdu}
+                            onChange={(newValue) => {
+                              setValueEndDateEdu(newValue);
+                            }}
+                            renderInput={(params) => <TextField {...params} />}
+                          />
+                        </LocalizationProvider>
+                      </Grid>
                     </Grid>
-                    <Grid item xs={12} sm={12} md={6} sx={{ mt: 2 }}>
-                      <LocalizationProvider dateAdapter={AdapterDateFns}>
-                        <DesktopDatePicker
-                          id="endDate"
-                          required
-                          sx={{ paddingBottom: "50%" }}
-                          variant="standard"
-                          disableFuture
-                          label="End Date"
-                          openTo="year"
-                          views={["year", "month"]}
-                          value={valueEndDateEdu}
-                          onChange={(newValue) => {
-                            setValueEndDateEdu(newValue);
-                          }}
-                          renderInput={(params) => <TextField {...params} />}
-                        />
-                      </LocalizationProvider>
-                    </Grid>
+
                     <Grid item xs={12}>
                       <Button
                         type="submit"
@@ -893,7 +894,7 @@ export const DevelopersComponent = () => {
                         sx={{
                           width: "150px",
                           marginTop: "4%",
-                          color: (theme) => theme.palette.secondary.main,
+                          color: (theme) => theme.palette.primary.main,
                         }}
                         onClick={submitEducation}
                       >
@@ -921,7 +922,7 @@ export const DevelopersComponent = () => {
                 >
                   {/* right card */}
                   <Card
-                    sx={{ width: "90%", border: "0.5px solid #EEA47FFF", p: 2 }}
+                    sx={{ width: "90%", border: "0.5px solid #7b9acc", p: 2 }}
                   >
                     <Grid
                       container
@@ -987,20 +988,21 @@ export const DevelopersComponent = () => {
         )}
 
         {/* third CARD SKILLS */}
-        <Box
-          sx={{ marginBottom: "1%", mt: "1%", borderBottom: 1, borderLeft: 1 }}
-        >
+        <Box sx={{ marginBottom: "1%", mt: "1%" }}>
           <CardContent
             sx={{ display: "flex", justifyContent: "space-between" }}
           >
-            <Typography variant="h5"> <CodeIcon/> Skills</Typography>
+            <Typography variant="h5">
+              {" "}
+              <CodeIcon /> Skills
+            </Typography>
             <div>
               <Button
                 variant="outlined"
                 sx={{
                   width: "100px",
                   marginTop: "4%",
-                  color: (theme) => theme.palette.secondary.main,
+                  color: (theme) => theme.palette.primary.main,
                 }}
                 onClick={handleOpenSkills}
               >
@@ -1014,26 +1016,35 @@ export const DevelopersComponent = () => {
                 aria-describedby="modal-modal-description"
               >
                 <Box sx={style}>
-                  <TextField
-                    sx={{ marginBottom: "15%" }}
-                    required
-                    id="skills"
-                    label="Skills"
-                    variant="standard"
-                    value={skills}
-                    onChange={handleSkills}
-                  />
-                  <Button
-                    variant="outlined"
+                  <Box
                     sx={{
-                      width: "150px",
-                      marginTop: "4%",
-                      color: (theme) => theme.palette.secondary.main,
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "center",
+                      justifyContent: "center",
                     }}
-                    onClick={submitSkills}
                   >
-                    Add
-                  </Button>
+                    <TextField
+                      sx={{ marginBottom: "15%" }}
+                      required
+                      id="skills"
+                      label="Skills"
+                      variant="standard"
+                      value={skills}
+                      onChange={handleSkills}
+                    />
+                    <Button
+                      variant="outlined"
+                      sx={{
+                        width: "150px",
+                        marginTop: "4%",
+                        color: (theme) => theme.palette.primary.main,
+                      }}
+                      onClick={submitSkills}
+                    >
+                      Add
+                    </Button>
+                  </Box>
                 </Box>
               </Modal>
             </div>
@@ -1052,11 +1063,11 @@ export const DevelopersComponent = () => {
                 <Card
                   sx={{
                     width: "auto",
-                    p:1,
+                    p: 1,
                     mr: 2,
                     mt: 2,
                     mb: 2,
-                    border: "0.5px solid #EEA47FFF",
+                    border: "0.5px solid #7b9acc",
                   }}
                 >
                   <Typography
@@ -1072,18 +1083,20 @@ export const DevelopersComponent = () => {
         </Box>
 
         {/* fourth CARD languages */}
-        <Box sx={{ marginBottom: "1%", borderBottom: 1, borderLeft: 1 }}>
+        <Box sx={{ marginBottom: "1%" }}>
           <CardContent
             sx={{ display: "flex", justifyContent: "space-between" }}
           >
-            <Typography variant="h5"><LanguageIcon/> Languages</Typography>
+            <Typography variant="h5">
+              <LanguageIcon /> Languages
+            </Typography>
             <div>
               <Button
                 variant="outlined"
                 sx={{
                   width: "100px",
                   marginTop: "4%",
-                  color: (theme) => theme.palette.secondary.main,
+                  color: (theme) => theme.palette.primary.main,
                 }}
                 onClick={handleOpenLanguages}
               >
@@ -1097,27 +1110,36 @@ export const DevelopersComponent = () => {
                 aria-describedby="modal-modal-description"
               >
                 <Box sx={style}>
-                  <TextField
-                    sx={{ marginBottom: "15%" }}
-                    required
-                    id="languages"
-                    label="Languages"
-                    variant="standard"
-                    value={languages}
-                    onChange={handleLanguages}
-                  />
-
-                  <Button
-                    variant="outlined"
+                  <Box
                     sx={{
-                      width: "150px",
-                      marginTop: "4%",
-                      color: (theme) => theme.palette.secondary.main,
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "center",
+                      justifyContent: "center",
                     }}
-                    onClick={submitLanguages}
                   >
-                    Add
-                  </Button>
+                    <TextField
+                      sx={{ marginBottom: "15%" }}
+                      required
+                      id="languages"
+                      label="Languages"
+                      variant="standard"
+                      value={languages}
+                      onChange={handleLanguages}
+                    />
+
+                    <Button
+                      variant="outlined"
+                      sx={{
+                        width: "150px",
+                        marginTop: "4%",
+                        color: (theme) => theme.palette.primary.main,
+                      }}
+                      onClick={submitLanguages}
+                    >
+                      Add
+                    </Button>
+                  </Box>
                 </Box>
               </Modal>
             </div>
@@ -1137,11 +1159,11 @@ export const DevelopersComponent = () => {
                 <Card
                   sx={{
                     width: "auto",
-                    p:1,
+                    p: 1,
                     mr: 2,
                     mt: 2,
                     mb: 2,
-                    border: "0.5px solid #EEA47FFF",
+                    border: "0.5px solid #7b9acc",
                   }}
                 >
                   <Typography
@@ -1173,12 +1195,10 @@ export const DevelopersComponent = () => {
         >
           Search Jobs
         </Button>
-
         <TableContainer
           component={Paper}
           sx={{ width: "80%", margin: "auto", padding: "5px" }}
         >
-         
           {jobs && (
             <Table aria-label="collapsible table">
               <TableHead>
@@ -1200,15 +1220,25 @@ export const DevelopersComponent = () => {
           )}
         </TableContainer>
         {jobs && (
-        <Button
-          disabled={endofJobs}
-          variant="outlined"
-          component="label"
-          sx={{ width: "10%", margin: "auto", padding: "5px", display:"flex", justifyContent: "center", mt:"15px", mb: "5px"  }}
-          onClick={handleSeeMore}
-        >
-          {endofJobs ? "end of jobs list" : "See more"}
-        </Button>)};
+          <Button
+            disabled={endofJobs}
+            variant="outlined"
+            component="label"
+            sx={{
+              width: "10%",
+              margin: "auto",
+              padding: "5px",
+              display: "flex",
+              justifyContent: "center",
+              mt: "15px",
+              mb: "5px",
+            }}
+            onClick={handleSeeMore}
+          >
+            {endofJobs ? "end of jobs list" : "See more"}
+          </Button>
+        )}
+        ;
       </Box>
       <Footer />
     </>
