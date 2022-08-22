@@ -91,20 +91,17 @@ const App = () => {
 
                   <Route path="/about-us" element={<AboutUs />} />
 
-                  <Route
-                    path="/register-employer"
-                    element={<RegisterEmployer />}
-                  />
+             
 
 
                   <Route path="/contact" element={<Contact />} />
                 </Routes>
-                <Footer />
+               
               </Box>
             </Router>
           </ThemeProvider>
       </ContainerMyContext>
-ner>
+
 
     </React.StrictMode>
   );

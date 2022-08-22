@@ -6,6 +6,7 @@ import { Button } from "@mui/material";
 
 import ContactUs from "../assets/contactUs.jpg";
 import { Navbar } from "./Navbar";
+import Footer from "./Footer";
 
 
 export default function BasicTextFields() {
@@ -23,9 +24,7 @@ export default function BasicTextFields() {
           opacity: "0.6",
         }}
       >
-        <span>Thanks, I'll reply ASAP :) </span>
-      </Box>
-    );
+        <span>Thanks, I'll reply ASAP! </span></Box> );
   }
   return (
     <>
@@ -147,6 +146,7 @@ export default function BasicTextFields() {
         </Button>
       </Box>
     </Box>
+    <Footer/>
     </>
   );
 }
