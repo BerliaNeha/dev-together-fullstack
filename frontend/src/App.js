@@ -96,6 +96,7 @@ const App = () => {
                     element={<RegisterEmployer />}
                   />
 
+
                   <Route path="/contact" element={<Contact />} />
                 </Routes>
                 <Footer />
@@ -103,6 +104,8 @@ const App = () => {
             </Router>
           </ThemeProvider>
       </ContainerMyContext>
+ner>
+
     </React.StrictMode>
   );
 };

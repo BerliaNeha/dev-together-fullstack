@@ -28,7 +28,11 @@ import Checkbox from "@mui/material/Checkbox";
 import TextField from "@mui/material/TextField";
 import BgEmployerPage from "../assets/bgEmployerPage.jpg";
 import { Typography } from "@mui/material";
+
 import { RowCV } from "./Context/RowCV";
+
+import Footer from "./Footer";
+
 export const EmployersComponent = () => {
   const { currentUserId } = React.useContext(MyContext);
   // employer state
@@ -514,6 +518,7 @@ export const EmployersComponent = () => {
           </Table>
         </TableContainer>
       </Box>
+      <Footer/>
     </>
   );
 };

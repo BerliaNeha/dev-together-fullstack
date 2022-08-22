@@ -7,11 +7,16 @@ import Jobs from "../models/jobs.js";
 export const jobsGet = async (req, res, next) => {
   // const jobId = req.params.id;
 
+  const page = Number(req.query.page) || 1
+  const pageSize = Number(req.query.pageSize) || 10 
+  const skipRows = (page - 1) * pageSize;
+
+
   let foundJobs;
   try {
     foundJobs = await Jobs.find().sort({
       createdAt: -1,
-    });
+    }).skip(skipRows).limit(pageSize);
 
     return (res.status(200).json(foundJobs))
   } catch {
