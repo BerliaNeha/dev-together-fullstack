@@ -3,17 +3,11 @@ import PropTypes from "prop-types";
 import Box from "@mui/material/Box";
 import Collapse from "@mui/material/Collapse";
 import IconButton from "@mui/material/IconButton";
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Typography from "@mui/material/Typography";
-import Paper from "@mui/material/Paper";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
-import { TextField } from "@mui/material";
 
 export function Row({ row }) {
   console.log(row, "jobs in row component");
@@ -36,8 +30,11 @@ export function Row({ row }) {
           {row.name}
         </TableCell> */}
         <TableCell align="left">{row.position}</TableCell>
-        <TableCell align="left">{row.companyName}</TableCell>
-        <TableCell align="center">{row.hiringRemoteDeveloperCheckbox ? "remote"  : "onsite" }</TableCell>
+        <TableCell align="center">
+          {row.hiringRemoteDeveloperCheckbox ? "remote" : "onsite"}
+        </TableCell>
+        <TableCell align="right">{row.companyName}</TableCell>
+       
         <TableCell align="right">{row.email}</TableCell>
       </TableRow>
       <TableRow>
@@ -52,8 +49,8 @@ export function Row({ row }) {
                 aria-label="purchases"
                 sx={{ border: "0.5px solid" }}
               >
-                <Typography sx={{ width: "100%" }}>
-                {row.jobDescription}
+                <Typography sx={{ width: "100%", overflow:"scroll" }}>
+                  {row.jobDescription}
                 </Typography>
               </Box>
             </Box>

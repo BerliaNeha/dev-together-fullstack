@@ -1,160 +1,232 @@
 import React from "react";
-// import CssBaseline from '@mui/material/CssBaseline';
-// import Grid from '@mui/material/Grid';
-// import Container from '@mui/material/Container';
-// import GitHubIcon from '@mui/icons-material/GitHub';
-// import FacebookIcon from '@mui/icons-material/Facebook';
-// import TwitterIcon from '@mui/icons-material/Twitter';
-// import { createTheme, ThemeProvider } from '@mui/material/styles';
-// import Header from './Header';
-// import MainFeaturedPost from './MainFeaturedPost';
-// import FeaturedPost from './FeaturedPost';
-// import Main from './Main';
-// import Sidebar from './Sidebar';
-// import Footer from './Footer';
-// import post1 from './blog-post.1.md';
-// import post2 from './blog-post.2.md';
-// import post3 from './blog-post.3.md';
-// import { chainPropTypes } from "@mui/utils";
+import CssBaseline from "@mui/material/CssBaseline";
+import Grid from "@mui/material/Grid";
+import Container from "@mui/material/Container";
+import GitHubIcon from "@mui/icons-material/GitHub";
+import FacebookIcon from "@mui/icons-material/Facebook";
+import TwitterIcon from "@mui/icons-material/Twitter";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 
-// const sections = [
-//   { title: 'Technology', url: '#' },
-//   { title: 'Design', url: '#' },
-//   { title: 'Culture', url: '#' },
-//   { title: 'Business', url: '#' },
-//   { title: 'Politics', url: '#' },
-//   { title: 'Opinion', url: '#' },
-//   { title: 'Science', url: '#' },
-//   { title: 'Health', url: '#' },
-//   { title: 'Style', url: '#' },
-//   { title: 'Travel', url: '#' },
-// ];
+import MainFeaturedPost from "../components/BlogDevCommunity/MainFeaturedPost.jsx";
+import FeaturedPost from "../components/BlogDevCommunity/FeaturedPost.jsx";
 
-// const mainFeaturedPost = {
-//   title: 'Title of a longer featured blog post',
-//   description:
-//     "Multiple lines of text that form the lede, informing new readers quickly and efficiently about what's most interesting in this post's contents.",
-//   image: 'https://source.unsplash.com/random',
-//   imageText: 'main image description',
-//   linkText: 'Continue reading…',
-// };
+import Sidebar from "../components/BlogDevCommunity/Sidebar.jsx";
+import Footer from "../components/BlogDevCommunity/Footer.jsx";
+import post1 from "../components/BlogDevCommunity/blog-post.1.md";
+import post2 from "../components/BlogDevCommunity/blog-post.2.md";
+import post3 from "../components/BlogDevCommunity/blog-post.3.md";
+import Box from "@mui/material/Box";
+import EventsDevCom from "../assets/eventsDevCom.jpg";
+import { Typography } from "@mui/material";
+// import BgDevCom from "../assets/bgDevCom.jpg";
+import Blog1 from "../assets/Blog1.jpg";
+import Blog2 from "../assets/Blog2.jpg";
+import Events from "./BlogDevCommunity/events.jsx";
 
-// const featuredPosts = [
-//   {
-//     title: 'Featured post',
-//     date: 'Nov 12',
-//     description:
-//       'This is a wider card with supporting text below as a natural lead-in to additional content.',
-//     image: 'https://source.unsplash.com/random',
-//     imageLabel: 'Image Text',
-//   },
-//   {
-//     title: 'Post title',
-//     date: 'Nov 11',
-//     description:
-//       'This is a wider card with supporting text below as a natural lead-in to additional content.',
-//     image: 'https://source.unsplash.com/random',
-//     imageLabel: 'Image Text',
-//   },
-// ];
+const sections = [
+  // { title: 'Technology', url: '#' },
+  // { title: 'Design', url: '#' },
+  // { title: 'Culture', url: '#' },
+  // { title: 'Business', url: '#' },
+  // { title: 'Politics', url: '#' },
+  // { title: 'Opinion', url: '#' },
+  // { title: 'Science', url: '#' },
+  // { title: 'Health', url: '#' },
+  // { title: 'Style', url: '#' },
+  // { title: 'Travel', url: '#' },
+];
 
-// const posts = [post1, post2, post3];
+const mainFeaturedPost = {
+  title: "Blogs, Events and Meet ups",
+  description:
+    "Start a dev blog in just a few seconds. No Ads, No PayWall - Own your content! A Developer-friendly platform to share your ideas, attend events or simply take a break by meeting local developers!",
+  // backgroundImage: `url(${BgDevCom})`,
+  imageText: "main image description",
+  linkText: "Continue reading…",
+};
 
-// const sidebar = {
-//   title: 'About',
-//   description:
-//     'Etiam porta sem malesuada magna mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.',
-//   archives: [
-//     { title: 'March 2020', url: '#' },
-//     { title: 'February 2020', url: '#' },
-//     { title: 'January 2020', url: '#' },
-//     { title: 'November 1999', url: '#' },
-//     { title: 'October 1999', url: '#' },
-//     { title: 'September 1999', url: '#' },
-//     { title: 'August 1999', url: '#' },
-//     { title: 'July 1999', url: '#' },
-//     { title: 'June 1999', url: '#' },
-//     { title: 'May 1999', url: '#' },
-//     { title: 'April 1999', url: '#' },
-//   ],
-//   social: [
-//     { name: 'GitHub', icon: GitHubIcon },
-//     { name: 'Twitter', icon: TwitterIcon },
-//     { name: 'Facebook', icon: FacebookIcon },
-//   ],
-// };
+//*********************Blog/Featured posts*****************************/
 
-// const theme = createTheme();
+const featuredPosts = [
+  {
+    title: "How to prepare for Startup interviews?",
+    date: "Nov 12",
+    description:
+      'You are an experienced tech professional. On any given weekday, you open your LinkedIn or your personal mailbox, and there it is. "Hello from Google!", "Hiring Sr. SDEs at Amazon", "Meta would love to…',
+    image: Blog1,
+    imageLabel: "Image Text",
+  },
+  {
+    title: "How to Debug Better with Chrome",
+    date: "Nov 11",
+    description:
+      "Has your JavaScript ever failed to execute correctly and you struggled to figure out why? Has your CSS ever behaved strangely and you struggled to figure out why or get it to display as intended? Debu…",
+    image: Blog2,
+    imageLabel: "Image Text",
+  },
+  {
+    title: "System Design",
+    date: "Nov 11",
+    description:
+      "Hey, welcome to the course. I hope this course provides a great learning experience. This course is also available on GitHub. Please leave a ⭐ on Github as motivation if this was helpful! Table of con….",
 
+    imageLabel: "Image Text",
+  },
+  {
+    title: "A Technical Debt Crisis of Software And  Why",
+    date: "Nov 11",
+    description:
+      "On September 15, 2008, Lehman Brothers went bankrupt. It was the climax of the financial crisis around 2008 with enormous economic consequence…",
 
-// // function FeaturedPost(props) {
-// //     const { post } = props; 
+    imageLabel: "Image Text",
+  },
+  {
+    title: "Build an extendable in-browser devtools",
+    date: "Nov 11",
+    description:
+      "Devtools are useful and part of our daily work as developers. If you are developing for the web, you have probably…",
 
-// const FeaturedPost = {
-//     post: chainPropTypes.shape({
-//       date: PropTypes.string.isRequired,
-//       description: PropTypes.string.isRequired,
-//       image: PropTypes.string.isRequired,
-//       imageLabel: PropTypes.string.isRequired,
-//       title: PropTypes.string.isRequired,
-//     }).isRequired,
-//   };
+    imageLabel: "Image Text",
+  },
+  {
+    title: "How to Build a Multi-Zone Java App in One Day",
+    date: "Nov 11",
+    description:
+      "Ahoy, matey! At last, the time has come to build and launch the first version of my geo-distributed Java application. It took…",
 
-export const DevCommunityComponent =()=> {
+    imageLabel: "Image Text",
+  },
+];
+
+//**********************Events******************************/
+
+const events = [
+  {
+    title: "SmartCon",
+    date: "Nov 12",
+    description:
+      "The must-attend Web3 experience of the year. A full week of learning from industry luminaries, building alongside the best developers in the space, and connecting with fellow community members from across the globe. SmartCon 2022 is for those who get what Web3 is really about, and those who want to learn.",
+    image: Blog1,
+    location: "NYC",
+    imageLabel: "Image Text",
+  },
+  {
+    title: "SmartCon",
+    date: "Nov 12",
+    description:
+      "The must-attend Web3 experience of the year. A full week of learning from industry luminaries, building alongside the best developers in the space, and connecting with fellow community members from across the globe. SmartCon 2022 is for those who get what Web3 is really about, and those who want to learn.",
+    image: Blog1,
+    location: "NYC",
+    imageLabel: "Image Text",
+  },
+];
+
+const posts = [post1, post2, post3];
+
+//****************************************************/
+
+const sidebar = {
+  title: "About",
+  description:
+    "Start a dev blog in just a few seconds. No Ads, No PayWall- Own your content! A Developer-friendly to share your ideas. Make it a routine or just write for hobby reasons.",
+  archives: [
+    { title: "March 2020", url: "#" },
+    { title: "February 2020", url: "#" },
+    { title: "January 2020", url: "#" },
+    { title: "November 1999", url: "#" },
+    { title: "October 1999", url: "#" },
+    { title: "September 1999", url: "#" },
+    { title: "August 1999", url: "#" },
+    { title: "July 1999", url: "#" },
+    { title: "June 1999", url: "#" },
+    { title: "May 1999", url: "#" },
+    { title: "April 1999", url: "#" },
+  ],
+  social: [
+    { name: "GitHub", icon: GitHubIcon },
+    { name: "Twitter", icon: TwitterIcon },
+    { name: "Facebook", icon: FacebookIcon },
+  ],
+};
+
+const theme = createTheme();
+
+export const DevCommunityComponent = () => {
   return (
-  //   <ThemeProvider theme={theme}>
-  //     <CssBaseline />
-  //     <Container maxWidth="lg">
-  //       <Header title="Blog" sections={sections} />
-  //       <main>
-  //         <MainFeaturedPost post={mainFeaturedPost} />
-  //         {/* <Grid container spacing={4}>
-  //           {featuredPosts.map((post) => (
-  //             <FeaturedPost key={post.title} post={post} />
-  //           ))}
-  //         </Grid> */}
-  //          <Grid item xs={12} md={6}>
-  //     <CardActionArea component="a" href="#">
-  //       <Card sx={{ display: 'flex' }}>
-  //         <CardContent sx={{ flex: 1 }}>
-  //           <Typography component="h2" variant="h5">
-  //             {post.title}
-  //           </Typography>
-  //           <Typography variant="subtitle1" color="text.secondary">
-  //             {post.date}
-  //           </Typography>
-  //           <Typography variant="subtitle1" paragraph>
-  //             {post.description}
-  //           </Typography>
-  //           <Typography variant="subtitle1" color="primary">
-  //             Continue reading...
-  //           </Typography>
-  //         </CardContent>
-  //         <CardMedia
-  //           component="img"
-  //           sx={{ width: 160, display: { xs: 'none', sm: 'block' } }}
-  //           image={post.image}
-  //           alt={post.imageLabel}
-  //         />
-  //       </Card>
-  //     </CardActionArea>
-  //   </Grid>
-  //         <Grid container spacing={5} sx={{ mt: 3 }}>
-  //           <Main title="From the firehose" posts={posts} />
-  //           <Sidebar
-  //             title={sidebar.title}
-  //             description={sidebar.description}
-  //             archives={sidebar.archives}
-  //             social={sidebar.social}
-  //           />
-  //         </Grid>
-  //       </main>
-  //     </Container>
-  //     <Footer
-  //       title="Footer"
-  //       description="Something here to give the footer a purpose!"
-  //     />
-  //   </ThemeProvider>
-  <div>Hello</div>
-   );
-}
+    <>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <Container maxWidth="lg" sx={{ mt: "10px" }}>
+          {/* <Header title="Blog" sections={sections} /> */}
+          <main>
+            <Box sx={{ backgroundColor: "#111827" }}>
+              <MainFeaturedPost post={mainFeaturedPost} />
+
+              {/***********************Featured Posts************************* */}
+
+              <Typography
+                sx={{
+                  color: "#eea47e",
+                  fontWeight: "bold",
+                  fontSize: "20px",
+                  display: "flex",
+                  justifyContent: "center",
+                }}
+              >
+                FROM THE COMMUNITY
+              </Typography>
+              <Typography
+                sx={{
+                  color: "white",
+                  fontWeight: "bold",
+                  fontSize: "60px",
+                  display: "flex",
+                  justifyContent: "center",
+                }}
+              >
+                Featured Posts
+              </Typography>
+              <Grid container spacing={4}>
+                {featuredPosts.map((post) => (
+                  <FeaturedPost key={post.title} post={post} />
+                ))}
+              </Grid>
+
+              {/****************************Events************************* */}
+
+              <Typography
+                sx={{
+                  color: "white",
+                  fontWeight: "bold",
+                  fontSize: "60px",
+                  display: "flex",
+                  justifyContent: "center",
+                }}
+              >
+                Events
+              </Typography>
+
+              <Grid container spacing={4}>
+                {events.map((post) => (
+                  <Events key={post.title} post={post} />
+                ))}
+              </Grid>
+
+              {/************************Social Links***************************** */}
+
+              <Grid container spacing={0} sx={{ m: 2,pb: "6px"}}>
+               
+                <Sidebar
+                  social={sidebar.social}
+                />
+              </Grid>
+            </Box>
+          </main>
+        </Container>
+        <Footer
+      
+        />
+      </ThemeProvider>
+    </>
+  );
+};

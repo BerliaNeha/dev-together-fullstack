@@ -67,7 +67,7 @@ const App = () => {
 
                 <Route path="/contact" element={<Contact />} />
               </Routes>
-              <Footer />
+       
             </Box>
           </Router>
         </ThemeProvider>
