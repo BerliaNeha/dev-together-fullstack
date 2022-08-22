@@ -27,7 +27,7 @@ to pull things to main
 ## git pull origin main
 pull those to your local branch too
 
-## git branch -g branchName
+## git branch -d branchName
 to delete branch after merging
 
 ## on github create pull merge request and other collaborator does it

@@ -1186,7 +1186,7 @@ export const DevelopersComponent = () => {
           sx={{
             mt: 3,
             mb: 2,
-            width: "80%",
+            width: "40%",
             display: "block",
             ml: "auto",
             mr: "auto",
@@ -1195,11 +1195,14 @@ export const DevelopersComponent = () => {
         >
           Search Jobs
         </Button>
+
+        {jobs && (
+
         <TableContainer
           component={Paper}
           sx={{ width: "80%", margin: "auto", padding: "5px" }}
         >
-          {jobs && (
+
             <Table aria-label="collapsible table">
               <TableHead>
                 <TableRow>
@@ -1217,8 +1220,8 @@ export const DevelopersComponent = () => {
                 ))}
               </TableBody>
             </Table>
-          )}
-        </TableContainer>
+         
+        </TableContainer> )}
         {jobs && (
           <Button
             disabled={endofJobs}

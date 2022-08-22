@@ -30,6 +30,7 @@ export function RowCV({ allCVs, allDevelopers }) {
     <React.Fragment>
       {allDevelopers.map((developer) => (
         <>
+        
           <TableRow sx={{ "& > *": { borderBottom: "unset" } }}>
             <TableCell>
               <IconButton
