@@ -54,10 +54,6 @@ export const Homepage = () => {
                   <li>- Fast, relevant and pre-screened shortlists</li>
                 </ul>
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 98e966d1a992cbf2129b8f3c62f079de961b7b14
               <h3>Planned Services:</h3>
               <ul>
                 <li>
@@ -120,11 +116,7 @@ export const Homepage = () => {
         </div>
       </Box>
       <Footer />
-<<<<<<< HEAD
       </Box>
-=======
-               
->>>>>>> 98e966d1a992cbf2129b8f3c62f079de961b7b14
     </>
   )
 }
