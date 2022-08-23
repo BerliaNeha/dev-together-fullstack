@@ -16,9 +16,9 @@ import Arrow from "../assets/arrows2.gif";
 import { HashLink } from "react-router-hash-link";
 import Logo from "../assets/logoNobg.png";
 import { Navigate } from "react-router-dom";
-import Berlia from "../assets/Berlia.jpg"
-import Vanesa from "../assets/Vanesa.jpg"
-import Arrow2 from "../assets/arrow3.gif"
+import Berlia from "../assets/Berlia.jpg";
+import Vanesa from "../assets/Vanesa.jpg";
+import Arrow2 from "../assets/arrow3.gif";
 
 function About(props) {
   const About = {
@@ -35,7 +35,7 @@ function About(props) {
       title: "Hello, I am",
       date: "Berlia",
       description: "Working as a Web Developer",
-      image:"../assets/Berlia.jpg",
+      image: Berlia,
       imageLabel: "Image Text",
       linkText: "https://www.linkedin.com/in/neha-berlia-66b14554/",
       linkText2: "https://portfolio-neha-berlia.vercel.app/",
@@ -44,7 +44,7 @@ function About(props) {
       title: "Hello, I am",
       date: "Vaia",
       description: "Working as a Web Developer.",
-      image: {Vanesa},
+      image: Vanesa,
       imageLabel: "Image Text",
       linkText: "https://www.linkedin.com/in/neha-berlia-66b14554/",
       linkText2: "https://portfolio-neha-berlia.vercel.app/",
@@ -92,21 +92,24 @@ function About(props) {
                 fontSize: 20,
               }}
             >
-            
-               <Button>
-              <HashLink smooth to="/">
-              <img
-                  src={Logo}
-                  alt="logo"
-                  height="100px"
-                  width="200px"
-                  style={{ objectFit: "contain" }}
-                ></img>
+              <Button>
+                <HashLink smooth to="/">
+                  <img
+                    src={Logo}
+                    alt="logo"
+                    height="100px"
+                    width="200px"
+                    style={{ objectFit: "contain" }}
+                  ></img>
                 </HashLink>
               </Button>
 
               <Button>
-                <HashLink smooth to="/about-us/#team" style={{ color: "error", textDecoration: "none" }}>
+                <HashLink
+                  smooth
+                  to="/about-us/#team"
+                  style={{ color: "error", textDecoration: "none" }}
+                >
                   MEET THE TEAM
                 </HashLink>
               </Button>

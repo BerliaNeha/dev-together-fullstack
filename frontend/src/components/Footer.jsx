@@ -5,6 +5,7 @@ import Typography from "@mui/material/Typography";
 import Link from "@mui/material/Link";
 import {
   Button,
+  Grid,
   List,
   ListItem,
   ListItemButton,
@@ -70,10 +71,10 @@ function Footer(props) {
           sx={{
             display: "flex",
             flexDirection: "row",
-            justifyContent: "space-around",
+            justifyContent: "space-between",
           }}
         >
-          <List>
+          <List sx={{ mr: 4 }}>
             <Typography
               variant="h5"
               sx={{ textDecoration: "underline", fontFamily: "inherit" }}
@@ -81,18 +82,18 @@ function Footer(props) {
               Highlights
             </Typography>
             <ListItem disablePadding>
-              <ListItemButton>
+              
                 <HashLink
                   smooth
                   to="/dev-community"
-                  style={{textDecoration: "none" }}
+                  style={{ textDecoration: "none" }}
                 >
                   <ListItemText
                     primary="Events"
                     sx={{ color: (theme) => theme.palette.secondary.main }}
                   />
                 </HashLink>
-              </ListItemButton>
+              
             </ListItem>
             <ListItem disablePadding>
               <ListItemButton>
@@ -113,7 +114,7 @@ function Footer(props) {
                 <HashLink
                   smooth
                   to="/dev-community"
-                  style={{textDecoration: "none" }}
+                  style={{ textDecoration: "none" }}
                 >
                   <ListItemText
                     primary="Blog"
@@ -124,44 +125,71 @@ function Footer(props) {
             </ListItem>
           </List>
 
-          <List>
-            <Typography variant="h5" sx={{ textDecoration: "underline" }}>
-              Follow us
+          <Box>
+            <List>
+              <Typography variant="h5" sx={{ textDecoration: "underline" }}>
+                Legal
+              </Typography>
+              <Box
+                sx={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  flexDirection: "column",
+                }}
+              >
+                <Link
+                  href="/"
+                  sx={{ color: "inherit" }}
+                >
+                  Terms
+                </Link>
+                <Link
+                  href="/"
+                  sx={{ color: "inherit" }}
+                >
+                  Privacy
+                </Link>
+              </Box>
+            </List>{" "}
+            <List sx={{ mr: 2 }}>
+              <Typography variant="h5" sx={{ textDecoration: "underline" }}>
+                Follow us
+              </Typography>
+              <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+                <Link
+                  href="https://www.facebook.com/groups/fbdevelopers/about/"
+                  sx={{ color: "inherit" }}
+                >
+                  <FacebookIcon />
+                </Link>
+                <Link
+                  href="https://www.instagram.com/explore/tags/developer/?hl=el"
+                  sx={{ color: "inherit" }}
+                >
+                  <InstagramIcon />
+                </Link>
+                <Link
+                  href="https://twitter.com/twitter"
+                  sx={{ color: "inherit" }}
+                >
+                  <TwitterIcon />
+                </Link>
+              </Box>
+            </List>
+          </Box>
+
+          {/* <Box>
+          <Typography variant="h6" marked="left" gutterBottom>
+              Legal
             </Typography>
-            <Box sx={{ display: "flex", justifyContent: "space-between" }}>
-              <Link
-                href="https://www.facebook.com/groups/fbdevelopers/about/"
-                sx={{ color: "inherit" }}
-              >
-                <FacebookIcon />
-              </Link>
-              <Link
-                href="https://www.instagram.com/explore/tags/developer/?hl=el"
-                sx={{ color: "inherit" }}
-              >
-                <InstagramIcon />
-              </Link>
-              <Link
-                href="https://twitter.com/twitter"
-                sx={{ color: "inherit" }}
-              >
-                <TwitterIcon />
-              </Link>
-            </Box>
-          </List>
-        </Box>
-        <Box sx={{ display: "flex", justifyContent: "space-between" }}>
-          <Link href="#" sx={{ color: "inherit" }}>
-            Privacy policy{" "}
-          </Link>
-          {" | "}
-          <Link href="#" sx={{ color: "inherit" }}>
-            COVID information{" "}
-          </Link>
-          {" | "}
-          <Link href="#" sx={{ color: "inherit" }}>
-            Terms of service{" "}
-          </Link>
+            <Box component="ul" sx={{ m: 0, listStyle: 'none', p: 0 }}>
+              <Box component="li" sx={{ py: 0.5 }}>
+                <Link href="/premium-themes/onepirate/terms/">Terms</Link>
+              </Box>
+              <Box component="li" sx={{ py: 0.5 }}>
+                <Link href="/premium-themes/onepirate/privacy/">Privacy</Link>
+              </Box>
+            </Box> */}
         </Box>
       </Box>
     </Box>
