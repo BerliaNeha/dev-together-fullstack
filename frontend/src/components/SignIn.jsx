@@ -15,6 +15,9 @@ import { useNavigate } from "react-router-dom";
 
 import { MyContext } from "./Context/context";
 
+import { DevelopersComponent } from "./DevelopersComponent";
+import { EmployersComponent } from "./EmployersComponent";
+
 import { Alert, AlertTitle } from "@mui/material";
 
 function Copyright(props) {
@@ -82,6 +85,7 @@ export const SignIn = () => {
       // If the request was successful and has a company name in response go to employer page or else to developer page
 
       if (response.ok) {
+       
         setCurrentUserId(parsedRes.id);
         window.localStorage.setItem("currentUserId", parsedRes.id);
 
@@ -90,6 +94,7 @@ export const SignIn = () => {
           setIsDev(false);
           window.localStorage.setItem("isDev", false);
           navigate("/employers");
+         
         }
 
         if (!parsedRes.companyName) {
@@ -97,16 +102,24 @@ export const SignIn = () => {
           setIsDev(true);
           window.localStorage.setItem("isDev", true);
           navigate("/developers");
-        }
+        }  
+
       } else {
         throw new Error(parsedRes.message);
       }
+    //   <Alert severity="success">
+    //   <AlertTitle>Login Successful</AlertTitle>
+    //   This is a success alert
+    // </Alert>
+
     } catch (err) {
       console.log(err);
       alert(err.message);
       setEmail("");
       setPassword("");
     }
+
+    alert("Login successful")
   };
 
   return (
@@ -160,6 +173,9 @@ export const SignIn = () => {
             fullWidth
             variant="contained"
             sx={{ mt: 3, mb: 2 }}
+           
+             
+      
           >
             Sign In
           </Button>

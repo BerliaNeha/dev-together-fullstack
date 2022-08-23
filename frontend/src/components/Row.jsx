@@ -7,6 +7,7 @@ import TableRow from "@mui/material/TableRow";
 import Typography from "@mui/material/Typography";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
+
 import TextField from "@mui/material/TextField";
 import PropTypes from "prop-types";
 
@@ -14,6 +15,11 @@ export function Row({ row }) {
   console.log(row, "jobs in row component");
 
   const [open, setOpen] = React.useState(false);
+
+  const splitJobDescription = row.jobDescription;
+  const splittedDescriptionArr = splitJobDescription.split(/[.-]/);
+
+  console.log(splittedDescriptionArr, "JOB DESC");
 
   return (
     <React.Fragment>
@@ -50,6 +56,7 @@ export function Row({ row }) {
                 aria-label="purchases"
                 sx={{ border: "0.5px solid" }}
               >
+
                 <TextField
                   aria-readonly
                   value={row.jobDescription}
