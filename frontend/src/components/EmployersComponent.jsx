@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import {Link} from "react-router-dom"
+import { useRef } from "react";
 import { Navbar } from "./Navbar";
 import CssBaseline from "@mui/material/CssBaseline";
 import Container from "@mui/material/Container";
@@ -89,6 +91,8 @@ export const EmployersComponent = () => {
     };
     fetchUserData();
   }, [currentUserId]);
+
+
   const submitJob = async (event) => {
     console.log("submitting");
     event.preventDefault();
@@ -163,19 +167,33 @@ export const EmployersComponent = () => {
   // fetch all developers data
 
   const [allDevelopers, setAllDevelopers] = React.useState(null);
+  const [itemsPerPage, setItemsPerPage] = React.useState(5);
+  const [currentPage, setCurrentPage] = React.useState(0);
+
+  const [endofDevelopers, setEndofDevelopers] = React.useState(false);
 
   const fetchEmployerDevelopers = async () => {
     const response = await fetch(
-      process.env.REACT_APP_SERVER_URL + `/developers`
+      process.env.REACT_APP_SERVER_URL + `/developers?page=${currentPage + 1}&pageSize=${itemsPerPage}`
     );
     const parsedRes = await response.json();
 
     try {
       if (response.ok) {
+        if(allDevelopers === null){
+
         setAllDevelopers(parsedRes);
       } else {
-        throw new Error(parsedRes.message);
-      }
+        setAllDevelopers((allDevelopers)=> allDevelopers.concat(parsedRes));}
+        if(parsedRes.length < itemsPerPage){
+          setEndofDevelopers(true);
+        } else{
+          setCurrentPage((page)=> page +1)}
+        } else{
+          throw new Error(parsedRes.message);
+        }
+       
+      
     } catch (err) {
       alert(err.message);
     }
@@ -205,6 +223,15 @@ export const EmployersComponent = () => {
     fetchEmployerDevelopers();
   };
 
+  const handleSeeMore = async () => {
+    fetchEmployerDevelopers();
+  };
+
+  // const getSearchTerm=()=>{
+  //   props.searchKeyword(inputEl.current.value)
+
+  // };
+
   return (
     <>
       <Navbar />
@@ -225,20 +252,7 @@ export const EmployersComponent = () => {
           >
             <h2 id="greeting">Welcome {username}!</h2>
           </Box>
-          {/* <Item
-             sx={{
-              width: "100vw",
-              backgroundImage: `url(${BgEmployerPage})`,
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-              backgroundRepeat: "no-repeat",
-              height: "200px",
-              color: "#fff",
-              fontSize: "40px",
-              opacity: "0.75",
-            }}
-           >  */}
-          {/* </Item>  */}
+        
           <Box>
             {/* <Item>  */}
             <Container component="main" sx={{ width: "65%" }}>
@@ -268,8 +282,7 @@ export const EmployersComponent = () => {
                   marginTop: 6,
                   backgroundColor: "rgba(35, 78, 112, 0.31)",
                 }}
-                // noValidate
-                // autoComplete="off"
+              
               >
                 <TextField
                   required
@@ -432,21 +445,9 @@ export const EmployersComponent = () => {
                 </Backdrop>
               </Box>
             </Container>
-            {/* </Item> */}
+           
           </Box>
-          {/* <Item> */}
-          {/* <Container component="main" sx={{ width: "40%", display: "flex", justifyContent:"center" }}>
-            <CssBaseline />
-            <Button
-                  type="submit"
-                  fullWidth
-                  variant="contained"
-                  sx={{ mt: 3, mb: 2 }}
-                >
-                  Search CVs
-                </Button>
-               
-          </Container> */}
+        
 
           <Box>
             <Button
@@ -475,12 +476,16 @@ export const EmployersComponent = () => {
               paddingBottom: "5px",
             }}
           >
+         
+          
             <Button variant="outlined">Frontend</Button>
             <Button variant="outlined">Backend</Button>
             <Button variant="outlined">FullStack</Button>
           </Stack>
           {/* </Item> */}
         </Stack>
+
+
         {allDevelopers && (
         <TableContainer
 
@@ -500,6 +505,25 @@ export const EmployersComponent = () => {
             <RowCV allCVs={allCVs} allDevelopers={allDevelopers}/>
           </Table>
         </TableContainer>)}
+
+        {allDevelopers && (
+          <Button
+            disabled={endofDevelopers}
+            variant="outlined"
+            component="label"
+            sx={{
+              width: "10%",
+              margin: "auto",
+              padding: "5px",
+              display: "flex",
+              justifyContent: "center",
+              mt: "15px",
+              mb: "5px",
+            }}
+            onClick={handleSeeMore}
+          >
+            {endofDevelopers ? "end of CVS list" : "See more"}
+          </Button>)}
            
           
       </Box>

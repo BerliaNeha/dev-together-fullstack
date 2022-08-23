@@ -11,24 +11,6 @@ function Sidebar(props) {
 
   return (
     <>
-      {/* <Paper elevation={0} sx={{ p: 2, bgcolor: 'grey.200' }}> */}
-        {/* <Typography variant="h6" gutterBottom>
-          {title}
-        </Typography> */}
-        {/* <Typography>{description}</Typography> */}
-      {/* </Paper> */}
-      {/* <Typography variant="h6" gutterBottom sx={{ mt: 3 }}>
-        Archives
-      </Typography>
-      {archives.map((archive) => (
-        <Link display="block" variant="body1" href={archive.url} key={archive.title}>
-          {archive.title}
-        </Link>
-      ))} */}
-
-      {/* <Typography variant="h6" gutterBottom sx={{ mt: 3 }}>
-        Social
-      </Typography> */}
       {social.map((network) => (
         <Link
           display="block"

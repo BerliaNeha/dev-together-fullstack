@@ -180,7 +180,7 @@ export const DevelopersComponent = () => {
       alert(err.message);
     }
   };
-  console.log("hello");
+  
   useEffect(() => {
     fetchUserCV();
   }, [currentUserId]);
@@ -460,19 +460,12 @@ export const DevelopersComponent = () => {
   const handleJobs = async () => {
     fetchEmployerJobs();
 
-    // const [companyTitle, setCompanyTitle] = React.useState("");
-    // const [companyEmail, setCompanyEmail] = React.useState("");
-    // const [position, setPosition] = React.useState("");
-    // const [jobDescription, setJobDescription] = React.useState("");
-    // const [remoteWork, setRemoteWork] = React.useState("");
-    // const [jobList, setJobList] = React.useState([]);
   };
 
   const handleSeeMore = async () => {
     fetchEmployerJobs();
   };
 
-  console.log(CV, "cvcvcvcv");
 
   return (
     <>

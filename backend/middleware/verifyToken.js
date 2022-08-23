@@ -24,7 +24,7 @@ const verifyToken = async(req, res, next) =>{
 
         const foundUser = await UserEmployer.findById(decodedToken.id);
         req.user=foundUser;
-        //console.log(req.user)
+        
         next();
     } catch {
         next(createError(404, "User could not be authorized. Please try again"));

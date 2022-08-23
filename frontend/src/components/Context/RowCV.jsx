@@ -16,6 +16,7 @@ import LanguageIcon from "@mui/icons-material/Language";
 import CodeIcon from "@mui/icons-material/Code";
 export function RowCV({ allCVs, allDevelopers }) {
   const [currentUser, setCurrentUser] = React.useState(null);
+ 
 
   console.log(allCVs, "cvs from the row component");
   // console.log(allDevelopers, " developers from the row component");
@@ -198,6 +199,8 @@ export function RowCV({ allCVs, allDevelopers }) {
           )}
         </>
       ))}
+
+
     </React.Fragment>
 
     // <React.Fragment>
