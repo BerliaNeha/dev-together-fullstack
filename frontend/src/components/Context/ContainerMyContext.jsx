@@ -23,6 +23,7 @@ export default function ContainerMyContext({ children }) {
         token,
         setJobId,
         jobId,
+        setToken
       }}
     >
       {children}

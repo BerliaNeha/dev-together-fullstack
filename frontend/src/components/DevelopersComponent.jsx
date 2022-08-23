@@ -71,7 +71,7 @@ const style = {
   bgcolor: "background.paper",
   border: "2px solid #000",
   boxShadow: 24,
-  p: "3%",
+  p: 4,
   color: (theme) => theme.palette.secondary.main,
 };
 
@@ -560,7 +560,6 @@ export const DevelopersComponent = () => {
                 }}
                 onClick={handleOpenExperience}
               >
-                Edit...
                 <EditOutlinedIcon />
               </Button>
               <Modal
@@ -707,7 +706,8 @@ export const DevelopersComponent = () => {
                     >
                       <Grid
                         container
-                        md={6}
+                        sm={6}
+                        md={12}
                         direction="column"
                         justifyContent="space-evenly"
                         alignItems="flex-start"
@@ -717,7 +717,13 @@ export const DevelopersComponent = () => {
                         </Grid>
                         <Grid item>
                           <Typography variant="h6" sx={{ fontWeight: "light" }}>
-                            {company}
+                            {company} | {new Date(endDate).toLocaleDateString("de", {
+                              month: "2-digit",
+                              year: "numeric",
+                            })} -  {new Date(endDate).toLocaleDateString("de", {
+                              month: "2-digit",
+                              year: "numeric",
+                            })}
                           </Typography>
                         </Grid>
                         <Grid item>
@@ -727,9 +733,10 @@ export const DevelopersComponent = () => {
                           >
                             {description}
                           </Typography>
+                         
                         </Grid>
                       </Grid>
-                      <Grid
+                      {/* <Grid
                         container
                         md={6}
                         direction="row"
@@ -738,8 +745,7 @@ export const DevelopersComponent = () => {
                       >
                         <Grid item>
                           <Typography variant="h6">
-                            {/* {startDate.substr(5, 7)}{" "}
-                            {startDate.substr(0, 4)}{" "} */}
+                      
                             {new Date(startDate).toLocaleDateString("de", {
                               month: "2-digit",
                               year: "numeric",
@@ -749,15 +755,14 @@ export const DevelopersComponent = () => {
                         &nbsp; &nbsp;
                         <Grid item>
                           <Typography variant="h6">
-                            {/* {endDate.substr(5, 7)} 
-                            {endDate.substr(0, 4)}{" "} */}
+                       
                             {new Date(endDate).toLocaleDateString("de", {
                               month: "2-digit",
                               year: "numeric",
                             })}
                           </Typography>
                         </Grid>
-                      </Grid>
+                      </Grid> */}
                     </Grid>
                   </Card>
                 </Box>
@@ -784,7 +789,6 @@ export const DevelopersComponent = () => {
                 }}
                 onClick={handleOpenEducation}
               >
-                Edit...
                 <EditOutlinedIcon />
               </Button>
               <Modal
@@ -843,7 +847,6 @@ export const DevelopersComponent = () => {
                           <MenuItem value="Master">Master</MenuItem>
                           <MenuItem value="PhD">PhD</MenuItem>
                           <MenuItem value="Other">Other</MenuItem>
-
                         </Select>
                       </FormControl>
                     </Grid>
@@ -866,7 +869,7 @@ export const DevelopersComponent = () => {
                           />
                         </LocalizationProvider>
                       </Grid>
-                      <Grid item sx={{ mt: 2, ml:2 }}>
+                      <Grid item sx={{ mt: 2, ml: 2 }}>
                         <LocalizationProvider dateAdapter={AdapterDateFns}>
                           <DesktopDatePicker
                             id="endDate"
@@ -1006,7 +1009,6 @@ export const DevelopersComponent = () => {
                 }}
                 onClick={handleOpenSkills}
               >
-                Edit...
                 <EditOutlinedIcon />
               </Button>
               <Modal
@@ -1100,7 +1102,6 @@ export const DevelopersComponent = () => {
                 }}
                 onClick={handleOpenLanguages}
               >
-                Edit...
                 <EditOutlinedIcon />
               </Button>
               <Modal
@@ -1195,14 +1196,11 @@ export const DevelopersComponent = () => {
         >
           Search Jobs
         </Button>
-
         {jobs && (
-
-        <TableContainer
-          component={Paper}
-          sx={{ width: "80%", margin: "auto", padding: "5px" }}
-        >
-
+          <TableContainer
+            component={Paper}
+            sx={{ width: "80%", margin: "auto", padding: "5px" }}
+          >
             <Table aria-label="collapsible table">
               <TableHead>
                 <TableRow>
@@ -1220,8 +1218,8 @@ export const DevelopersComponent = () => {
                 ))}
               </TableBody>
             </Table>
-         
-        </TableContainer> )}
+          </TableContainer>
+        )}
         {jobs && (
           <Button
             disabled={endofJobs}

@@ -11,11 +11,11 @@ import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import { MyContext } from "./Context/context";
-import { DevelopersComponent } from "./DevelopersComponent";
-import { EmployersComponent } from "./EmployersComponent";
+
+import { Alert, AlertTitle } from "@mui/material";
 
 function Copyright(props) {
   return (
@@ -34,6 +34,8 @@ function Copyright(props) {
     </Typography>
   );
 }
+
+
 
 export const SignIn = () => {
   const { setIsLoggedIn, isLoggedIn, setCurrentUserId, setIsDev, isDev } =
@@ -82,6 +84,7 @@ export const SignIn = () => {
       if (response.ok) {
         setCurrentUserId(parsedRes.id);
         window.localStorage.setItem("currentUserId", parsedRes.id);
+
         if (parsedRes.companyName) {
           setIsLoggedIn(true);
           setIsDev(false);

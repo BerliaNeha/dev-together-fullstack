@@ -1,5 +1,10 @@
 import React, { useContext } from "react";
-import { HashRouter as Router, Route, Routes, useNavigate } from "react-router-dom";
+import {
+  HashRouter as Router,
+  Route,
+  Routes,
+  useNavigate,
+} from "react-router-dom";
 import { Homepage } from "./views/Homepage.js";
 
 import Footer from "./components/Footer.jsx";
@@ -31,78 +36,71 @@ const theme = createTheme({
   },
 });
 
-const LoginHandler = ({ setCheckingStorage }) => {
-  const {
-    setIsLoggedIn,
-    setCurrentUserId,
-    setIsDev,
-    isLoggedIn,
-    currentUserId,
-    isDev
-  } = useContext(MyContext);
-  const navigate = useNavigate();
-  React.useEffect(() => {
-    (() => {
-      const id = window.localStorage.getItem("currentUserId");
-      const isDev = window.localStorage.getItem("isDev");
-      if (id !== null) {
-        setIsLoggedIn(true);
-        setCurrentUserId(id);
-        setIsDev(isDev);
-        setCheckingStorage(false);
-        isDev ? navigate("/developers") : navigate("/employers");
-      } 
-
-    })();
-  }, [isLoggedIn, setIsLoggedIn, currentUserId, setCurrentUserId, setCheckingStorage, setIsDev, isDev, navigate]);
-
-  return null;
-};
-
 const App = () => {
   // const [isLoggedIn, setIsLoggedIn] = React.useState(false);
   // const [currentUserId, setCurrentUserId] = React.useState("");
   // const [isDev, setIsDev] = React.useState(true);
 
   // const [checkingStorage, setCheckingStorage] = React.useState(true);
+  // const LoginHandler = () => {
+  //   const {
+  //     setIsLoggedIn,
+  //     setCurrentUserId,
+  //     setIsDev,
+  //     isLoggedIn,
+  //     currentUserId,
+  //     isDev,
+  //   } = useContext(MyContext);
+  //   const navigate = useNavigate();
+  //   React.useEffect(() => {
+  //     (() => {
+  //       const id = window.localStorage.getItem("currentUserId");
+  //       const isDev = window.localStorage.getItem("isDev");
+  //       if (id !== null) {
+  //         setIsLoggedIn(true);
+  //         setCurrentUserId(id);
+  //         setIsDev(isDev);
+  //         setCheckingStorage(false);
+  //         isDev === "true" ? navigate("/developers") : navigate("/employers");
+  //       }
+  //     })();
+  //   }, []);
 
+  //   return null;
+  // };
   return (
     <React.StrictMode>
       <ContainerMyContext>
-          <ThemeProvider theme={theme}>
-            <CssBaseline />
-            <Router>
-              <Box height="100vh">
-                <Routes>
-                  <Route path="/" exact element={<Homepage />} />
-                  <Route path="/developers" element={<Developers />} />
-                  <Route path="/employers" element={<Employers />} />
-                  <Route path="/dev-community" element={<DevCommunity />} />
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
 
-                  <Route
-                    path="/register-employer"
-                    element={<RegisterEmployer />}
-                  />
-                  <Route
-                    path="/register-developer"
-                    element={<RegisterDeveloper />}
-                  />
-                  <Route path="/login" element={<Login />} />
+          <Router>
+            {/* <LoginHandler /> */}
+            <Box height="100vh">
+              <Routes>
+                <Route path="/" exact element={<Homepage />} />
+                <Route path="/developers" element={<Developers />} />
+                <Route path="/employers" element={<Employers />} />
+                <Route path="/dev-community" element={<DevCommunity />} />
 
-                  <Route path="/about-us" element={<AboutUs />} />
+                <Route
+                  path="/register-employer"
+                  element={<RegisterEmployer />}
+                />
+                <Route
+                  path="/register-developer"
+                  element={<RegisterDeveloper />}
+                />
+                <Route path="/login" element={<Login />} />
 
-             
+                <Route path="/about-us" element={<AboutUs />} />
 
-
-                  <Route path="/contact" element={<Contact />} />
-                </Routes>
-               
-              </Box>
-            </Router>
-          </ThemeProvider>
+                <Route path="/contact" element={<Contact />} />
+              </Routes>
+            </Box>
+          </Router>
+        </ThemeProvider>
       </ContainerMyContext>
-
-
     </React.StrictMode>
   );
 };

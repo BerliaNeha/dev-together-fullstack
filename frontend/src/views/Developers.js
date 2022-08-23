@@ -11,6 +11,6 @@ export const Developers = () => {
 
 
   return !isLoggedIn ? <Navigate to="/login" /> : isDev ?<DevelopersComponent />: <Navigate to="/employers"/>
-
+ 
 
 };
