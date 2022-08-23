@@ -478,9 +478,9 @@ export const EmployersComponent = () => {
           >
          
           
-            <Button variant="outlined">Frontend</Button>
+            {/* <Button variant="outlined">Frontend</Button>
             <Button variant="outlined">Backend</Button>
-            <Button variant="outlined">FullStack</Button>
+            <Button variant="outlined">FullStack</Button> */}
           </Stack>
           {/* </Item> */}
         </Stack>

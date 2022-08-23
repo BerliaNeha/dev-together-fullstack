@@ -54,7 +54,6 @@ export const Homepage = () => {
                   <li>- Fast, relevant and pre-screened shortlists</li>
                 </ul>
 
-
               <h3>Planned Services:</h3>
               <ul>
                 <li>
@@ -117,7 +116,7 @@ export const Homepage = () => {
         </div>
       </Box>
       <Footer />
-               
+      </Box>
     </>
-  );
-};
+  )
+}

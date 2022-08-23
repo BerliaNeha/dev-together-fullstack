@@ -15,28 +15,7 @@ import { useNavigate } from "react-router-dom";
 
 import { MyContext } from "./Context/context";
 
-import { DevelopersComponent } from "./DevelopersComponent";
-import { EmployersComponent } from "./EmployersComponent";
 
-import { Alert, AlertTitle } from "@mui/material";
-
-function Copyright(props) {
-  return (
-    <Typography
-      variant="body2"
-      color="text.secondary"
-      align="center"
-      {...props}
-    >
-      {"Copyright © "}
-      <Link color="inherit" href="https://mui.com/">
-        Developer Network
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-}
 
 
 
@@ -204,7 +183,7 @@ export const SignIn = () => {
           </div>
         </Box>
       </Box>
-      <Copyright sx={{ mt: 8, mb: 4 }} />
+     
     </Container>
   );
 };

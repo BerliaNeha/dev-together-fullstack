@@ -7,7 +7,6 @@ import TableRow from "@mui/material/TableRow";
 import Typography from "@mui/material/Typography";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
-
 import TextField from "@mui/material/TextField";
 import PropTypes from "prop-types";
 
@@ -33,9 +32,6 @@ export function Row({ row }) {
             {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
           </IconButton>
         </TableCell>
-        {/* <TableCell component="th" scope="row">
-          {row.name}
-        </TableCell> */}
         <TableCell align="left">{row.position}</TableCell>
         <TableCell align="center">
           {row.hiringRemoteDeveloperCheckbox ? "remote" : "onsite"}
@@ -56,7 +52,6 @@ export function Row({ row }) {
                 aria-label="purchases"
                 sx={{ border: "0.5px solid" }}
               >
-
                 <TextField
                   aria-readonly
                   value={row.jobDescription}
