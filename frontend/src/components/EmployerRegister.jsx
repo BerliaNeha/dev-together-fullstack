@@ -18,23 +18,7 @@ import { FormControl, FormLabel, Radio, RadioGroup } from "@mui/material";
 import { Navigate, useNavigate } from "react-router-dom";
 import { Employers } from "../views/Employers";
 
-function Copyright(props) {
-  return (
-    <Typography
-      variant="body2"
-      color="text.secondary"
-      align="center"
-      {...props}
-    >
-      {"Copyright © "}
-      <Link color="inherit" href="https://mui.com/">
-        Developer Networking
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-}
+
 
 export const EmployerRegister = () => {
   const { isLoggedIn, setIsLoggedIn, setIsDev, setCurrentUserId } =
@@ -287,7 +271,7 @@ export const EmployerRegister = () => {
           </Grid>
         </Box>
       </Box>
-      <Copyright sx={{ mt: 5 }} />
+    
     </Container>
   );
 };
