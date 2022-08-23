@@ -11,30 +11,14 @@ import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import { MyContext } from "./Context/context";
-import { DevelopersComponent } from "./DevelopersComponent";
-import { EmployersComponent } from "./EmployersComponent";
-import { Alert, AlertTitle } from "@mui/material";
 
-function Copyright(props) {
-  return (
-    <Typography
-      variant="body2"
-      color="text.secondary"
-      align="center"
-      {...props}
-    >
-      {"Copyright © "}
-      <Link color="inherit" href="https://mui.com/">
-        Developer Network
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-}
+
+
+
+
 
 export const SignIn = () => {
   const { setIsLoggedIn, isLoggedIn, setCurrentUserId, setIsDev, isDev } =
@@ -84,6 +68,7 @@ export const SignIn = () => {
        
         setCurrentUserId(parsedRes.id);
         window.localStorage.setItem("currentUserId", parsedRes.id);
+
         if (parsedRes.companyName) {
           setIsLoggedIn(true);
           setIsDev(false);
@@ -199,7 +184,7 @@ export const SignIn = () => {
           </div>
         </Box>
       </Box>
-      <Copyright sx={{ mt: 8, mb: 4 }} />
+     
     </Container>
   );
 };
