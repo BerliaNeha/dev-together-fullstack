@@ -7,7 +7,8 @@ import TableRow from "@mui/material/TableRow";
 import Typography from "@mui/material/Typography";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
-import { TextField } from "@mui/material";
+
+import TextField from "@mui/material/TextField";
 import PropTypes from "prop-types";
 
 export function Row({ row }) {
@@ -55,13 +56,16 @@ export function Row({ row }) {
                 aria-label="purchases"
                 sx={{ border: "0.5px solid" }}
               >
-                {splittedDescriptionArr.map((verse) => (
-                  <ul sx={{ width: "100%" }}> {verse}</ul>
-                ))}
 
-                {/* <Typography variant="h6" gutterBottom component="div">
-                  {row.description}
-                </Typography> */}
+                <TextField
+                  aria-readonly
+                  value={row.jobDescription}
+                  id="jobDescription"
+                  name="jobDescription"
+                  multiline
+                  fullWidth
+                  
+                />
               </Box>
             </Box>
           </Collapse>
