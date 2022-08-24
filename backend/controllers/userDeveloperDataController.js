@@ -21,7 +21,7 @@ export const userDeveloperDataGet = async (req, res, next) => {
   if (foundUser) {
     const userDeveloperData = {
       jobTitle: foundUser.jobTitle,
-      username: foundUser.username
+      username: foundUser.username,
     };
     res.json(userDeveloperData);
   } else {
@@ -69,9 +69,8 @@ export const updateCV = async (req, res, next) => {
     foundCV.education = req.body.education;
     foundCV.skills = req.body.skills;
     foundCV.languages = req.body.languages;
-    foundCV.save()
+    foundCV.save();
     res.json({ id: foundCV._id });
-
   } else {
     let newCV;
 
@@ -89,7 +88,6 @@ export const updateCV = async (req, res, next) => {
   }
 };
 
-
 export const getAllDevelopers = async (req, res, next) => {
   // const jobId = req.params.id;
 
@@ -99,12 +97,10 @@ export const getAllDevelopers = async (req, res, next) => {
       createdAt: -1,
     });
 
-    return (res.status(200).json(foundAllDevelopers))
+    return res.status(200).json(foundAllDevelopers);
   } catch {
     return next(createError(500, "Jobs not found. Please try again"));
   }
-
-  
 };
 
 export const getAllCVs = async (req, res, next) => {
@@ -116,10 +112,8 @@ export const getAllCVs = async (req, res, next) => {
       createdAt: -1,
     });
 
-    return (res.status(200).json(foundAllCVs))
+    return res.status(200).json(foundAllCVs);
   } catch {
     return next(createError(500, "CVs not found. Please try again"));
   }
-
-  
 };

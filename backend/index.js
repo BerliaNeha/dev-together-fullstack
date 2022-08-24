@@ -49,8 +49,4 @@ app.listen(process.env.PORT || 3001, () => {
   console.log(`Server has started on port ${process.env.port || 3001}!`);
 });
 
-//server.address().port
 
-// const server = app.listen(process.env.PORT || 0, () => {
-//   console.log(`Server has started on port ${process.env.port || server.address().port}!`);
-// });

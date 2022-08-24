@@ -25,22 +25,13 @@ import Events from "./BlogDevCommunity/events.jsx";
 
 const sections = [
   // { title: 'Technology', url: '#' },
-  // { title: 'Design', url: '#' },
-  // { title: 'Culture', url: '#' },
-  // { title: 'Business', url: '#' },
-  // { title: 'Politics', url: '#' },
-  // { title: 'Opinion', url: '#' },
-  // { title: 'Science', url: '#' },
-  // { title: 'Health', url: '#' },
-  // { title: 'Style', url: '#' },
-  // { title: 'Travel', url: '#' },
+ 
 ];
 
 const mainFeaturedPost = {
   title: "Blogs, Events and Meet ups",
   description:
     "Start a dev blog in just a few seconds. No Ads, No PayWall - Own your content! A Developer-friendly platform to share your ideas, attend events or simply take a break by meeting local developers!",
-  // backgroundImage: `url(${BgDevCom})`,
   imageText: "main image description",
   linkText: "Continue reading…",
 };
@@ -157,7 +148,7 @@ export const DevCommunityComponent = () => {
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <Container maxWidth="lg" sx={{ mt: "10px" }}>
-          {/* <Header title="Blog" sections={sections} /> */}
+        
           <main>
             <Box sx={{ backgroundColor: "#111827" }}>
               <MainFeaturedPost post={mainFeaturedPost} />

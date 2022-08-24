@@ -51,9 +51,7 @@ function About(props) {
     },
   ];
 
-  // const onClick = () => {
-  //   window.location.href = "#team";
-  // };
+  
 
   return (
     <>

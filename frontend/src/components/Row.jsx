@@ -15,6 +15,11 @@ export function Row({ row }) {
 
   const [open, setOpen] = React.useState(false);
 
+  const splitJobDescription = row.jobDescription;
+  const splittedDescriptionArr = splitJobDescription.split(/[.-]/);
+
+  console.log(splittedDescriptionArr, "JOB DESC");
+
   return (
     <React.Fragment>
       <TableRow sx={{ "& > *": { borderBottom: "unset" } }}>
@@ -27,9 +32,6 @@ export function Row({ row }) {
             {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
           </IconButton>
         </TableCell>
-        {/* <TableCell component="th" scope="row">
-          {row.name}
-        </TableCell> */}
         <TableCell align="left">{row.position}</TableCell>
         <TableCell align="center">
           {row.hiringRemoteDeveloperCheckbox ? "remote" : "onsite"}
