@@ -21,6 +21,12 @@ import { Typography } from "@mui/material";
 // import BgDevCom from "../assets/bgDevCom.jpg";
 import Blog1 from "../assets/Blog1.jpg";
 import Blog2 from "../assets/Blog2.jpg";
+import Blog01 from "../assets/Blog01.jpg";
+import Blog02 from "../assets/Blog02.jpg";
+import Blog03 from "../assets/Blog03.jpg";
+import Blog04 from "../assets/Blog04.jpg";
+import Blog05 from "../assets/Blog05.jpg";
+import Blog06 from "../assets/Blog06.jpg";
 import Events from "./BlogDevCommunity/events.jsx";
 
 const sections = [
@@ -52,7 +58,7 @@ const featuredPosts = [
     date: "Nov 11",
     description:
       "Has your JavaScript ever failed to execute correctly and you struggled to figure out why? Has your CSS ever behaved strangely and you struggled to figure out why or get it to display as intended? Debu…",
-    image: Blog2,
+    image: Blog01,
     imageLabel: "Image Text",
   },
   {
@@ -60,6 +66,7 @@ const featuredPosts = [
     date: "Nov 11",
     description:
       "Hey, welcome to the course. I hope this course provides a great learning experience. This course is also available on GitHub. Please leave a ⭐ on Github as motivation if this was helpful! Table of con….",
+      image: Blog2,
 
     imageLabel: "Image Text",
   },
@@ -68,6 +75,7 @@ const featuredPosts = [
     date: "Nov 11",
     description:
       "On September 15, 2008, Lehman Brothers went bankrupt. It was the climax of the financial crisis around 2008 with enormous economic consequence…",
+      image: Blog03,
 
     imageLabel: "Image Text",
   },
@@ -76,6 +84,7 @@ const featuredPosts = [
     date: "Nov 11",
     description:
       "Devtools are useful and part of our daily work as developers. If you are developing for the web, you have probably…",
+      image: Blog03,
 
     imageLabel: "Image Text",
   },
@@ -84,6 +93,7 @@ const featuredPosts = [
     date: "Nov 11",
     description:
       "Ahoy, matey! At last, the time has come to build and launch the first version of my geo-distributed Java application. It took…",
+      image: Blog04,
 
     imageLabel: "Image Text",
   },
@@ -97,7 +107,7 @@ const events = [
     date: "Nov 12",
     description:
       "The must-attend Web3 experience of the year. A full week of learning from industry luminaries, building alongside the best developers in the space, and connecting with fellow community members from across the globe. SmartCon 2022 is for those who get what Web3 is really about, and those who want to learn.",
-    image: Blog1,
+    image: Blog05,
     location: "NYC",
     imageLabel: "Image Text",
   },
@@ -106,7 +116,7 @@ const events = [
     date: "Nov 12",
     description:
       "The must-attend Web3 experience of the year. A full week of learning from industry luminaries, building alongside the best developers in the space, and connecting with fellow community members from across the globe. SmartCon 2022 is for those who get what Web3 is really about, and those who want to learn.",
-    image: Blog1,
+    image: Blog06,
     location: "NYC",
     imageLabel: "Image Text",
   },

@@ -37,9 +37,10 @@ function Footer(props) {
       sx={{
         py: 2,
         display: "flex",
-        justifyContent: "space-between",
+        justifyContent: "space-around",
         backgroundColor: (theme) => theme.palette.primary.main,
         color: (theme) => theme.palette.secondary.main,
+        fontSize: "15px"
       }}
     >
       <Box
@@ -48,13 +49,14 @@ function Footer(props) {
           display: { xs: "none", md: "block" },
         }}
       >
-        <Typography variant="h5">Dev Together</Typography>
-        <Typography variant="h6">Example str XX</Typography>
-        <Typography variant="h6">0000 Berlin</Typography>
-        <Typography variant="h6">030 1234567</Typography>
+        <Typography variant="h5" sx={{fontSize: "18px"}}>Dev Together</Typography>
+        <Typography sx={{fontSize: "15px"}}>Example str XX</Typography>
+        <Typography sx={{fontSize: "15px"}}>0000 Berlin</Typography>
+        <Typography sx={{fontSize: "15px"}}>030 1234567</Typography>
 
-        <Button variant="contained" sx={{ color: "inherit" }}>
-          Contact Us
+        <Button variant="contained"
+         sx={{ color: "inherit" }}>
+         <HashLink to ="/contact" style={{textDecoration:"none", color:"#FCF6F5"}}>Contact Us</HashLink>
         </Button>
 
         <Copyright />
@@ -77,7 +79,7 @@ function Footer(props) {
           <List sx={{ mr: 4 }}>
             <Typography
               variant="h5"
-              sx={{ textDecoration: "underline", fontFamily: "inherit" }}
+              sx={{fontSize:"18px", mb:"10px"}}
             >
               Highlights
             </Typography>
@@ -90,7 +92,7 @@ function Footer(props) {
                 >
                   <ListItemText
                     primary="Events"
-                    sx={{ color: (theme) => theme.palette.secondary.main }}
+                    sx={{ color: (theme) => theme.palette.secondary.main, fontSize:"15px" }}
                   />
                 </HashLink>
               
@@ -100,11 +102,11 @@ function Footer(props) {
                 <HashLink
                   smooth
                   to="/dev-community"
-                  style={{ textDecoration: "none" }}
+                  style={{ textDecoration: "none", fontSize:"15px" }}
                 >
                   <ListItemText
                     primary="Meetup"
-                    sx={{ color: (theme) => theme.palette.secondary.main }}
+                    sx={{ color: (theme) => theme.palette.secondary.main, fontSize:"15px" }}
                   />
                 </HashLink>
               </ListItemButton>
@@ -118,7 +120,7 @@ function Footer(props) {
                 >
                   <ListItemText
                     primary="Blog"
-                    sx={{ color: (theme) => theme.palette.secondary.main }}
+                    sx={{ color: (theme) => theme.palette.secondary.main, fontSize:"15px" }}
                   />
                 </HashLink>
               </ListItemButton>
@@ -127,7 +129,7 @@ function Footer(props) {
 
           <Box>
             <List>
-              <Typography variant="h5" sx={{ textDecoration: "underline" }}>
+              <Typography variant="h5" sx={{ fontSize:"18px", mb:"10px"}}>
                 Legal
               </Typography>
               <Box
@@ -139,13 +141,13 @@ function Footer(props) {
               >
                 <Link
                   href="/"
-                  sx={{ color: "inherit" }}
+                  sx={{ color: "inherit", fontSize:"15px" }}
                 >
                   Terms
                 </Link>
                 <Link
                   href="/"
-                  sx={{ color: "inherit" }}
+                  sx={{ color: "inherit", fontSize:"15px" }}
                 >
                   Privacy
                 </Link>
@@ -178,18 +180,7 @@ function Footer(props) {
             </List>
           </Box>
 
-          {/* <Box>
-          <Typography variant="h6" marked="left" gutterBottom>
-              Legal
-            </Typography>
-            <Box component="ul" sx={{ m: 0, listStyle: 'none', p: 0 }}>
-              <Box component="li" sx={{ py: 0.5 }}>
-                <Link href="/premium-themes/onepirate/terms/">Terms</Link>
-              </Box>
-              <Box component="li" sx={{ py: 0.5 }}>
-                <Link href="/premium-themes/onepirate/privacy/">Privacy</Link>
-              </Box>
-            </Box> */}
+    
         </Box>
       </Box>
     </Box>
