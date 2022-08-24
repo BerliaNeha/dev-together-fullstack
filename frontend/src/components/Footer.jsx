@@ -36,13 +36,15 @@ function Footer(props) {
     <Box
       component="footer"
       sx={{
-        display: "flex",
+        display: "flex", 
+        fontSize: "15px"
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
         backgroundColor: (theme) => theme.palette.primary.main,
         color: (theme) => theme.palette.secondary.main,
         py: 2,
+
       }}
     >
       <Box
@@ -53,6 +55,7 @@ function Footer(props) {
           width: "100%",
         }}
       >
+
         <Box
           sx={{
             marginLeft: "50px",
@@ -78,19 +81,20 @@ function Footer(props) {
           }}
         >
           <List sx={{ mr: 4 }}>
+
             <ListItem disablePadding>
               <HashLink
                 smooth
                 to="/dev-community"
-                style={{ textDecoration: "none" }}
+                style={{ textDecoration: "none",fontSize:"15px" }}
               >
                 <ListItemText
                   primary="Events"
-                  sx={{ color: (theme) => theme.palette.secondary.main }}
+                  sx={{ color: (theme) => theme.palette.secondary.main,fontSize:"15px" }}
                 />
                 <ListItemText
                   primary="Blog"
-                  sx={{ color: (theme) => theme.palette.secondary.main }}
+                  sx={{ color: (theme) => theme.palette.secondary.main,fontSize:"15px" }}
                 />
               </HashLink>
             </ListItem>
@@ -106,10 +110,10 @@ function Footer(props) {
                 flexDirection: "column",
               }}
             >
-              <Link href="/" sx={{ color: "inherit" }}>
+              <Link href="/" sx={{ color: "inherit",fontSize:"15px"}}>
                 Terms
               </Link>
-              <Link href="/" sx={{ color: "inherit" }}>
+              <Link href="/" sx={{ color: "inherit",fontSize:"15px" }}>
                 Privacy
               </Link>
             </Box>

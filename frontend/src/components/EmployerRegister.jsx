@@ -233,7 +233,7 @@ export const EmployerRegister = () => {
                     onChange={() => setShouldSubscribe(!shouldSubscribe)}
                   />
                 }
-                label="Subscribe for our newsletter"
+                label="Subscribe for newsletter"
               />
             </Grid>
             <Grid item xs={12}>
