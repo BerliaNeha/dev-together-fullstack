@@ -18,8 +18,7 @@ import styles from "./Homepage.module.css";
 export const Homepage = () => {
   return (
     <>
-      
-      <Box sx={{height:"100vh"}}>
+      <Box sx={{ height: "100vh" }}>
         <Navbar />
         <Box sx={{ height: "90%", width: "100%" }}>
           <div
