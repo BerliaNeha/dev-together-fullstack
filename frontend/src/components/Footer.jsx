@@ -44,7 +44,6 @@ function Footer(props) {
         backgroundColor: (theme) => theme.palette.primary.main,
         color: (theme) => theme.palette.secondary.main,
         py: 2,
-
       }}
     >
       <Box
@@ -55,20 +54,17 @@ function Footer(props) {
           width: "100%",
         }}
       >
-
         <Box
           sx={{
             marginLeft: "50px",
             display: { xs: "none", md: "block" },
           }}
         >
-          <Typography variant="h5">Dev Together</Typography>
-          <Typography variant="h6">Example str XX</Typography>
-          <Typography variant="h6">0000 Berlin</Typography>
-          <Typography variant="h6">030 1234567</Typography>
-          <HashLink to="/contact" sx={{ color: "inherit" }}>
-                contact us
-              </HashLink>
+          <Typography variant="h5"sx={{fontSize:"15px"}}>Dev Together</Typography>
+          <Typography sx={{fontSize:"15px"}}>Example str XX</Typography>
+          <Typography sx={{fontSize:"15px"}}>0000 Berlin</Typography>
+          <Typography sx={{fontSize:"15px"}}>030 1234567</Typography>
+          <HashLink to ="/contact" style={{textDecoration:"none", color:"#FCF6F5" , fontSize:"15px"}}>Contact Us</HashLink>
 
          
         </Box>
@@ -81,7 +77,6 @@ function Footer(props) {
           }}
         >
           <List sx={{ mr: 4 }}>
-
             <ListItem disablePadding>
               <HashLink
                 smooth
