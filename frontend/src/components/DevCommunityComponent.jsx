@@ -75,7 +75,7 @@ const featuredPosts = [
     date: "Nov 11",
     description:
       "On September 15, 2008, Lehman Brothers went bankrupt. It was the climax of the financial crisis around 2008 with enormous economic consequence…",
-      image: Blog03,
+      image: Blog02,
 
     imageLabel: "Image Text",
   },
