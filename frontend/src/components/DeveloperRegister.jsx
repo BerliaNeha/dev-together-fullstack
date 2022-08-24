@@ -179,7 +179,7 @@ export const DeveloperRegister = () => {
             <Grid item xs={12}>
               <FormControlLabel
                 control={<Checkbox color="primary" value={shouldSubscribe} onChange={()=>setShouldSubscribe(!shouldSubscribe)}/>}
-                label="Subscribe for our newsletter"
+                label="Subscribe for newsletter"
               />
             </Grid>
             <Grid item xs={12}>
