@@ -37,7 +37,7 @@ function Footer(props) {
       component="footer"
       sx={{
         display: "flex", 
-        fontSize: "15px"
+        fontSize: "15px",
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
