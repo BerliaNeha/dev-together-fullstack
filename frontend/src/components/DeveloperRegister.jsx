@@ -52,13 +52,16 @@ export const DeveloperRegister = () => {
       }
     }
 
-    const response = await fetch(
-      process.env.REACT_APP_SERVER_URL + `/register-developer`,
-      settings
-    );
-    const parsedRes = await response.json();
+    
 
     try {
+      const response = await fetch(
+        process.env.REACT_APP_SERVER_URL + `/register-developer`,
+        settings
+      );
+      const parsedRes = await response.json();
+
+
       if (response.ok) {
         setCurrentUserId(parsedRes.id);
         window.localStorage.setItem("currentUserId", parsedRes.id);

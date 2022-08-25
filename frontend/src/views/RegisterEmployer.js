@@ -7,7 +7,6 @@ export const RegisterEmployer = () => {
     return(
         <>
         <Navbar/>
-
         <EmployerRegister/>
         <Footer/>
         </>

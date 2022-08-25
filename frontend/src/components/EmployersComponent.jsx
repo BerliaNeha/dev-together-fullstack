@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {Link} from "react-router-dom"
+import { Link } from "react-router-dom";
 import { useRef } from "react";
 import { Navbar } from "./Navbar";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -92,7 +92,6 @@ export const EmployersComponent = () => {
     fetchUserData();
   }, [currentUserId]);
 
-
   const submitJob = async (event) => {
     console.log("submitting");
     event.preventDefault();
@@ -114,7 +113,7 @@ export const EmployersComponent = () => {
         // "Authorization": "Bearer " + props.token
       },
     };
-    // fetch the new job added by teh employer
+    // fetch the new job added by the employer
     const response = await fetch(
       process.env.REACT_APP_SERVER_URL + "/jobs",
       settings
@@ -142,10 +141,11 @@ export const EmployersComponent = () => {
         if (secondResponse.ok) {
           console.log("Add job server response", secondParsedRes.jobs);
           setJobList(secondParsedRes.jobs);
-          setCompanyTitle("");
-          setCompanyEmail("");
+          // setCompanyTitle("");
+          // setCompanyEmail("");
           setPosition("");
           setJobDescription("");
+          alert("Job submitted successfully");
           console.log("second fetch");
           // If the second fetch request was unsuccessful...
         } else {
@@ -172,28 +172,46 @@ export const EmployersComponent = () => {
 
   const [endofDevelopers, setEndofDevelopers] = React.useState(false);
 
+  const [selectedCategory, setSelectedCategory] = React.useState("all");
+
+  const [filteredDevJobtitle, setFilteredDevJobtitle] = React.useState(null);
+
+  useEffect(() => {
+    console.log("changing category");
+    if(allDevelopers && selectedCategory!="all"){
+      console.log(allDevelopers,"ALL DEV")
+      setFilteredDevJobtitle(
+        allDevelopers.filter((dev) => {
+          return dev.jobTitle == selectedCategory;
+        })
+      );
+    }
+    
+  }, [selectedCategory]);
+
   const fetchEmployerDevelopers = async () => {
     const response = await fetch(
-      process.env.REACT_APP_SERVER_URL + `/developers?page=${currentPage + 1}&pageSize=${itemsPerPage}`
+      process.env.REACT_APP_SERVER_URL +
+        `/developers?page=${currentPage + 1}&pageSize=${itemsPerPage}`
     );
     const parsedRes = await response.json();
 
     try {
       if (response.ok) {
-        if(allDevelopers === null){
-
-        setAllDevelopers(parsedRes);
-      } else {
-        setAllDevelopers((allDevelopers)=> allDevelopers.concat(parsedRes));}
-        if(parsedRes.length < itemsPerPage){
-          setEndofDevelopers(true);
-        } else{
-          setCurrentPage((page)=> page +1)}
-        } else{
-          throw new Error(parsedRes.message);
+        setFilteredDevJobtitle(null)
+        if (allDevelopers === null) {
+          setAllDevelopers(parsedRes);
+        } else {
+          setAllDevelopers(parsedRes);
         }
-       
-      
+        if (parsedRes.length < itemsPerPage) {
+          setEndofDevelopers(true);
+        } else {
+          setCurrentPage((page) => page + 1);
+        }
+      } else {
+        throw new Error(parsedRes.message);
+      }
     } catch (err) {
       alert(err.message);
     }
@@ -215,8 +233,8 @@ export const EmployersComponent = () => {
       alert(err.message);
     }
   };
- //console.log(allCVs, "all cv from backend stored in a state")
- // console.log(allDevelopers, "all developers from backend stored in a state")
+  //console.log(allCVs, "all cv from backend stored in a state")
+  // console.log(allDevelopers, "all developers from backend stored in a state")
 
   const handleCVs = () => {
     fetchEmployerCVs();
@@ -252,7 +270,7 @@ export const EmployersComponent = () => {
           >
             <h2 id="greeting">Welcome {username}!</h2>
           </Box>
-        
+
           <Box>
             {/* <Item>  */}
             <Container component="main" sx={{ width: "65%" }}>
@@ -282,7 +300,6 @@ export const EmployersComponent = () => {
                   marginTop: 6,
                   backgroundColor: "rgba(35, 78, 112, 0.31)",
                 }}
-              
               >
                 <TextField
                   required
@@ -291,6 +308,7 @@ export const EmployersComponent = () => {
                   id="companyName"
                   name="companyName"
                   value={companyTitle}
+                  onChange={(e) => setCompanyTitle(e.target.value)}
                   sx={{ width: "80%" }}
                   InputLabelProps={{
                     style: {
@@ -316,6 +334,7 @@ export const EmployersComponent = () => {
                   id="email"
                   name="email"
                   value={companyEmail}
+                  onChange={(e) => setCompanyEmail(e.target.value)}
                   sx={{ width: "80%" }}
                   InputLabelProps={{
                     style: {
@@ -340,6 +359,8 @@ export const EmployersComponent = () => {
                   variant="standard"
                   id="position"
                   name="position"
+                  value={position}
+                  onChange={(e) => setPosition(e.target.value)}
                   sx={{ width: "80%" }}
                   InputLabelProps={{
                     style: {
@@ -363,6 +384,8 @@ export const EmployersComponent = () => {
                   id="jobDescription"
                   label="Job Description"
                   name="jobDescription"
+                  value={jobDescription}
+                  onChange={(e) => setJobDescription(e.target.value)}
                   multiline
                   rows={10}
                   col={10}
@@ -445,9 +468,7 @@ export const EmployersComponent = () => {
                 </Backdrop>
               </Box>
             </Container>
-           
           </Box>
-        
 
           <Box>
             <Button
@@ -476,35 +497,44 @@ export const EmployersComponent = () => {
               paddingBottom: "5px",
             }}
           >
-         
-          
-            {/* <Button variant="outlined">Frontend</Button>
-            <Button variant="outlined">Backend</Button>
-            <Button variant="outlined">FullStack</Button> */}
+            <Button
+              onClick={() => setSelectedCategory("Frontend Developer")}
+              variant="outlined"
+            >
+              Frontend
+            </Button>
+            <Button
+              onClick={() => setSelectedCategory("Backend Developer")}
+              variant="outlined"
+            >
+              Backend
+            </Button>
+            <Button
+              onClick={() => setSelectedCategory("Full Stack Developer")}
+              variant="outlined"
+            >
+              FullStack
+            </Button>
           </Stack>
           {/* </Item> */}
         </Stack>
 
-
         {allDevelopers && (
-        <TableContainer
-
-          sx={{margin: "auto", p: 5 }}
-        >
-           
+          <TableContainer sx={{ margin: "auto", p: 5 }}>
             <Table aria-label="collapsible table">
-            <TableHead>
-              <TableRow>
-                <TableCell>CVs</TableCell>
-                <TableCell align="left">Name</TableCell>
-                <TableCell align="left">Position</TableCell>
-                <TableCell align="left">Contact</TableCell>
-              </TableRow>
-            </TableHead>
+              <TableHead>
+                <TableRow>
+                  <TableCell>CVs</TableCell>
+                  <TableCell align="left">Name</TableCell>
+                  <TableCell align="left">Position</TableCell>
+                  <TableCell align="left">Contact</TableCell>
+                </TableRow>
+              </TableHead>
 
-            <RowCV allCVs={allCVs} allDevelopers={allDevelopers}/>
-          </Table>
-        </TableContainer>)}
+              <RowCV allCVs={allCVs} allDevelopers={filteredDevJobtitle ? filteredDevJobtitle : allDevelopers}  />
+            </Table>
+          </TableContainer>
+        )}
 
         {allDevelopers && (
           <Button
@@ -523,11 +553,10 @@ export const EmployersComponent = () => {
             onClick={handleSeeMore}
           >
             {endofDevelopers ? "end of CVS list" : "See more"}
-          </Button>)}
-           
-          
+          </Button>
+        )}
       </Box>
-      <Footer/>
+      <Footer />
     </>
   );
 };

@@ -53,7 +53,7 @@ export const loginPost = async (req, res, next) => {
     }
 
     if (!isValidPassword) {
-      return next(createError(401, "Incorrect password. Please try again"));
+      return res.status(409).json({message:'Incorrect password, please try again'})
     }
 
     let newToken;
