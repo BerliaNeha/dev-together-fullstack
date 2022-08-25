@@ -1,13 +1,14 @@
 .container {
-    display: flex;
+    display: block;
     flex-direction: row;
-    justify-content: space-evenly ;
+    /* justify-content: space-evenly ; */
 }
 
 
 .card {
+  display:block;
   position: relative;
-  width: 50rem;
+  width: 50%;
   height: 35rem;
   margin: 0.5rem;
   text-align: center;

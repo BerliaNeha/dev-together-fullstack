@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { MyContext } from "./context";
 
 export default function ContainerMyContext({ children }) {
@@ -9,7 +9,18 @@ export default function ContainerMyContext({ children }) {
   const [isDev, setIsDev] = React.useState(true);
   const [ token, setToken ] = useState(false);
   const [jobId, setJobId] = React.useState("");
-  
+
+  const termsAcceptedLocalStorage =
+    JSON.parse(localStorage.getItem("termsAccepted")) || false;
+  const [termsAccepted, setTermsAccepted] = React.useState(termsAcceptedLocalStorage);
+
+  useEffect(() => {
+    localStorage.setItem("termsAccepted", JSON.stringify(termsAccepted));
+  }, [termsAccepted]);
+
+  const handleClose = () => {
+    setTermsAccepted(true);
+  };
 
   return (
     <MyContext.Provider
@@ -23,7 +34,7 @@ export default function ContainerMyContext({ children }) {
         token,
         setJobId,
         jobId,
-        setToken
+        setToken, termsAccepted, setTermsAccepted, handleClose
       }}
     >
       {children}
