@@ -6,11 +6,8 @@ import GitHubIcon from "@mui/icons-material/GitHub";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-
 import MainFeaturedPost from "../components/BlogDevCommunity/MainFeaturedPost.jsx";
 import FeaturedPost from "../components/BlogDevCommunity/FeaturedPost.jsx";
-
-import Sidebar from "../components/BlogDevCommunity/Sidebar.jsx";
 import Footer from "../components/BlogDevCommunity/Footer.jsx";
 import post1 from "../components/BlogDevCommunity/blog-post.1.md";
 import post2 from "../components/BlogDevCommunity/blog-post.2.md";
@@ -39,7 +36,7 @@ const mainFeaturedPost = {
   description:
     "Start a dev blog in just a few seconds. No Ads, No PayWall - Own your content! A Developer-friendly platform to share your ideas, attend events or simply take a break by meeting local developers!",
   imageText: "main image description",
-  linkText: "Continue reading…",
+  
 };
 
 //*********************Blog/Featured posts*****************************/
@@ -126,29 +123,6 @@ const posts = [post1, post2, post3];
 
 //****************************************************/
 
-const sidebar = {
-  title: "About",
-  description:
-    "Start a dev blog in just a few seconds. No Ads, No PayWall- Own your content! A Developer-friendly to share your ideas. Make it a routine or just write for hobby reasons.",
-  archives: [
-    { title: "March 2020", url: "#" },
-    { title: "February 2020", url: "#" },
-    { title: "January 2020", url: "#" },
-    { title: "November 1999", url: "#" },
-    { title: "October 1999", url: "#" },
-    { title: "September 1999", url: "#" },
-    { title: "August 1999", url: "#" },
-    { title: "July 1999", url: "#" },
-    { title: "June 1999", url: "#" },
-    { title: "May 1999", url: "#" },
-    { title: "April 1999", url: "#" },
-  ],
-  social: [
-    { name: "GitHub", icon: GitHubIcon },
-    { name: "Twitter", icon: TwitterIcon },
-    { name: "Facebook", icon: FacebookIcon },
-  ],
-};
 
 const theme = createTheme();
 
@@ -217,9 +191,9 @@ export const DevCommunityComponent = () => {
 
               <Grid container spacing={0} sx={{ m: 2,pb: "6px"}}>
                
-                <Sidebar
+                {/* <Sidebar
                   social={sidebar.social}
-                />
+                /> */}
               </Grid>
             </Box>
           </main>

@@ -26,12 +26,7 @@ export const registerDeveloperPost = async (req, res, next) => {
   }
 
   if (foundDeveloperName) {
-    return next(
-      createError(
-        409,
-        "Username has already been taken. Please try a different username"
-      )
-    );
+    return res.status(409).json({message:'Username already taken, please try again!'})
   }
 
   let foundDeveloperEmail;
@@ -45,12 +40,7 @@ export const registerDeveloperPost = async (req, res, next) => {
   }
 
   if (foundDeveloperEmail) {
-    return next(
-      createError(
-        412,
-        "Email address has already been used to create an account. Please try a different email address"
-      )
-    );
+    return res.status(409).json({message:'An account with this email already exists, please try again'})
   }
 
   // If not, pass them with encryption
@@ -88,9 +78,7 @@ export const registerDeveloperPost = async (req, res, next) => {
 
     res.cookie("dataCookie", newToken, { httpOnly: true, sameSite: "Strict" });
   } catch {
-    return next(
-      createError(500, "Registration could not be completed. Please try again")
-    );
+    return res.status(409).json({message:'Registration could not be completed. Please try again'})
   }
 
   res.status(201).json({ id: newUserDeveloper._id, token: newToken });

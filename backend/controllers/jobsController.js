@@ -10,6 +10,7 @@ export const jobsGet = async (req, res, next) => {
   const page = Number(req.query.page) || 1
   const pageSize = Number(req.query.pageSize) || 10 
   const skipRows = (page - 1) * pageSize;
+  
 
 
   let foundJobs;

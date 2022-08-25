@@ -7,14 +7,15 @@ import CardActionArea from '@mui/material/CardActionArea';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Blog1 from "../BlogDevCommunity/images/Blog1.jpg"
-import Blog2 from "../BlogDevCommunity/images/Blog2.jpg"
+
+
 function FeaturedPost(props) {
   const { post } = props;
 
   return (
     
     <Grid item xs={12} md={6} >
-      <CardActionArea component="a" href="#">
+      {/* <CardActionArea component="a" href="#"> */}
         <Card sx={{ margin:"4px", display: 'flex' }}>
           <CardContent sx={{ flex: 1 }}>
             <Typography component="h2" variant="h5">
@@ -41,7 +42,7 @@ function FeaturedPost(props) {
             // alt={post.imageLabel}
           />
         </Card>
-      </CardActionArea>
+      {/* </CardActionArea> */}
     </Grid>
   );
 }

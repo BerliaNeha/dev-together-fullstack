@@ -11,6 +11,7 @@ import jobsRouter from "./routes/jobs.js";
 import registerDeveloperRouter from "./routes/registerDeveloper.js";
 import morgan from "morgan";
 import CVrouter from "./routes/cvRoute.js";
+import globalErrorHandler from "./middleware/globalErrorHandler.js";
 
 const app = express();
 dotenv.config();
@@ -29,6 +30,8 @@ app.use(cors());
 app.use(express.json());
 
 app.use(morgan("tiny"))
+
+app.use(globalErrorHandler)
 
 app.use("/login", loginRouter);
 app.use("/register-developer", registerDeveloperRouter);

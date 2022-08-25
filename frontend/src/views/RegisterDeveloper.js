@@ -4,13 +4,11 @@ import Footer from "../components/Footer";
 import { Navbar } from "../components/Navbar";
 
 export const RegisterDeveloper = () => {
-    return (
+  return (
     <>
-   
-    <Navbar/> 
-     <DeveloperRegister/> 
-     <Footer/>
+      <Navbar />
+      <DeveloperRegister />
+      <Footer />
     </>
-    
-    )
-}
+  );
+};

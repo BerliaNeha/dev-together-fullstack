@@ -6,13 +6,11 @@ import TextField from "@mui/material/TextField";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import Link from "@mui/material/Link";
-
 import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { useNavigate } from "react-router-dom";
-
 import { MyContext } from "./Context/context";
 
 
@@ -61,12 +59,14 @@ export const SignIn = () => {
     const parsedRes = await response.json();
     // console.log(parsedRes.companyName.length)
     try {
+      
       // If the request was successful and has a company name in response go to employer page or else to developer page
 
       if (response.ok) {
        
         setCurrentUserId(parsedRes.id);
         window.localStorage.setItem("currentUserId", parsedRes.id);
+        alert("Login successful")
 
         if (parsedRes.companyName) {
           setIsLoggedIn(true);
@@ -86,10 +86,7 @@ export const SignIn = () => {
       } else {
         throw new Error(parsedRes.message);
       }
-    //   <Alert severity="success">
-    //   <AlertTitle>Login Successful</AlertTitle>
-    //   This is a success alert
-    // </Alert>
+    
 
     } catch (err) {
       console.log(err);
@@ -98,7 +95,7 @@ export const SignIn = () => {
       setPassword("");
     }
 
-    alert("Login successful")
+    
   };
 
   return (
