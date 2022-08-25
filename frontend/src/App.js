@@ -76,7 +76,7 @@ const App = () => {
 
           <Router>
             {/* <LoginHandler /> */}
-            <Box height="100vh">
+            
               <Routes>
                 <Route path="/" exact element={<Homepage />} />
                 <Route path="/developers" element={<Developers />} />
@@ -97,7 +97,7 @@ const App = () => {
 
                 <Route path="/contact" element={<Contact />} />
               </Routes>
-            </Box>
+            
           </Router>
         </ThemeProvider>
       </ContainerMyContext>

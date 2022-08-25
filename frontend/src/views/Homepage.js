@@ -1,6 +1,11 @@
 import { Box } from "@mui/system";
 import React from "react";
-import HomepageGif from "../assets/Homepagegif.gif";
+
+
+// import HomepageGif from "../assets/Homepagegif.gif";
+import HomePageGIF2 from "../assets/HomePageGIF2.gif"
+
+
 import Footer from "../components/Footer";
 import { Navbar } from "../components/Navbar";
 import styles from "./Homepage.module.css";
@@ -10,12 +15,13 @@ export const Homepage = () => {
     <>
       <Box sx={{ height: "100vh" }}>
         <Navbar />
-        <Box sx={{ height: "90%", width: "100%" }}>
+        <Box sx={{ height: "90vh", width: "100%" }}>
           <div
             style={{
               height: "100%",
               width: "100%",
-              background: `url(${HomepageGif}) no-repeat center center`,
+              margin: "auto",
+              background: `url(${HomePageGIF2}) no-repeat center center`,
               //backgroundRepeat: "no-repeat",
               backgroundSize: "cover",
               //   overflow: "hidden",
