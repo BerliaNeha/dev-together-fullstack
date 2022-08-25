@@ -4,12 +4,13 @@ const { Schema } = mongoose;
 
 const cvSchema = new Schema(
   {
-    userId: {type: mongoose.Schema.Types.ObjectId, ref:"UserDeveloper"},
+    userId: { type: mongoose.Schema.Types.ObjectId, ref: "UserDeveloper" },
+
     experience: [
       {
         company: { type: String },
         position: { type: String },
-        description:{type: String},
+        description: { type: String },
         startDate: { type: String },
         endDate: { type: String },
       },
@@ -25,6 +26,7 @@ const cvSchema = new Schema(
     ],
     skills: [],
     languages: [],
+    aboutMe: [],
   },
   { timestamps: true }
 );
