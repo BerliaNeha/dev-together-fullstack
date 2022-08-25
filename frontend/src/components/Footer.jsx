@@ -44,6 +44,7 @@ function Footer(props) {
         backgroundColor: (theme) => theme.palette.primary.main,
         color: (theme) => theme.palette.secondary.main,
         py: 2,
+        position: "relative", bottom:0, left:0
       }}
     >
       <Box
@@ -51,7 +52,7 @@ function Footer(props) {
         sx={{
           display: "flex",
           justifyContent: "space-around",
-          width: "100%",
+          width: "100%"
         }}
       >
         <Box

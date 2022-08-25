@@ -35,7 +35,7 @@ export default function BasicTextFields() {
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
-        minHeight: "65%",
+        height: "100vh",
         backgroundImage: `url(${ContactUs})`,
         opacity: "0.7",
       }}
