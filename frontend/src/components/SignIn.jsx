@@ -59,8 +59,6 @@ export const SignIn = () => {
     const parsedRes = await response.json();
     // console.log(parsedRes.companyName.length)
     try {
-      
-      // If the request was successful and has a company name in response go to employer page or else to developer page
 
       if (response.ok) {
        

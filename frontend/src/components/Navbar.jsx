@@ -9,8 +9,9 @@ import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import { Link, useNavigate } from "react-router-dom";
 import { AccountCircle } from "@mui/icons-material";
-import Logo from "../assets/logoNobg.png";
+import Logo from "../assets/logoBlueBG.png";
 import { MyContext } from "./Context/context";
+import LogoNoBG from "../assets/logoNoBG.png"
 
 const page = [
   "developers",
@@ -98,7 +99,7 @@ export const Navbar = () => {
                   onClick={() => handleMenuItemPress(page)}
                   sx={{
                     display: "block",
-                    color: (theme) => theme.palette.secondary.main,
+                    color: (theme) => theme.palette.primary.main,
                   }}
                 >
                   {key === 5 ? (

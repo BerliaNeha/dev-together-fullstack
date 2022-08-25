@@ -28,10 +28,9 @@ export const Homepage = () => {
               //  backgroundPosition: "center 1px",
             }}
           ></div>
-          <div></div>
         </Box>
-        <Box>
-          <div className={styles.container}>
+        <Box sx={{display:"flex", flexDirection:"row"}}>
+          <Box>
             <div className={styles.card}>
               <div className={`${styles.face} ${styles.faceFront}`}>
                 Employers
@@ -67,7 +66,9 @@ export const Homepage = () => {
               </ul>
             </div>
           </div>
-          <div className={styles.card}>
+          </Box>
+            <Box>
+              <div className={styles.card}>
             <div className={`${styles.face} ${styles.faceFront}`}>
               Developers
             </div>
@@ -75,9 +76,9 @@ export const Homepage = () => {
               <h2>
                 Find best Tech roles across a range of markets <br />
                 Join hands with us to find your dream job!
-              </h2>
+              </h2> 
               {/* (card with zoom in?) Our services: */}
-              <h3>Our Services:</h3>
+               <h3>Our Services:</h3>
               <ul>
                 <li>- Single point of contact with our consultants</li>
                 <li>
@@ -108,7 +109,10 @@ export const Homepage = () => {
               </ul>
             </div>
           </div>
-        </div>
+            </Box>
+
+          
+        
       </Box>
       <Footer />
       </Box>

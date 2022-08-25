@@ -6,13 +6,10 @@ import {
   useNavigate,
 } from "react-router-dom";
 import { Homepage } from "./views/Homepage.js";
-
-import Footer from "./components/Footer.jsx";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 
 import CssBaseline from "@mui/material/CssBaseline";
 import { Login } from "./views/Login.js";
-import { Box } from "@mui/material";
 import { RegisterEmployer } from "./views/RegisterEmployer.js";
 import { RegisterDeveloper } from "./views/RegisterDeveloper.js";
 import Contact from "./components/Contact.jsx";
@@ -96,8 +93,7 @@ const App = () => {
                 <Route path="/about-us" element={<AboutUs />} />
 
                 <Route path="/contact" element={<Contact />} />
-              </Routes>
-            
+              </Routes>           
           </Router>
         </ThemeProvider>
       </ContainerMyContext>
