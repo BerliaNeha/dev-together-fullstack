@@ -90,7 +90,7 @@ export const updateCV = async (req, res, next) => {
 
 export const getAllDevelopers = async (req, res, next) => {
   // const jobId = req.params.id;
-
+console.log(req.query.pageSize)
   let foundAllDevelopers;
   try {
     foundAllDevelopers = await UserDeveloper.find().sort({

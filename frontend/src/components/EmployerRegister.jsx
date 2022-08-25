@@ -49,16 +49,17 @@ export const EmployerRegister = () => {
       headers: {
         "Content-Type": "application/json",
       },
+      Accept: "JSON",
     };
 
-    const response = await fetch(
-      process.env.REACT_APP_SERVER_URL + "/register-employer",
-      settings
-    );
-
-    const parsedRes = await response.json();
-
     try {
+      const response = await fetch(
+        process.env.REACT_APP_SERVER_URL + "/register-employer",
+        settings
+      );
+  
+      const parsedRes = await response.json();
+
       if (response.ok) {
         setCurrentUserId(parsedRes.id);
         window.localStorage.setItem("currentUserId", parsedRes.id);

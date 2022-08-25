@@ -20,7 +20,7 @@ const page = [
   "contact",
   "login",
 ];
-//const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+
 
 export const Navbar = () => {
   const { isLoggedIn, setIsLoggedIn } = React.useContext(MyContext);

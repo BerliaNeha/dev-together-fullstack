@@ -15,11 +15,6 @@ export function Row({ row }) {
 
   const [open, setOpen] = React.useState(false);
 
-  const splitJobDescription = row.jobDescription;
-  const splittedDescriptionArr = splitJobDescription.split(/[.-]/);
-
-  console.log(splittedDescriptionArr, "JOB DESC");
-
   return (
     <React.Fragment>
       <TableRow sx={{ "& > *": { borderBottom: "unset" } }}>
@@ -59,7 +54,6 @@ export function Row({ row }) {
                   name="jobDescription"
                   multiline
                   fullWidth
-                  
                 />
               </Box>
             </Box>
