@@ -63,7 +63,7 @@ function Footer(props) {
         >
           <Typography variant="h5"sx={{fontSize:"15px"}}>Dev Together</Typography>
           <Typography sx={{fontSize:"15px"}}>Example str XX</Typography>
-          <Typography sx={{fontSize:"15px"}}>0000 Berlin</Typography>
+          <Typography sx={{fontSize:"15px"}}>0000 Stadt</Typography>
           <Typography sx={{fontSize:"15px"}}>030 1234567</Typography>
           <HashLink to ="/contact" style={{textDecoration:"none", color:"#FCF6F5" , fontSize:"15px"}}>Contact Us</HashLink>
 
@@ -109,7 +109,8 @@ function Footer(props) {
               <Link href="/" sx={{ color: "inherit",fontSize:"15px"}}>
                 Terms
               </Link>
-              <Link href="/" sx={{ color: "inherit",fontSize:"15px" }}>
+              <Link 
+                href="/" sx={{ color: "inherit",fontSize:"15px" }}>
                 Privacy
               </Link>
             </Box>
