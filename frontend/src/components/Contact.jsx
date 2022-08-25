@@ -2,7 +2,7 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import { useForm, ValidationError } from "@formspree/react";
-import { Button } from "@mui/material";
+import { Button, Typography } from "@mui/material";
 
 import ContactUs from "../assets/contactUs.jpg";
 import { Navbar } from "./Navbar";
@@ -13,18 +13,23 @@ export default function BasicTextFields() {
   const [state, handleSubmit] = useForm("xoqybgnb");
   if (state.succeeded) {
     return (
+      <>
+      <Navbar/>
       <Box
         sx={{
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
-          height: "65%",
+          height: "100vh",
           backgroundImage: `url(${ContactUs})`,
-          opacity: "0.6",
+          opacity: "0.7",
         }}
       >
-        <span>Thanks, I'll reply ASAP! </span></Box> );
+        <Typography variant="h5">Thank you for your message! We'll reply soon!</Typography>
+      </Box>
+      <Footer/>
+      </>)
   }
   return (
     <>
