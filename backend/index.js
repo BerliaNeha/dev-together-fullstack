@@ -29,15 +29,14 @@ app.use(cors());
 
 app.use(express.json());
 
-app.use(morgan("tiny"))
-
-app.use(globalErrorHandler)
-
+app.use(morgan("tiny"));
+app.get("/", (req, res)=>{
+res.send ("Hello from the server")
+})
 app.use("/login", loginRouter);
 app.use("/register-developer", registerDeveloperRouter);
 
 app.use("/register-employer", registerEmployerRouter);
-
 
 //app.use("/developers", userDeveloperDataRouter);
 
@@ -47,9 +46,7 @@ app.use("/employers", userEmployerDataRouter);
 app.use("/jobs", jobsRouter);
 app.use("/cvs", CVrouter);
 
-
+app.use(globalErrorHandler);
 app.listen(process.env.PORT || 3001, () => {
   console.log(`Server has started on port ${process.env.port || 3001}!`);
 });
-
-
