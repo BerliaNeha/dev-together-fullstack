@@ -44,7 +44,7 @@ export const getCV = async (req, res, next) => {
 
   if (foundCV) {
     res.json(
-      _.pick(foundCV, ["experience", "education", "skills", "languages"])
+      _.pick(foundCV, ["experience", "education", "skills", "languages","aboutMe"])
     );
   } else {
     next(createError(404, "No user exists with this email. Please try again"));
@@ -69,6 +69,7 @@ export const updateCV = async (req, res, next) => {
     foundCV.education = req.body.education;
     foundCV.skills = req.body.skills;
     foundCV.languages = req.body.languages;
+    foundCV.aboutMe = req.body.aboutMe
     foundCV.save();
     res.json({ id: foundCV._id });
   } else {

@@ -12,13 +12,13 @@ import CardMedia from "@mui/material/CardMedia";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import PortraitIcon from "@mui/icons-material/Portrait";
 import { Button } from "@mui/material";
-import Arrow from "../assets/arrows2.gif";
 import { HashLink } from "react-router-hash-link";
-import Logo from "../assets/logoNobg.png";
+import Logo from "../assets/logoBlueBG.png";
 import { Navigate } from "react-router-dom";
 import Berlia from "../assets/Berlia.jpg";
 import Vanesa from "../assets/Vanesa.jpg";
 import Arrow3 from "../assets/arrow3.gif";
+import LogoNoBG from "../assets/logoNoBG.png"
 
 function About(props) {
   const About = {
@@ -93,7 +93,7 @@ function About(props) {
               <Button>
                 <HashLink smooth to="/">
                   <img
-                    src={Logo}
+                    src={LogoNoBG}
                     alt="logo"
                     height="100px"
                     width="200px"
@@ -177,11 +177,22 @@ function About(props) {
               sx={{
                 color: "white",
                 display: "flex",
-                flexDirection: "row-reverse",
+                flexDirection: "row",
                 marginRight: 2,
                 fontSize: 20,
               }}
             >
+               <Button>
+                <HashLink smooth to="/">
+                  <img
+                    src={LogoNoBG}
+                    alt="logo"
+                    height="100px"
+                    width="200px"
+                    style={{ objectFit: "contain" }}
+                  ></img>
+                </HashLink>
+              </Button>
               <Button sx={{ color: "white", textDecoration: "none" }}>
                 <HashLink smooth to="/about-us/#team">
                   MEET THE TEAM

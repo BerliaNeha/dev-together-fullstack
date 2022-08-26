@@ -6,8 +6,6 @@ import {
   useNavigate,
 } from "react-router-dom";
 import { Homepage } from "./views/Homepage.js";
-
-import Footer from "./components/Footer.jsx";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import { Login } from "./views/Login.js";
@@ -101,8 +99,7 @@ const App = () => {
                 <Route path="/about-us" element={<AboutUs />} />
 
                 <Route path="/contact" element={<Contact />} />
-              </Routes>
-            
+              </Routes>           
           </Router>
 
         </ThemeProvider>

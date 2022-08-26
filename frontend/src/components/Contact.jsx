@@ -15,7 +15,7 @@ export default function BasicTextFields() {
   if (state.succeeded) {
     return (
       <>
-       <Navbar/>
+      <Navbar/>
       <Box
         sx={{
           display: "flex",
@@ -27,11 +27,10 @@ export default function BasicTextFields() {
           opacity: "0.7",
         }}
       >
-        <Typography>Thank you, you will receive a reply ASAP!</Typography>
+        <Typography variant="h5">Thank you for your message! We'll reply soon!</Typography>
       </Box>
       <Footer/>
-      </>
-    );
+      </>)
   }
   return (
     <>

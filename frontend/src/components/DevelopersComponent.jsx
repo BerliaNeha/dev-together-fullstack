@@ -84,8 +84,11 @@ export const DevelopersComponent = () => {
       setOpenEducation(true),
       setOpenExperience(false),
       setOpenLanguages(false),
-      setOpenSkills(false)
-    );
+      setOpenSkills(false),
+      setOpenAboutMe(false),
+      setOpenAboutMe2(false)
+
+    )
   };
 
   const handleCloseEducation = () => setOpenEducation(false);
@@ -97,8 +100,11 @@ export const DevelopersComponent = () => {
       setOpenEducation(false),
       setOpenExperience(true),
       setOpenLanguages(false),
-      setOpenSkills(false)
-    );
+      setOpenSkills(false),
+      setOpenAboutMe(false),
+      setOpenAboutMe2(false)
+
+    )
   };
 
   const handleCloseExperience = () => setOpenExperience(false);
@@ -110,8 +116,11 @@ export const DevelopersComponent = () => {
       setOpenEducation(false),
       setOpenExperience(false),
       setOpenLanguages(false),
-      setOpenSkills(true)
-    );
+      setOpenSkills(true),
+      setOpenAboutMe(false),
+      setOpenAboutMe2(false)
+
+    )
   };
   const handleCloseSkills = () => setOpenSkills(false);
 
@@ -122,11 +131,42 @@ export const DevelopersComponent = () => {
       setOpenEducation(false),
       setOpenExperience(false),
       setOpenLanguages(true),
-      setOpenSkills(false)
-    );
+      setOpenSkills(false),
+      setOpenAboutMe(false),
+      setOpenAboutMe2(false)
+
+    )
   };
   const handleCloseLanguages = () => setOpenLanguages(false);
 
+  // About me
+  const [openAboutMe, setOpenAboutMe] = React.useState(false);
+  const handleOpenAboutMe = () => {
+    return (
+      setOpenEducation(false),
+      setOpenExperience(false),
+      setOpenLanguages(false),
+      setOpenSkills(false),
+      setOpenAboutMe(true),
+      setOpenAboutMe2(false)
+
+    )
+  };
+  const handleCloseAboutMe = () => setOpenAboutMe(false);
+
+    // About me2
+    const [openAboutMe2, setOpenAboutMe2] = React.useState(false);
+    const handleOpenAboutMe2 = () => {
+      return (
+        setOpenEducation(false),
+        setOpenExperience(false),
+        setOpenLanguages(false),
+        setOpenSkills(false),
+        setOpenAboutMe(false),
+        setOpenAboutMe2(true)
+        )
+    };
+    const handleCloseAboutMe2 = () => setOpenAboutMe2(false);
   //   Value start date experience
   const [valueStartDateExp, setValueStartDateExp] = React.useState(new Date());
 
@@ -161,6 +201,7 @@ export const DevelopersComponent = () => {
     ],
     skills: [],
     languages: [],
+    aboutMe: [],
   });
 
   const fetchUserCV = async () => {
@@ -180,7 +221,7 @@ export const DevelopersComponent = () => {
       alert(err.message);
     }
   };
-  
+
   useEffect(() => {
     fetchUserCV();
   }, [currentUserId]);
@@ -414,6 +455,46 @@ export const DevelopersComponent = () => {
     fetchUserCV();
   };
 
+  // ############## About Me #########################
+
+  const [aboutMe, setAboutMe] = React.useState("");
+
+  const handleAboutMe = (event) => {
+    setAboutMe(event.target.value);
+  };
+
+  const submitAboutMe = async (event) => {
+    const settings = {
+      method: "POST",
+      body: JSON.stringify({
+        ...CV,
+        aboutMe: [...CV.aboutMe, aboutMe],
+      }),
+      headers: {
+        "Content-Type": "application/json",
+        // "Authorization": "Bearer " + props.token
+      },
+    };
+
+    const response = await fetch(
+      process.env.REACT_APP_SERVER_URL + `/developers/${currentUserId}/cv`,
+      settings
+    );
+    const parsedRes = await response.json();
+    try {
+      // If the first fetch request was successful...
+      if (response.ok) {
+        console.log(parsedRes);
+      } else {
+        throw new Error(parsedRes.message);
+      }
+    } catch (err) {
+      alert(err.message);
+    }
+
+    fetchUserCV();
+  };
+
   //To fetch jobs from the jobs collection
 
   const [jobs, setJobs] = React.useState(null);
@@ -459,13 +540,11 @@ export const DevelopersComponent = () => {
 
   const handleJobs = async () => {
     fetchEmployerJobs();
-
   };
 
   const handleSeeMore = async () => {
     fetchEmployerJobs();
   };
-
 
   return (
     <>
@@ -493,17 +572,121 @@ export const DevelopersComponent = () => {
           </Card>
 
           {/* right card */}
-          <Card sx={{ width: "100%" }}>
-            <CardContent>
-              <Typography variant="h4">hello I am a Developer</Typography>
+          <Card>
+            <CardContent
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+              }}
+            >
+              <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+                {" "}
+                <Typography variant="h5">About Me</Typography>
+                <div>
+                  <Button
+                    variant="outlined"
+                    sx={{
+                      width: "100px",
+                      marginTop: "4%",
+                      color: (theme) => theme.palette.primary.main,
+                    }}
+                    onClick={handleOpenAboutMe2}
+                  >
+                    <EditOutlinedIcon />
+                  </Button>
+                  <Modal
+                    open={openAboutMe2}
+                    onClose={handleCloseAboutMe2}
+                    aria-labelledby="modal-modal-title"
+                    aria-describedby="modal-modal-description"
+                  >
+                    <Box sx={style}>
+                      <Box
+                        sx={{
+                          display: "flex",
+                          flexDirection: "column",
+                          alignItems: "center",
+                          justifyContent: "center",
+                        }}
+                      >
+                        <TextField
+                           sx={{ marginBottom: "15%", width: "95%", mb: 5 }}
+                           required
+                           multiline
+                           rows={4}
+                           id="aboutMe"
+                           label="About Me"
+                           variant="standard"
+                           value={aboutMe}
+                           onChange={handleAboutMe}
+                        />
+                        <Button
+                          variant="outlined"
+                          sx={{
+                            width: "150px",
+                            marginTop: "4%",
+                            color: (theme) => theme.palette.primary.main,
+                          }}
+                          onClick={submitAboutMe}
+                        >
+                          Add
+                        </Button>
+                      </Box>
+                    </Box>
+                  </Modal>
+                </div>
+              </Box>
+
+              {CV.aboutMe.map((item) => {
+                return (
+                  <>
+                    <Typography>{item}</Typography>
+                  </>
+                );
+              })}
             </CardContent>
           </Card>
+
+          {/* <Card
+            sx={{ width: "100%", display: "flex", flexDirection: "column" }}
+          >
+            <TextField
+              multiline
+              fullWidth
+              sx={{ width: "90%" }}
+              required
+              id="aboutMe"
+              label="About Me"
+              variant="standard"
+              value={aboutMe}
+              onChange={handleAboutMe}
+            />
+
+            <Button
+              variant="outlined"
+              sx={{
+                width: "100px",
+                marginTop: "4%",
+                color: (theme) => theme.palette.primary.main,
+              }}
+              onClick={submitAboutMe}
+            >
+              <EditOutlinedIcon />
+            </Button>
+            {CV.aboutMe.map((item) => {
+              return (
+                <>
+                  <Typography>{item}</Typography>
+                </>
+              );
+            })}
+          </Card> */}
         </Box>
       </Box>
 
-      {/* bigger screens */}
+      {/* ########################## bigger screens ####################################*/}
       <Box sx={{ display: { xs: "none", sm: "none", md: "block" } }}>
-        <Box sx={{ display: "flex", justifyContent: "space-around", mt: 3 }}>
+        <Box sx={{ width: "80%", margin: "auto", display: "flex", mt: 3 }}>
           {/* left card user image and information */}
           <Card sx={{ width: "25%", height: "20%" }}>
             <CardMedia
@@ -524,9 +707,79 @@ export const DevelopersComponent = () => {
           </Card>
 
           {/* right card */}
-          <Card sx={{ width: "70%" }}>
-            <CardContent sx={{ height: "20px" }}>
-              <Typography variant="h4">hello I am a Developer</Typography>
+
+          <Card sx={{ width: "75%", minHeight: "20%" }}>
+            <CardContent
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+              }}
+            >
+              <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+                {" "}
+                <Typography variant="h5">About Me</Typography>
+                <div>
+                  <Button
+                    variant="outlined"
+                    sx={{
+                      width: "100px",
+                      marginTop: "4%",
+                      color: (theme) => theme.palette.primary.main,
+                    }}
+                    onClick={handleOpenAboutMe}
+                  >
+                    <EditOutlinedIcon />
+                  </Button>
+                  <Modal
+                    open={openAboutMe}
+                    onClose={handleCloseAboutMe}
+                    aria-labelledby="modal-modal-title"
+                    aria-describedby="modal-modal-description"
+                  >
+                    <Box sx={style}>
+                      <Box
+                        sx={{
+                          display: "flex",
+                          flexDirection: "column",
+                          alignItems: "center",
+                          justifyContent: "center",
+                        }}
+                      >
+                        <TextField
+                          sx={{ marginBottom: "15%", width: "95%", mb: 5 }}
+                          required
+                          multiline
+                          rows={4}
+                          id="aboutMe"
+                          label="About Me"
+                          variant="standard"
+                          value={aboutMe}
+                          onChange={handleAboutMe}
+                        />
+                        <Button
+                          variant="outlined"
+                          sx={{
+                            width: "150px",
+                            marginTop: "4%",
+                            color: (theme) => theme.palette.primary.main,
+                          }}
+                          onClick={submitAboutMe}
+                        >
+                          Add
+                        </Button>
+                      </Box>
+                    </Box>
+                  </Modal>
+                </div>
+              </Box>
+
+              {CV.aboutMe.map((item) => {
+                return (
+                  <>
+                    <Typography>{item}</Typography>
+                  </>
+                );
+              })}
             </CardContent>
           </Card>
         </Box>
@@ -659,7 +912,7 @@ export const DevelopersComponent = () => {
                         type="submit"
                         variant="outlined"
                         sx={{
-                          width: "150px",
+                          width: "100px",
                           marginTop: "4%",
                           color: (theme) => theme.palette.primary.main,
                         }}
@@ -687,9 +940,8 @@ export const DevelopersComponent = () => {
                     mt: 3,
                   }}
                 >
-                  {/* right card */}
                   <Card
-                    sx={{ width: "90%", border: "0.5px solid #7b9acc", p: 2 }}
+                    sx={{ width: "100%", border: "0.5px solid #7b9acc", p: 2 }}
                   >
                     <Grid
                       container
@@ -699,7 +951,7 @@ export const DevelopersComponent = () => {
                     >
                       <Grid
                         container
-                        sm={6}
+                        sm={12}
                         md={12}
                         direction="column"
                         justifyContent="space-evenly"
@@ -710,10 +962,13 @@ export const DevelopersComponent = () => {
                         </Grid>
                         <Grid item>
                           <Typography variant="h6" sx={{ fontWeight: "light" }}>
-                            {company} | {new Date(endDate).toLocaleDateString("de", {
+                            {company} |{" "}
+                            {new Date(endDate).toLocaleDateString("de", {
                               month: "2-digit",
                               year: "numeric",
-                            })} -  {new Date(endDate).toLocaleDateString("de", {
+                            })}{" "}
+                            -{" "}
+                            {new Date(endDate).toLocaleDateString("de", {
                               month: "2-digit",
                               year: "numeric",
                             })}
@@ -726,7 +981,6 @@ export const DevelopersComponent = () => {
                           >
                             {description}
                           </Typography>
-                         
                         </Grid>
                       </Grid>
                       {/* <Grid

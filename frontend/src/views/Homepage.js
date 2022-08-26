@@ -42,7 +42,6 @@ export const Homepage = () => {
               //  backgroundPosition: "center 1px",
             }}
           ></div>
-          <div></div>
         </Box>
         <Box
           sx={{
