@@ -98,26 +98,26 @@ const featuredPosts = [
 
 //**********************Events******************************/
 
-const events = [
-  {
-    title: "SmartCon",
-    date: "Nov 12",
-    description:
-      "The must-attend Web3 experience of the year. A full week of learning from industry luminaries, building alongside the best developers in the space, and connecting with fellow community members from across the globe. SmartCon 2022 is for those who get what Web3 is really about, and those who want to learn.",
-    image: Blog05,
-    location: "NYC",
-    imageLabel: "Image Text",
-  },
-  {
-    title: "SmartCon",
-    date: "Nov 12",
-    description:
-      "The must-attend Web3 experience of the year. A full week of learning from industry luminaries, building alongside the best developers in the space, and connecting with fellow community members from across the globe. SmartCon 2022 is for those who get what Web3 is really about, and those who want to learn.",
-    image: Blog06,
-    location: "NYC",
-    imageLabel: "Image Text",
-  },
-];
+// const events = [
+//   {
+//     title: "SmartCon",
+//     date: "Nov 12",
+//     description:
+//       "The must-attend Web3 experience of the year. A full week of learning from industry luminaries, building alongside the best developers in the space, and connecting with fellow community members from across the globe. SmartCon 2022 is for those who get what Web3 is really about, and those who want to learn.",
+//     image: Blog05,
+//     location: "NYC",
+//     imageLabel: "Image Text",
+//   },
+//   {
+//     title: "SmartCon",
+//     date: "Nov 12",
+//     description:
+//       "The must-attend Web3 experience of the year. A full week of learning from industry luminaries, building alongside the best developers in the space, and connecting with fellow community members from across the globe. SmartCon 2022 is for those who get what Web3 is really about, and those who want to learn.",
+//     image: Blog06,
+//     location: "NYC",
+//     imageLabel: "Image Text",
+//   },
+// ];
 
 const posts = [post1, post2, post3];
 
@@ -127,6 +127,24 @@ const posts = [post1, post2, post3];
 const theme = createTheme();
 
 export const DevCommunityComponent = () => {
+
+  const [events, setEvents] = React.useState ([])
+
+  React.useEffect (()=>{
+
+    fetch("https://app.ticketmaster.com/discovery/v2/events.json?countryCode=DE&apikey=CGgGiGUPaal642q0zuWF5zSOfxloAa5T")
+
+    .then((res)=>
+      res.json()
+    )
+
+    .then((result)=>
+    {
+      console.log(result)
+      setEvents(result._embedded.events)
+    })
+
+  }, [])
   return (
     <>
       <ThemeProvider theme={theme}>
@@ -183,7 +201,7 @@ export const DevCommunityComponent = () => {
 
               <Grid container spacing={4}>
                 {events.map((post) => (
-                  <Events key={post.title} post={post} />
+                  <Events key={post.id} post={post} />
                 ))}
               </Grid>
 

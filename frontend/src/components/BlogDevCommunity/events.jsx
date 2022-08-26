@@ -20,7 +20,7 @@ function Events(props) {
         <Card sx={{ margin: "4px", display: "flex" }}>
           <CardContent sx={{ flex: 1 }}>
             <Typography component="h2" variant="h5">
-              {post.title}
+              {post.name}
             </Typography>
             <Typography variant="subtitle1" color="text.secondary">
               {post.date}
@@ -42,7 +42,7 @@ function Events(props) {
             sx={{
               width: 200,
               display: { xs: "none", sm: "block" },
-              backgroundImage: `url(${post.image || Blog1})`,
+              backgroundImage: `url(${post.images[0].url || Blog1})`,
               backgroundSize: "cover",
             }}
 
