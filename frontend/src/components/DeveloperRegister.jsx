@@ -207,7 +207,7 @@ export const DeveloperRegister = () => {
           >
             Sign Up
           </Button>
-          <Grid container justifyContent="flex-end">
+          <Grid container justifyContent="center">
             <Grid item>
               <Link
                 onClick={() => navigate(`/login`)}

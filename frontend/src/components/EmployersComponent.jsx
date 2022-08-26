@@ -176,6 +176,8 @@ export const EmployersComponent = () => {
 
   const [filteredDevJobtitle, setFilteredDevJobtitle] = React.useState(null);
 
+  //**********UseEffect for search category buttons in Employers Search CV********/
+
   useEffect(() => {
     console.log("changing category");
     if(allDevelopers && selectedCategory!="all"){
@@ -195,6 +197,8 @@ export const EmployersComponent = () => {
         `/developers?page=${currentPage + 1}&pageSize=${itemsPerPage}`
     );
     const parsedRes = await response.json();
+
+    //***********only 5 results per page**********/
 
     try {
       if (response.ok) {
@@ -245,10 +249,7 @@ export const EmployersComponent = () => {
     fetchEmployerDevelopers();
   };
 
-  // const getSearchTerm=()=>{
-  //   props.searchKeyword(inputEl.current.value)
 
-  // };
 
   return (
     <>
@@ -353,6 +354,9 @@ export const EmployersComponent = () => {
                     },
                   }}
                 />
+
+             
+                
                 <TextField
                   required
                   label="Position"

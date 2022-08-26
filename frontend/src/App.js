@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import {
   HashRouter as Router,
   Route,
@@ -7,9 +7,9 @@ import {
 } from "react-router-dom";
 import { Homepage } from "./views/Homepage.js";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
-
 import CssBaseline from "@mui/material/CssBaseline";
 import { Login } from "./views/Login.js";
+import { Box, Button, Modal, Typography } from "@mui/material";
 import { RegisterEmployer } from "./views/RegisterEmployer.js";
 import { RegisterDeveloper } from "./views/RegisterDeveloper.js";
 import Contact from "./components/Contact.jsx";
@@ -19,6 +19,8 @@ import { Employers } from "./views/Employers.js";
 import { DevCommunity } from "./views/DevCommunity.js";
 import ContainerMyContext from "./components/Context/ContainerMyContext.jsx";
 import { MyContext } from "./components/Context/context.js";
+
+
 
 const theme = createTheme({
   palette: {
@@ -34,6 +36,8 @@ const theme = createTheme({
 });
 
 const App = () => {
+
+  
   // const [isLoggedIn, setIsLoggedIn] = React.useState(false);
   // const [currentUserId, setCurrentUserId] = React.useState("");
   // const [isDev, setIsDev] = React.useState(true);
@@ -65,7 +69,9 @@ const App = () => {
 
   //   return null;
   // };
+
   return (
+
     <React.StrictMode>
       <ContainerMyContext>
         <ThemeProvider theme={theme}>
@@ -95,6 +101,7 @@ const App = () => {
                 <Route path="/contact" element={<Contact />} />
               </Routes>           
           </Router>
+
         </ThemeProvider>
       </ContainerMyContext>
     </React.StrictMode>
