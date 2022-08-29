@@ -125,8 +125,8 @@ export const CardFlip = () => {
               }}
             >
               <Typography variant="h5">
-                IT and Emerging Technology Recruitment Experts Join hands with
-                us to find Best Talents !
+                Find best Tech roles across a range of markets Join hands with
+                us to find your dream job!
               </Typography>
 
               <Typography variant="h6" sx={{ mt: 2 }}>
@@ -134,24 +134,30 @@ export const CardFlip = () => {
               </Typography>
               <ul>
                 <li>- Single point of contact</li>
-                <li>- A global network with rich candidate database</li>
-                <li>- Fast, relevant and pre-screened shortlists</li>
+                <li>
+                  -Safe sharing of your profile with our registered clients and
+                  locking in interviews
+                </li>
+                <li>
+                  - We are committed to your career, bringing you in front of
+                  the biggest names with our growing database of employers
+                </li>
               </ul>
 
               <Typography variant="h6">Planned Services:</Typography>
               <ul>
                 <li>
-                  - Management information reports: We can report on the number
-                  of resumes sent, the number of interviews, offers and
-                  placements made over a pre-agreed time period.
+                  - Expert advice with detailed feedback: We assist you from
+                  documentation to on-boarding. If you need any advice or
+                  guidance, these calls offer you the perfect opportunity to
+                  talk them through with your trusted consultant.
                 </li>
 
                 <li>
-                  - Ongoing candidate management: From interview and offer
-                  stages, right up to and beyond their first day at work, we
-                  ensure the candidate is fully committed to the role, and there
-                  are no changes in circumstances that will prevent our clients
-                  from successfully on-boarding new hires.
+                  -The salary you deserve: Avoid that awkward discussion about
+                  salary and benefits. We’ll negotiate on your behalf, so you
+                  can relax knowing that we’re working to land you the best
+                  package possible.
                 </li>
               </ul>
               <Button
