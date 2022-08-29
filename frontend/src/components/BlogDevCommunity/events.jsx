@@ -23,10 +23,10 @@ function Events(props) {
               {post.name}
             </Typography>
             <Typography variant="subtitle1" color="text.secondary">
-              {post.date}
+              {post.type}
             </Typography>
             <Typography variant="subtitle1" paragraph>
-              {post.description}
+              {post.url}
             </Typography>
             <Typography variant="subtitle1" color="primary">
               {post.location}
