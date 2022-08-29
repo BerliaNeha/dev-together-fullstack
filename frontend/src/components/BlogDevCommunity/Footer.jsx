@@ -4,25 +4,38 @@ import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 import Link from "@mui/material/Link";
+import { HashLink } from "react-router-hash-link";
 
 function Copyright() {
   return (
     <>
       <Typography variant="body2" color="text.secondary" align="center">
         {"Copyright © "}
-        <Link color="inherit" href="https://mui.com/">
+        <HashLink color="inherit" smooth to="/terms-privacy/#copyright">
           Dev Together
-        </Link>{" "}
+        </HashLink>
         {new Date().getFullYear()}
-        {"."}
       </Typography>
-      <Typography sx={{mt:"25px"}}variant="body2" color="text.secondary" align="center">
-        <Link color="inherit" href="https://mui.com/">
-          Privacy Policy
-        </Link>
-        <Link sx={{ ml: "25px" }} color="inherit" href="https://mui.com/">
+      <Typography
+        sx={{ mt: "25px" }}
+        variant="body2"
+        color="text.secondary"
+        align="center"
+      >
+        <HashLink
+          smooth
+          to="/terms-privacy/#terms"
+          style={{ color: "error", textDecoration: "none" }}
+        >
           Terms
-        </Link>
+        </HashLink>
+        <HashLink
+          smooth
+          to="/terms-privacy/#privacy"
+          sx={{ color: "inherit", fontSize: "15px" }}
+        >
+          Privacy
+        </HashLink>
       </Typography>
     </>
   );

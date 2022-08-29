@@ -1,6 +1,7 @@
 import { Button, Modal, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import React, { useEffect } from "react";
+import { HashLink } from "react-router-hash-link";
 // import HomepageGif from "../assets/Homepagegif.gif";
 import HomePageGIF2 from "../assets/HomePageGIF2.gif";
 import { CardFlip } from "../components/CardFlip";
@@ -66,7 +67,14 @@ export const Homepage = () => {
             is important to us that you know, at any point, when we store your
             personal data and how we use it. We will collect, process and use
             your personal data in compliance with applicable European and German
-            data protection law.
+            data protection law. <br></br>
+            <HashLink
+              smooth
+              to="/terms-privacy/#privacy"
+              style={{ color: "error", textDecoration: "none" }}
+            >
+              Learn more
+            </HashLink>
             <Button
               type="button"
               fullWidth

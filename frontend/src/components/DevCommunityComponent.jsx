@@ -176,6 +176,7 @@ export const DevCommunityComponent = () => {
                   display: "flex",
                   justifyContent: "center",
                 }}
+                id="blog"
               >
                 Featured Posts
               </Typography>
@@ -195,6 +196,7 @@ export const DevCommunityComponent = () => {
                   display: "flex",
                   justifyContent: "center",
                 }}
+                id="events"
               >
                 Events
               </Typography>

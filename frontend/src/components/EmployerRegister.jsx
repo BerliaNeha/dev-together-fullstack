@@ -17,8 +17,7 @@ import { FormControl, FormLabel, Radio, RadioGroup } from "@mui/material";
 
 import { Navigate, useNavigate } from "react-router-dom";
 import { Employers } from "../views/Employers";
-
-
+import { HashLink } from "react-router-hash-link";
 
 export const EmployerRegister = () => {
   const { isLoggedIn, setIsLoggedIn, setIsDev, setCurrentUserId } =
@@ -57,7 +56,7 @@ export const EmployerRegister = () => {
         process.env.REACT_APP_SERVER_URL + "/register-employer",
         settings
       );
-  
+
       const parsedRes = await response.json();
 
       if (response.ok) {
@@ -247,8 +246,14 @@ export const EmployerRegister = () => {
                     value={true}
                   />
                 }
-                label="I agree to and understand the Privacy Notice and Terms of Use"
               />
+              <HashLink
+                smooth
+                to="/terms-privacy/#privacy"
+                sx={{ color: "inherit"}}
+              >
+                I agree to and understand the Privacy Notice and Terms of Use.
+              </HashLink>
             </Grid>
           </Grid>
           <Button
@@ -272,7 +277,6 @@ export const EmployerRegister = () => {
           </Grid>
         </Box>
       </Box>
-    
     </Container>
   );
 };
