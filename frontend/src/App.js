@@ -19,6 +19,7 @@ import { Employers } from "./views/Employers.js";
 import { DevCommunity } from "./views/DevCommunity.js";
 import ContainerMyContext from "./components/Context/ContainerMyContext.jsx";
 import { MyContext } from "./components/Context/context.js";
+import { PrivacyAndPolicy } from "./components/PrivacyAndPolicy.jsx";
 
 
 
@@ -99,6 +100,7 @@ const App = () => {
                 <Route path="/about-us" element={<AboutUs />} />
 
                 <Route path="/contact" element={<Contact />} />
+                <Route path="/terms-privacy" element={<PrivacyAndPolicy />} />
               </Routes>           
           </Router>
 

@@ -14,6 +14,7 @@ import Container from "@mui/material/Container";
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import { Navigate, useNavigate } from "react-router-dom";
 import { MyContext } from "./Context/context";
+import { HashLink } from "react-router-hash-link";
 
 
 
@@ -186,7 +187,7 @@ export const DeveloperRegister = () => {
               />
             </Grid>
             <Grid item xs={12}>
-              <FormControlLabel
+            <FormControlLabel
                 control={
                   <Checkbox
                     color="primary"
@@ -195,8 +196,14 @@ export const DeveloperRegister = () => {
                     value={true}
                   />
                 }
-                label="I agree to and understand the Privacy Notice and Terms of Use"
               />
+              <HashLink
+                smooth
+                to="/terms-privacy/#privacy"
+                sx={{ color: "inherit"}}
+              >
+                I agree to and understand the Privacy Notice and Terms of Use.
+              </HashLink>
             </Grid>
           </Grid>
           <Button
