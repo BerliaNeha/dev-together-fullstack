@@ -193,11 +193,21 @@ export const EmployersComponent = () => {
     
   }, [selectedCategory]);
 
-  const fetchEmployerDevelopers = async () => {
-    const response = await fetch(
-      process.env.REACT_APP_SERVER_URL +
-        `/developers?page=${currentPage + 1}&pageSize=${itemsPerPage}`
-    );
+  
+
+  const fetchEmployerDevelopers = async (isRenew = false) => {
+
+    let fetchLink="";
+
+    if(isRenew){
+      fetchLink =process.env.REACT_APP_SERVER_URL +
+      `/developers?page=${1}&pageSize=${itemsPerPage}`
+    } else {
+      fetchLink =process.env.REACT_APP_SERVER_URL +
+      `/developers?page=${currentPage + 1}&pageSize=${itemsPerPage}`
+    }
+    const response = await fetch(fetchLink);
+
     const parsedRes = await response.json();
 
     //***********only 5 results per page**********/
@@ -205,10 +215,11 @@ export const EmployersComponent = () => {
     try {
       if (response.ok) {
         setFilteredDevJobtitle(null)
-        if (allDevelopers === null) {
+        if (allDevelopers === null||isRenew ){
           setAllDevelopers(parsedRes);
         } else {
-          setAllDevelopers(parsedRes);
+          setAllDevelopers((allDevelopers)=>allDevelopers.concat(parsedRes));
+         
         }
         if (parsedRes.length < itemsPerPage) {
           setEndofDevelopers(true);
@@ -243,8 +254,17 @@ export const EmployersComponent = () => {
   // console.log(allDevelopers, "all developers from backend stored in a state")
 
   const handleCVs = () => {
+    if(endofDevelopers){
+      setCurrentPage(0)
+      setAllDevelopers(null)
+      setEndofDevelopers(false)
+      fetchEmployerDevelopers(true)
+      console.log("Setting end of DEV List")
+    } else  {
+      fetchEmployerDevelopers()
+    }
     fetchEmployerCVs();
-    fetchEmployerDevelopers();
+  ;
   };
 
   const handleSeeMore = async () => {
