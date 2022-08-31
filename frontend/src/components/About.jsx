@@ -37,7 +37,7 @@ function About(props) {
       description: "Working as a Web Developer",
       image: Berlia,
       imageLabel: "Image Text",
-      linkText: "https://www.linkedin.com/in/neha-berlia-66b14554/",
+      linkText: "https://www.linkedin.com/in/neha-berlia/",
       linkText2: "https://portfolio-neha-berlia.vercel.app/",
     },
     {

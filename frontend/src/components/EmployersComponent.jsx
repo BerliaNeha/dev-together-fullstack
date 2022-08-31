@@ -34,6 +34,8 @@ import { Typography } from "@mui/material";
 import { RowCV } from "./Context/RowCV";
 
 import Footer from "./Footer";
+import { HashLink } from "react-router-hash-link";
+
 
 export const EmployersComponent = () => {
   const { currentUserId } = React.useContext(MyContext);
@@ -440,17 +442,23 @@ export const EmployersComponent = () => {
                   />
                 </Grid>
                 <Grid item xs={12}>
-                  <FormControlLabel
-                    control={
-                      <Checkbox
-                        color="primary"
-                        required
-                        name="termsAndPolicy"
-                        value={true}
-                      />
-                    }
-                    label="I agree to and understand the Privacy Notice and Terms of Use"
+                <FormControlLabel
+                control={
+                  <Checkbox
+                    color="primary"
+                    required
+                    name="termsAndPolicy"
+                    value={true}
                   />
+                }
+              />
+              <HashLink
+                smooth
+                to="/terms-privacy/#privacy"
+                sx={{ color: "inherit"}}
+              >
+                I agree to and understand the Privacy Notice and Terms of Use.
+              </HashLink>
                 </Grid>
                 <Button
                   type="submit"
