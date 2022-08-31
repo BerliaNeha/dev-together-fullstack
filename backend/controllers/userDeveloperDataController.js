@@ -47,7 +47,7 @@ export const getCV = async (req, res, next) => {
       _.pick(foundCV, ["experience", "education", "skills", "languages","aboutMe"])
     );
   } else {
-    next(createError(404, "No user exists with this email. Please try again"));
+    next(createError(404, "The user has no CV yet. Please try again"));
   }
 };
 
@@ -92,11 +92,16 @@ export const updateCV = async (req, res, next) => {
 export const getAllDevelopers = async (req, res, next) => {
   // const jobId = req.params.id;
 console.log(req.query.pageSize)
+
+const page = Number(req.query.page) || 1
+const pageSize = Number(req.query.pageSize) || 10 
+const skipRows = (page - 1) * pageSize;
+
   let foundAllDevelopers;
   try {
     foundAllDevelopers = await UserDeveloper.find().sort({
       createdAt: -1,
-    });
+    }).skip(skipRows).limit(pageSize);
 
     return res.status(200).json(foundAllDevelopers);
   } catch {
