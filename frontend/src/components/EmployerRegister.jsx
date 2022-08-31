@@ -268,7 +268,7 @@ export const EmployerRegister = () => {
             <Grid item>
               <Link
                 onClick={() => navigate(`/login`)}
-                cursor="pointer"
+                sx={{cursor:"pointer"}}
                 variant="body2"
               >
                 Already have an account? Sign in

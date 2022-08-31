@@ -2,20 +2,21 @@ import { Button, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import react from "react";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
-
+import { useNavigate } from "react-router-dom";
 export const PrivacyAndPolicy = () => {
+  const navigate = useNavigate();
   return (
     <>
-      <Box>
+      <Box sx={{m:5}}>
         <Button
-          href={"/"}
+          onClick={() => navigate(-1)}
           sx={{ color: (theme) => theme.palette.primary.main }}
           variant="text"
         >
           <ChevronLeftIcon /> Go back
         </Button>
-        <Box>
-          <Typography  id="privacy">Privacy Policy</Typography>
+        <Box sx={{mb:2}}>
+          <Typography  id="privacy" variant="h4" sx={{fontWeight:"bold"}}>Privacy Policy</Typography>
           <Typography>
             Our Privacy Policy was last updated on [30th August 2022]. This
             Privacy Policy describes Our policies and procedures on the
@@ -112,8 +113,39 @@ export const PrivacyAndPolicy = () => {
             by or through a mobile device.
           </Typography>
         </Box>
-        <Box>
-          <Typography id="terms">Terms and Conditions</Typography>
+        <Box sx={{mb:2}}>
+          <Typography id="terms" variant="h4" sx={{fontWeight:"bold"}}>Terms and Conditions</Typography>
+          <Typography>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
+            ultrices neque a purus porta, sit amet fermentum mauris congue.
+            Aliquam ultricies elementum lacus, sed rhoncus lectus rhoncus a.
+            Duis erat nibh, rhoncus et elementum quis, rutrum ut ligula. Nulla
+            sit amet tortor id dui vulputate malesuada. Pellentesque diam
+            lectus, varius in finibus at, aliquam scelerisque orci. Fusce
+            porttitor mollis nibh, in euismod tellus. Ut venenatis lorem vel dui
+            venenatis, non mollis massa aliquet. Sed blandit enim eget ligula
+            ornare, ac interdum dolor tristique. Vestibulum sed interdum metus.
+            Sed id aliquam arcu. Maecenas consectetur elit varius, efficitur
+            ipsum et, tincidunt turpis. Donec eget nibh iaculis, suscipit purus
+            id, dignissim turpis. Class aptent taciti sociosqu ad litora
+            torquent per conubia nostra, per inceptos himenaeos. Donec eu dictum
+            ipsum. Aliquam egestas lacinia fringilla. Aliquam a tellus pulvinar,
+            pellentesque libero sit amet, egestas quam. In ut elementum massa,
+            at semper nisi. Donec sit amet ex nec orci ultrices pharetra.
+            Curabitur id lacus nec est finibus elementum. Duis convallis
+            dignissim neque id porttitor. Donec congue enim quam, eget convallis
+            sem accumsan ut. Nulla posuere magna urna, viverra bibendum libero
+            facilisis et. Suspendisse vel ullamcorper est. Nullam laoreet dui
+            vitae diam laoreet eleifend. Pellentesque habitant morbi tristique
+            senectus et netus et malesuada fames ac turpis egestas. Cras finibus
+            sit amet libero vitae facilisis. Aliquam at mi molestie libero
+            elementum consectetur quis sit amet felis. Aliquam suscipit, mauris
+            in rutrum dictum, risus lacus iaculis magna, quis blandit sem metus
+            eu sapien.
+          </Typography>
+        </Box>
+        <Box sx={{mb:2}}>
+          <Typography id="copyright" variant="h4" sx={{fontWeight:"bold"}}>Copyright</Typography>
           <Typography>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
             ultrices neque a purus porta, sit amet fermentum mauris congue.
@@ -144,38 +176,7 @@ export const PrivacyAndPolicy = () => {
           </Typography>
         </Box>
         <Box>
-          <Typography id="copyright">Copyright</Typography>
-          <Typography>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
-            ultrices neque a purus porta, sit amet fermentum mauris congue.
-            Aliquam ultricies elementum lacus, sed rhoncus lectus rhoncus a.
-            Duis erat nibh, rhoncus et elementum quis, rutrum ut ligula. Nulla
-            sit amet tortor id dui vulputate malesuada. Pellentesque diam
-            lectus, varius in finibus at, aliquam scelerisque orci. Fusce
-            porttitor mollis nibh, in euismod tellus. Ut venenatis lorem vel dui
-            venenatis, non mollis massa aliquet. Sed blandit enim eget ligula
-            ornare, ac interdum dolor tristique. Vestibulum sed interdum metus.
-            Sed id aliquam arcu. Maecenas consectetur elit varius, efficitur
-            ipsum et, tincidunt turpis. Donec eget nibh iaculis, suscipit purus
-            id, dignissim turpis. Class aptent taciti sociosqu ad litora
-            torquent per conubia nostra, per inceptos himenaeos. Donec eu dictum
-            ipsum. Aliquam egestas lacinia fringilla. Aliquam a tellus pulvinar,
-            pellentesque libero sit amet, egestas quam. In ut elementum massa,
-            at semper nisi. Donec sit amet ex nec orci ultrices pharetra.
-            Curabitur id lacus nec est finibus elementum. Duis convallis
-            dignissim neque id porttitor. Donec congue enim quam, eget convallis
-            sem accumsan ut. Nulla posuere magna urna, viverra bibendum libero
-            facilisis et. Suspendisse vel ullamcorper est. Nullam laoreet dui
-            vitae diam laoreet eleifend. Pellentesque habitant morbi tristique
-            senectus et netus et malesuada fames ac turpis egestas. Cras finibus
-            sit amet libero vitae facilisis. Aliquam at mi molestie libero
-            elementum consectetur quis sit amet felis. Aliquam suscipit, mauris
-            in rutrum dictum, risus lacus iaculis magna, quis blandit sem metus
-            eu sapien.
-          </Typography>
-        </Box>
-        <Box>
-          <Typography> Cookie consent </Typography>
+          <Typography variant="h4" sx={{fontWeight:"bold"}}> Cookie consent </Typography>
           <Typography>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
             ultrices neque a purus porta, sit amet fermentum mauris congue.

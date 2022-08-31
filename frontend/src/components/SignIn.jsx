@@ -13,10 +13,6 @@ import Container from "@mui/material/Container";
 import { useNavigate } from "react-router-dom";
 import { MyContext } from "./Context/context";
 
-
-
-
-
 export const SignIn = () => {
   const { setIsLoggedIn, isLoggedIn, setCurrentUserId, setIsDev, isDev } =
     React.useContext(MyContext);
@@ -59,19 +55,16 @@ export const SignIn = () => {
     const parsedRes = await response.json();
     // console.log(parsedRes.companyName.length)
     try {
-
       if (response.ok) {
-       
         setCurrentUserId(parsedRes.id);
         window.localStorage.setItem("currentUserId", parsedRes.id);
-        alert("Login successful")
+        alert("Login successful");
 
         if (parsedRes.companyName) {
           setIsLoggedIn(true);
           setIsDev(false);
           window.localStorage.setItem("isDev", false);
           navigate("/employers");
-         
         }
 
         if (!parsedRes.companyName) {
@@ -79,25 +72,20 @@ export const SignIn = () => {
           setIsDev(true);
           window.localStorage.setItem("isDev", true);
           navigate("/developers");
-        }  
-
+        }
       } else {
         throw new Error(parsedRes.message);
       }
-    
-
     } catch (err) {
       console.log(err);
       alert(err.message);
       setEmail("");
       setPassword("");
     }
-
-    
   };
 
   return (
-    <Container component="main" maxWidth="xs" sx={{height:"70vh"}}>
+    <Container component="main" maxWidth="xs" sx={{ height: "70vh" }}>
       <CssBaseline />
       <Box
         sx={{
@@ -147,21 +135,18 @@ export const SignIn = () => {
             fullWidth
             variant="contained"
             sx={{ mt: 3, mb: 2 }}
-           
-             
-      
           >
             Sign In
           </Button>
           <div>
-            <Link href="#" variant="body2">
+            <Link href="#" variant="body2" cursor="grab">
               Forgot password?
             </Link>
           </div>
           <div>
             <Link
+              sx={{ cursor: "pointer" }}
               onClick={() => navigate(`/register-developer`)}
-              cursor="default"
               variant="body2"
             >
               {"Don't have an account? Sign Up as Developer"}
@@ -169,8 +154,8 @@ export const SignIn = () => {
           </div>
           <div>
             <Link
+              sx={{ cursor: "pointer" }}
               onClick={() => navigate(`/register-employer`)}
-              cursor="default"
               variant="body2"
             >
               {"Don't have an account? Sign Up as Company"}
@@ -178,7 +163,6 @@ export const SignIn = () => {
           </div>
         </Box>
       </Box>
-     
     </Container>
   );
 };

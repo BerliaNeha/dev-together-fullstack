@@ -28,7 +28,7 @@ export const Homepage = () => {
   return (
     <>
       <Navbar />
-      <Box sx={{ height: "90vh", width: "100%" }}>
+      <Box sx={{ height: "300px", width: "100%",display: { xs: "block", sm: "none", md: "none", xl:"none" } }}>
         <div
           style={{
             height: "100%",
@@ -36,10 +36,47 @@ export const Homepage = () => {
             margin: "auto",
             background: `url(${HomePageGIF2}) no-repeat center center`,
             //backgroundRepeat: "no-repeat",
-            backgroundSize: "cover",
+             backgroundSize: "100% 300px",
           }}
         ></div>
       </Box>
+      <Box sx={{ height: "500px", width: "100%",display: { xs: "none", sm: "block", md: "none", xl:"none" } }}>
+        <div
+          style={{
+            height: "100%",
+            width: "100%",
+            margin: "auto",
+            background: `url(${HomePageGIF2}) no-repeat center center`,
+            //backgroundRepeat: "no-repeat",
+             backgroundSize: "100% 500px",
+          }}
+        ></div>
+      </Box>
+      <Box sx={{ height: "600px", width: "100%",display: { xs: "none", sm: "none", md: "block", xl:"none" } }}>
+        <div
+          style={{
+            height: "100%",
+            width: "100%",
+            margin: "auto",
+            background: `url(${HomePageGIF2}) no-repeat center center`,
+            //backgroundRepeat: "no-repeat",
+             backgroundSize: "100% 600px",
+          }}
+        ></div>
+      </Box>
+      <Box sx={{ height: "100vh", width: "100%",display: { xs: "none", sm: "none", md: "none", xl:"block" } }}>
+        <div
+          style={{
+            height: "100%",
+            width: "100%",
+            margin: "auto",
+            background: `url(${HomePageGIF2}) no-repeat center center`,
+            //backgroundRepeat: "no-repeat",
+             backgroundSize: "100% 100%",
+          }}
+        ></div>
+      </Box>
+      
 
       <CardFlip />
 

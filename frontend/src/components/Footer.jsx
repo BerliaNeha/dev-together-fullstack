@@ -21,10 +21,10 @@ import { PrivacyAndPolicy } from "./PrivacyAndPolicy.jsx";
 
 function Copyright() {
   return (
-    <Typography variant="body2" color="inherit" sx={{ marginTop: "20px" }}>
+    <Typography variant="body2" color="inherit" sx={{ marginTop: "20px",color: (theme) => theme.palette.secondary.main}}>
       {"Copyright © "}
-      <HashLink color="inherit" smooth to="/terms-privacy/#copyright">
-        Dev Together
+      <HashLink color="inherit" smooth to="/terms-privacy/#copyright" style={{textDecoration:"none",color: (theme) => theme.palette.secondary.main}}>
+     <span style={{color: (theme) => theme.palette.secondary.main}}>Dev Together</span> 
       </HashLink>{" "}
       {new Date().getFullYear()}
       {"."}
@@ -135,16 +135,16 @@ function Footer(props) {
               <HashLink
                 smooth
                 to="/terms-privacy/#terms"
-                style={{ color: "error", textDecoration: "none" }}
+                style={{ textDecoration: "none" }}
               >
-                Terms{" "}
+                <Typography sx={{color: (theme) => theme.palette.secondary.main}}>Terms</Typography>
               </HashLink>
               <HashLink
                 smooth
                 to="/terms-privacy/#privacy"
-                sx={{ color: "inherit", fontSize: "15px" }}
+                style={{ textDecoration: "none" }}
               >
-                Privacy
+                <Typography sx={{color: (theme) => theme.palette.secondary.main}}>Privacy</Typography>
               </HashLink>
             </Box>
           </List>{" "}
