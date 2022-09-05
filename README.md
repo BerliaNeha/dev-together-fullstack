@@ -8,12 +8,12 @@ Final project DCI- Fullstack project: Neha Berlia and Vaia Zymara
 
 
 # TECH Stack
-JavaScript
-MERN
-Material UI
-HTML
-CSS
-RestFul API
+* JavaScript
+* MERN
+* Material UI
+* HTML
+* CSS
+* RestFul API
 
 
 # Installation
@@ -41,7 +41,7 @@ yarn create react-app my-app
 
 
 ### Employer
-![](../presentation/EmployerRegiswithAlert.gif)
+![](./presentation/EmployerResgiswithAlert.gif)
 
 
 
