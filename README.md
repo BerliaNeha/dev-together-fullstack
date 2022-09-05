@@ -37,11 +37,11 @@ yarn create react-app my-app
 ## Registration
 ### Developer
 
-![](../presentation/DeveloperRegisPrivacyPolicy.gif)
+![](./presentation/DeveloperRegisPrivacyPolicy.gif)
 
 
 ### Employer
-![](../presentation/EmployerRegiswithAlert.gif)
+![](./presentation/EmployerResgiswithAlert.gif)
 
 
 
