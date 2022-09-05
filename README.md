@@ -41,7 +41,7 @@ yarn create react-app my-app
 
 
 ### Employer
-![](./presentation/EmployerRegiswithAlert.gif)
+![](../presentation/EmployerRegiswithAlert.gif)
 
 
 
