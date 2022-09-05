@@ -89,7 +89,7 @@ export const Homepage = () => {
       >
         <Box sx={style}>
           <Typography id="modal-modal-title" variant="h6" component="h2">
-            Text in a modal
+            Terms and Conditions
           </Typography>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
             The protection of your privacy is of particular importance to us.
