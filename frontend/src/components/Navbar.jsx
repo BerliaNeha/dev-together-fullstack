@@ -143,7 +143,7 @@ export const Navbar = () => {
               <>
                 {isLoggedIn && key === 5 ? null : page === "dev-community" ? (
                   <Button
-                    href="http://localhost:3000/dev#/dev-community"
+                    href="https://dev-together-frontend.vercel.app/#/dev-community"
                     target="__blank"
                     size="medium"
                     key={page}
